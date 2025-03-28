@@ -20,5 +20,15 @@ export const CommonButton = styled.button<ButtonProps>`
     return props.theme.colors[border];
   }};
 
+  span {
+      text-align: center;
+      font-family: Pretendard;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: -0.8px;
+    }
+
   color: ${({ theme }) => theme.colors.white};
 `;
