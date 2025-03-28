@@ -5,7 +5,7 @@ export const Container = styled.section`
     position: fixed;
     bottom: 20px;
     width: 88%;
-    min-width: 353px;
+    /* min-width: 353px; */
     height: 72px;
     background-color: ${({ theme }) => theme.colors.gray1};
     stroke-width: 1.4px;
@@ -13,6 +13,10 @@ export const Container = styled.section`
     border-radius: 80px;
     justify-content: space-around;
     align-items: center;
+
+    @media (max-height: 800px) {
+        width: 75%;
+    } 
 `;
 
 export const JoinContainer = styled.div`
@@ -21,6 +25,10 @@ export const JoinContainer = styled.div`
     align-items: center;
     border-radius: 80px;
     width: 20%;
+
+    @media (max-height: 800px) {
+        width: 15%;
+    } 
 `
 
 export const UsContainer = styled.div`
@@ -29,6 +37,10 @@ export const UsContainer = styled.div`
     align-items: center;
     border-radius: 80px;
     width: 20%;
+
+    @media (max-height: 800px) {
+        width: 15%;
+    } 
 `
 
 export const ShareContainer = styled.div`
@@ -37,6 +49,10 @@ export const ShareContainer = styled.div`
     align-items: center;
     border-radius: 80px;
     width: 20%;
+
+    @media (max-height: 800px) {
+        width: 15%;
+    } 
 `;
 
 export const RankContainer = styled.div`
@@ -45,6 +61,10 @@ export const RankContainer = styled.div`
     align-items: center;
     border-radius: 80px;
     width: 20%;
+
+    @media (max-height: 800px) {
+        width: 15%;
+    } 
 `
 
 export const JoinImg = styled.img`
