@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import LogoSection from "@components/login/LogoSection";
-import { InputSection } from "@components/login/InputSection";
-import { ButtonSection } from "@components/login/ButtonSection";
+import { InputSection } from "@components/signup/InputSection";
+import { ButtonSection } from "@components/signup/ButtonSection";
 
-export const LoginPage = () => {
+export const SignUpPage = () => {
   return (
     <Wrapper>
       <LogoSection />
