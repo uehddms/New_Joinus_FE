@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
     element: <FooterLayout />,
     children: [
       { path: "join", element: <JoinMain /> },
-      { path: "start", element: <JoinStart />}
+      { path: "start", element: <JoinStart />},
       { path: "us", element: <UsPage /> },
     ],
   },
