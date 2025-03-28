@@ -5,7 +5,7 @@ export const Container = styled.section`
     position: fixed;
     bottom: 20px;
     width: 88%;
-    /* min-width: 353px; */
+    max-width: 440px;
     height: 72px;
     background-color: ${({ theme }) => theme.colors.gray1};
     stroke-width: 1.4px;
