@@ -27,7 +27,6 @@ i {font-style:normal}
 #root {
 	display: flex;
 	flex-direction: column;
-	/* overflow: hidden; framer motion작동이안돼서*/
 	min-height: calc(var(--vh, 1vh) * 100);
 }
 
@@ -53,6 +52,7 @@ html {
 	/* @media (max-width: 360px) {
 		font-size:12px;
 	} */
+
 }
 
 body {
