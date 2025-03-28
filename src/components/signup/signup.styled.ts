@@ -9,7 +9,7 @@ export const InputWrapper = styled.section`
 
   width: 100%;
   p {
-    padding-left: 13vw;
+    padding-left: 15%;
     align-self: flex-start;
 
     font-family: Pretendard;
