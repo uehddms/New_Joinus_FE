@@ -1,9 +1,9 @@
-import * as S from "./InputBox.styled";
+import * as S from "./Login.styled";
 
 export const InputBox = () => {
   return (
-    <S.Wrapper>
+    <>
       <S.Input />
-    </S.Wrapper>
+    </>
   );
 };

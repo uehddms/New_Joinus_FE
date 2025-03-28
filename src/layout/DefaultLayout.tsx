@@ -11,6 +11,7 @@ export const DefaultLayout = () => {
 
 const Wrapper = styled.section`
   min-height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
