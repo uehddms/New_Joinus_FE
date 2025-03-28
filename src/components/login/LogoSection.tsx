@@ -1,4 +1,4 @@
-import logo from "../../assets/icons/mainLogo.png";
+import logo from "../../assets/image/mainLogo.png";
 import * as S from "./Login.styled";
 
 const LogoSection = () => {
