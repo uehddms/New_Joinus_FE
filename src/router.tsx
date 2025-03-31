@@ -5,6 +5,7 @@ import { Main } from "@components/apply/Main";
 import { LoginPage } from "@pages/LoginPage";
 import { JoinMain } from "./pages/joinPage/JoinMain";
 import { SignUpPage } from "./pages/SignUpPage";
+import RankPage from "@pages/RankPage";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ export const router = createBrowserRouter([
     element: <FooterLayout />,
     children: [
       { path: "join", element: <JoinMain /> },
+      { path: "rank", element: <RankPage /> },
     ],
   },
 ]);
