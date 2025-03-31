@@ -6,7 +6,7 @@ export const FooterLayout = () => {
   return (
     <Wrapper>
       <Outlet />
-      <CommonFooter/>
+      <CommonFooter />
     </Wrapper>
   );
 };
