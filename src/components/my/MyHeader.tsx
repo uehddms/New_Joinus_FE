@@ -23,7 +23,7 @@ const MyHeader: React.FC<MyHeaderProps> = ({ pageName }) => {
     switch (pageName) {
       case "회원정보 수정":
         return edit;
-      case "어스 테마 바꾸기":
+      case "어스테마 바꾸기":
         return theme;
       case "구매목록":
         return shopping;
