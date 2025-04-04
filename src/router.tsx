@@ -12,6 +12,7 @@ import { JoinUpload } from "@pages/joinPage/JoinUpload";
 import { JoinExplain } from "@pages/joinPage/JoinExplain";
 import { JoinCate } from "@pages/joinPage/JoinCate";
 import SharePage from "@pages/SharePage";
+import FeedDetailPage from "@pages/FeedDetailPage";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ export const router = createBrowserRouter([
       { path: "login", element: <LoginPage /> },
       { path: "signup", element: <SignUpPage /> },
       { path: "ex", element: <JoinExplain /> },
+      { path: "feed/detail/1", element: <FeedDetailPage /> },
     ],
   },
   {
