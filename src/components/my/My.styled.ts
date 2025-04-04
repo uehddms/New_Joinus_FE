@@ -204,12 +204,13 @@ export const ButtonSection = styled.div``;
 // `;
 
 /* MyTheme.jsx */
-export const ThemeMain = styled.form``;
-
+export const MyThemeMain = styled.div`
+  height: 600px;
+`;
 export const ThemeBox = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 35px 0 0 40px;
+  margin: 20px 0 0 40px;
 `;
 export const SaveBox_Container = styled.div`
   display: flex;
@@ -220,29 +221,28 @@ export const SaveBox_Container = styled.div`
 `;
 
 export const ThemeImg = styled.img`
-  width: 134px;
+  width: 180px;
 `;
 export const ThemeTextBox = styled.div`
-  margin-top: 16px;
-  display: inline-flex;
-  gap: 24px;
+  margin-left: 25px;
+  display: flex;
+  align-items: center;
+  gap: 140px;
 `;
 export const ThemeText = styled.div`
   display: inline-flex;
-  padding: 8px 16px;
-  justify-content: center;
+  padding: 4px 12px;
   align-items: center;
   gap: 8px;
   border-radius: 34px;
-  border: 1px solid var(--Gray2, #e0e0e0);
-  background: var(--Gray1, #f1f1f1);
-  color: #000;
-  font-family: Pretendard;
-  font-size: 17px;
+  border: 1px solid ${({ theme }) => theme.colors.gray2};
+  background: ${({ theme }) => theme.colors.gray1};
+  color: ${({ theme }) => theme.colors.gray5};
+  font-size: 16px;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 500;
   line-height: normal;
-  letter-spacing: -0.68px;
+  letter-spacing: -0.64px;
 `;
 export const ThemeText_img = styled.img``;
 export const ThemeSelectBtn_img = styled.img`

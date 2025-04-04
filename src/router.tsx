@@ -14,7 +14,7 @@ import { JoinCate } from "@pages/joinPage/JoinCate";
 import SharePage from "@pages/feedPage/SharePage";
 import FeedDetailPage from "@pages/feedPage/FeedDetailPage";
 import MyInfoEditPage from "@pages/myPage/MyInfoEditPage";
-// import MyThemePage from "@pages/myPage/MyThemePage";
+import MyThemePage from "@pages/myPage/MyThemePage";
 // import MyShoppinglistPage from "@pages/myPage/MyShoppinglistPage";
 import MyContactPage from "./pages/myPage/MyContactPage";
 // import MyLogoutPage from "@pages/myPage/MyLogoutPage";
@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
       { path: "ex", element: <JoinExplain /> },
       { path: "feed/detail/1", element: <FeedDetailPage /> },
       { path: "myEdit", element: <MyInfoEditPage /> },
-      // { path: "myTheme", element: <MyThemePage /> },
+      { path: "myTheme", element: <MyThemePage /> },
       // { path: "myShopping", element: <MyShoppinglistPage /> },
       { path: "myContact", element: <MyContactPage /> },
       // { path: "myLogout", element: <MyLogoutPage /> },
