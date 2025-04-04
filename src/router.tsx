@@ -11,6 +11,7 @@ import RankPage from "@pages/RankPage";
 import { JoinUpload } from "@pages/joinPage/JoinUpload";
 import { JoinExplain } from "@pages/joinPage/JoinExplain";
 import { JoinCate } from "@pages/joinPage/JoinCate";
+import SharePage from "@pages/SharePage";
 
 export const router = createBrowserRouter([
   {
@@ -31,8 +32,9 @@ export const router = createBrowserRouter([
       { path: "start", element: <JoinStart /> },
       { path: "us", element: <UsPage /> },
       { path: "rank", element: <RankPage /> },
-      { path: "upload", element: <JoinUpload />},
-      { path: "cate", element: <JoinCate />},
+      { path: "upload", element: <JoinUpload /> },
+      { path: "cate", element: <JoinCate /> },
+      { path: "share", element: <SharePage /> },
     ],
   },
 ]);
