@@ -9,6 +9,7 @@ import UsPage from "./pages/UsPage";
 import { JoinStart } from "./pages/joinPage/JoinStart";
 import RankPage from "@pages/RankPage";
 import { JoinUpload } from "@pages/joinPage/JoinUpload";
+import { JoinExplain } from "@pages/joinPage/JoinExplain";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
       { path: "", element: <Main /> },
       { path: "login", element: <LoginPage /> },
       { path: "signup", element: <SignUpPage /> },
+      { path: "ex", element: <JoinExplain /> },
     ],
   },
   {
