@@ -20,33 +20,45 @@ const UsMenu = forwardRef<HTMLDivElement, UsMenuProps>(
         <S.Back src={back} onClick={onClose} />
         <S.MenuSectionBox>
           <S.MenuSection>
-            <S.Img src={edit} />
-            <S.Text>회원정보 수정</S.Text>
+            <S.MenuHover>
+              <S.Img src={edit} />
+              <S.Text>회원정보 수정</S.Text>
+            </S.MenuHover>
           </S.MenuSection>
           <S.Line />
           <S.MenuSection>
-            <S.Img src={theme} />
-            <S.Text>어스 테마 바꾸기</S.Text>
+            <S.MenuHover>
+              <S.Img src={theme} />
+              <S.Text>어스 테마 바꾸기</S.Text>
+            </S.MenuHover>
           </S.MenuSection>
           <S.Line />
           <S.MenuSection>
-            <S.Img src={shopping} />
-            <S.Text>구매목록</S.Text>
+            <S.MenuHover>
+              <S.Img src={shopping} />
+              <S.Text>구매목록</S.Text>
+            </S.MenuHover>
           </S.MenuSection>
           <S.Line />
           <S.MenuSection>
-            <S.Img src={send} />
-            <S.Text>문의하기</S.Text>
+            <S.MenuHover>
+              <S.Img src={send} />
+              <S.Text>문의하기</S.Text>
+            </S.MenuHover>
           </S.MenuSection>
           <S.Line />
           <S.MenuSection>
-            <S.Img src={logout} />
-            <S.Text>로그아웃</S.Text>
+            <S.MenuHover>
+              <S.Img src={logout} />
+              <S.Text>로그아웃</S.Text>
+            </S.MenuHover>
           </S.MenuSection>
           <S.Line />
           <S.MenuSection>
-            <S.Img src={quit} />
-            <S.Text>탈퇴</S.Text>
+            <S.MenuHover>
+              <S.Img src={quit} />
+              <S.Text>탈퇴</S.Text>
+            </S.MenuHover>
           </S.MenuSection>
         </S.MenuSectionBox>
       </S.MenuContainer>
