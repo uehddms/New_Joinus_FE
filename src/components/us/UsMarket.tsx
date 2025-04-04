@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import * as S from "./styled";
-import marketImg from "../../assets/img/us/market/marketImg.svg";
-import frame1 from "../../assets/img/us/market/frame1.svg";
-import frame2 from "../../assets/img/us/market/frame2.svg";
-import sticker from "../../assets/img/us/market/sticker.svg";
-import theme from "../../assets/img/us/market/theme.svg";
+import * as S from "./Us.styled";
+import marketImg from "../../assets/image/market/marketImg.svg";
+import frame1 from "../../assets/image/market/frame1.svg";
+import frame2 from "../../assets/image/market/frame2.svg";
+import sticker from "../../assets/image/market/sticker.svg";
+import theme from "../../assets/image/market/theme.svg";
 
 const UsBottom = () => {
   const [point, setPoint] = useState<number>(0);
