@@ -30,5 +30,5 @@ export const CommonButton = styled.button<ButtonProps>`
       letter-spacing: -0.8px;
     }
 
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.gray4};
 `;

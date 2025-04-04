@@ -41,7 +41,7 @@ export const MyRanking = styled.div`
 `;
 
 export const RankingText = styled.div`
-  color: var(--Gray5, #2e302d);
+  color: ${({ theme }) => theme.colors.gray5};
   text-align: center;
   font-family: Pretendard;
   font-size: 16px;
@@ -52,7 +52,9 @@ export const RankingText = styled.div`
 `;
 
 /* UsMain.tsx ------- */
-export const StepContainer = styled.div``;
+export const StepContainer = styled.div`
+  margin-top: -25px;
+`;
 export const StepImage = styled.img`
   position: relative;
   margin: 0 auto;
@@ -245,8 +247,8 @@ export const MarketList = styled.div`
   margin-top: 10px;
 `;
 export const MarketItem = styled.div`
-  width: 80px;
-  height: 80px;
+  width: 75px;
+  height: 75px;
   flex-shrink: 0;
   border-radius: 24px;
   border: 1px solid ${({ theme }) => theme.colors.gray2};
