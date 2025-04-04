@@ -4,9 +4,13 @@ interface ContentProps {
     step: number;
 }  
 
-export const Wrapper = styled.section`
+interface WrapperProps {
+    step: number;
+}
+
+export const Wrapper = styled.section<WrapperProps>`
     width: 100%;
-    height: 95vh;
+    height: ${({ step }) => (step === 3? "85vh" : "95vh")};
     display: flex;
     flex-direction: column;
     align-items: center;

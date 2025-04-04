@@ -59,7 +59,7 @@ export const JoinExplain = () => {
     };
 
     return (
-        <S.Wrapper>
+        <S.Wrapper step={step}>
             <S.Title>
                 {pages[step].title}
             </S.Title>
