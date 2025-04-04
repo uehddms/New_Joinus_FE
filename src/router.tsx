@@ -13,6 +13,7 @@ import { JoinExplain } from "@pages/joinPage/JoinExplain";
 import { JoinCate } from "@pages/joinPage/JoinCate";
 import SharePage from "@pages/SharePage";
 import FeedDetailPage from "@pages/FeedDetailPage";
+import { JoinFrame } from "@pages/joinPage/JoinFrame";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,7 @@ export const router = createBrowserRouter([
       { path: "upload", element: <JoinUpload /> },
       { path: "cate", element: <JoinCate /> },
       { path: "share", element: <SharePage /> },
+      { path: "frame", element: <JoinFrame /> },
     ],
   },
 ]);
