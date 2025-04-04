@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import * as S from "./styled";
-import card from "../../assets/img/us/card.svg";
-import StepImg from "../../assets/img/us/stepImg.svg";
+import * as S from "./Us.styled";
+import card from "../../assets/image/us/card.svg";
+import StepImg from "../../assets/image/us/stepImg.svg";
 
 const UsBottom = () => {
   const [myCard, setMyCard] = useState<number>(2);
