@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const MenuContainer = styled.div<{ $isOpen: boolean }>`
-  position: absolute; /* fixed → absolute 유지 */
+  position: absolute;
   padding-top: 20px;
   top: 0;
-  left: 0;
+  left: 0px;
   width: 234px;
   height: 100%;
   background: white;
@@ -19,7 +19,7 @@ export const MenuContainer = styled.div<{ $isOpen: boolean }>`
 export const Back = styled.img`
   cursor: pointer;
   position: absolute;
-  right: 40px;
+  right: 45px;
 `;
 
 export const MenuSectionBox = styled.div`
@@ -41,8 +41,8 @@ export const MenuSection = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 `;
 
 export const Text = styled.span`
@@ -53,6 +53,26 @@ export const Text = styled.span`
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.64px;
+`;
+
+export const MenuHover = styled.div`
+  display: flex;
+  height: 40px;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  &:hover {
+    border-radius: 24px;
+    background: ${({ theme }) => theme.colors.white};
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.14);
+    color: ${({ theme }) => theme.colors.gray5};
+
+    ${Text} {
+      font-weight: 700;
+    }
+  }
 `;
 
 export const Line = styled.div`
