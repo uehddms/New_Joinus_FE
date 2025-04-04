@@ -1,15 +1,15 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import UsRanking from "../components/us/UsRanking";
 import UsStep from "../components/us/UsMain";
 import UsBottom from "../components/us/UsStepCard";
 import UsMarket from "../components/us/UsMarket";
 import UsMenu from "../components/us/menu/UsMenu";
-import menu from "../assets/img/us/menu.svg";
+import menu from "../assets/image/us/menu.svg";
 
 const Layout = styled.div`
-  font-family: Pretendard;
   padding: 0 10px;
+  font-family: pretendard;
   max-height: calc(100vh - 78px);
   position: relative;
   overflow: hidden;

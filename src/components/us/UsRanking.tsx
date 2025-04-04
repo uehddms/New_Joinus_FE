@@ -1,5 +1,5 @@
 import { useState } from "react";
-import * as S from "./styled";
+import * as S from "./Us.styled";
 
 const UsRanking = () => {
   const [myRanking, setMyRanking] = useState(50);
