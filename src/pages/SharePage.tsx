@@ -1,5 +1,5 @@
-import CardComponent from "@components/share/CardComponent";
-import ShareHeader from "@components/share/ShareHeader";
+import CardComponent from "@components/share/feed/CardComponent";
+import ShareHeader from "@components/share/feed/ShareHeader";
 
 const SharePage = () => {
   return (
