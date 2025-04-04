@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import card from "@assets/image/card.png";
+import card from "@assets/image/cardContainer.png";
 import test from "@assets/image/testimg.png";
 import * as S from "./share.styled";
 import leaf from "@assets/icons/leaf.png";
