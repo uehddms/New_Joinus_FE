@@ -13,6 +13,12 @@ import { JoinExplain } from "@pages/joinPage/JoinExplain";
 import { JoinCate } from "@pages/joinPage/JoinCate";
 import SharePage from "@pages/SharePage";
 import FeedDetailPage from "@pages/FeedDetailPage";
+import MyInfoEditPage from "@pages/myPage/MyInfoEditPage";
+// import MyThemePage from "@pages/myPage/MyThemePage";
+// import MyShoppinglistPage from "@pages/myPage/MyShoppinglistPage";
+import MyContactPage from "./pages/myPage/MyContactPage";
+// import MyLogoutPage from "@pages/myPage/MyLogoutPage";
+// import MyQuitPage from "@pages/myPage/MyQuitPage";
 import { JoinFrame } from "@pages/joinPage/JoinFrame";
 
 export const router = createBrowserRouter([
@@ -25,6 +31,12 @@ export const router = createBrowserRouter([
       { path: "signup", element: <SignUpPage /> },
       { path: "ex", element: <JoinExplain /> },
       { path: "feed/detail/1", element: <FeedDetailPage /> },
+      { path: "myEdit", element: <MyInfoEditPage /> },
+      // { path: "myTheme", element: <MyThemePage /> },
+      // { path: "myShopping", element: <MyShoppinglistPage /> },
+      { path: "myContact", element: <MyContactPage /> },
+      // { path: "myLogout", element: <MyLogoutPage /> },
+      // { path: "myQuit", element: <MyQuitPage /> },
     ],
   },
   {
