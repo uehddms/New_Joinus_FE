@@ -14,6 +14,8 @@ export const Container = styled.section`
   justify-content: space-around;
   align-items: center;
 
+  z-index: 100;
+
   @media (max-height: 800px) {
     width: 75%;
   }

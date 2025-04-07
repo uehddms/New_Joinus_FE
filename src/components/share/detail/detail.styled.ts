@@ -10,8 +10,6 @@ export const Wrapper = styled.header`
 
   gap: 20px;
 
-  border: 1px solid black;
-
   img {
     width: 24px;
     height: 24px;
@@ -34,4 +32,37 @@ export const CardContainer = styled.div`
   border-width: 1px;
   border-style: solid;
   border-color: ${({ theme }) => theme.colors.gray2};
+
+  position: relative;
+  z-index: 1;
+
+  padding-top: calc(80% * 3 / 2 + 60px);
+
+  img:nth-of-type(1) {
+    width: 80%;
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 5;
+    aspect-ratio: 2/3;
+
+    border-radius: 10%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: ${({ theme }) => theme.colors.gray2};
+  }
+
+  img:nth-of-type(2) {
+    width: 80%;
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 3;
+
+    border-radius: 10%;
+  }
 `;
