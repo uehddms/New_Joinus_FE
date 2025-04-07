@@ -3,6 +3,7 @@ import { theme } from "@styles/theme";
 
 interface ButtonProps {
   color?: keyof typeof theme.colors;
+  bgcolor?: keyof typeof theme.colors;
   border?: keyof typeof theme.colors;
 }
 
@@ -11,24 +12,25 @@ export const CommonButton = styled.button<ButtonProps>`
   height: 60px;
 
   border-radius: 94px;
-  background-color: ${({ color = "gray2", theme }) => theme.colors[color]};
+  background-color: ${({ bgcolor = "gray2", theme }) => theme.colors[bgcolor]};
   border-width: 2px;
   border-style: solid;
   border-color: ${(props) => {
-    const color = props.color ?? "gray2";
-    const border = props.border ?? color;
+    const bgcolor = props.bgcolor ?? "gray2";
+    const border = props.border ?? bgcolor;
     return props.theme.colors[border];
   }};
 
   span {
-      text-align: center;
-      font-family: Pretendard;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
-      letter-spacing: -0.8px;
-    }
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.8px;
+  }
 
-  color: ${({ theme }) => theme.colors.gray4};
+  color: ${({ color = "gray5", theme }) => theme.colors[color]};
+  cursor: pointer;
 `;
