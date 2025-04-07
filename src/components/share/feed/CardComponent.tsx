@@ -37,6 +37,25 @@ const CardComponent = () => {
         <img src={leaf} alt="point 모양" />
         <p>100</p>
       </S.CardContainer>
+
+      <S.CardContainer>
+        <img src={card} alt="카드 프레임" />
+        <img src={test} alt="사용자가 추가한 이미지" />
+        <img src={leaf} alt="point 모양" />
+        <p>100</p>
+      </S.CardContainer>
+      <S.CardContainer>
+        <img src={card} alt="카드 프레임" />
+        <img src={test} alt="사용자가 추가한 이미지" />
+        <img src={leaf} alt="point 모양" />
+        <p>100</p>
+      </S.CardContainer>
+      <S.CardContainer>
+        <img src={card} alt="카드 프레임" />
+        <img src={test} alt="사용자가 추가한 이미지" />
+        <img src={leaf} alt="point 모양" />
+        <p>100</p>
+      </S.CardContainer>
       <S.CardContainer>
         <img src={card} alt="카드 프레임" />
         <img src={test} alt="사용자가 추가한 이미지" />
