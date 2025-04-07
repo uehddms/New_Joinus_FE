@@ -164,11 +164,13 @@ export const UnSelectOptionList = styled.div`
   position: absolute;
 
   top: 34px;
+
+  z-index: 10;
 `;
 
 export const UnSelectedOptionItem = styled.button`
   width: 90px;
-  background-color: inherit;
+  background-color: ${({ theme }) => theme.colors.white};
   padding: 0.25rem;
 
   border-radius: 24px;
