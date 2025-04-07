@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 import * as S from "./detail.styled";
 import card from "@assets/image/cardContainer.png";
