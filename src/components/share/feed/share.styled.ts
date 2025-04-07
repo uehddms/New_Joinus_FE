@@ -164,11 +164,13 @@ export const UnSelectOptionList = styled.div`
   position: absolute;
 
   top: 34px;
+
+  z-index: 10;
 `;
 
 export const UnSelectedOptionItem = styled.button`
   width: 90px;
-  background-color: inherit;
+  background-color: ${({ theme }) => theme.colors.white};
   padding: 0.25rem;
 
   border-radius: 24px;
@@ -183,7 +185,7 @@ export const UnSelectedOptionItem = styled.button`
 // CardComponent
 export const CardContainer = styled.div`
   width: 45%;
-
+  height: min-content;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -192,7 +194,6 @@ export const CardContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.gray2};
   border-radius: 5%;
   z-index: 1;
-
   padding-top: calc(90% * 2 / 3 + 60px);
 
   img:nth-of-type(1) {
