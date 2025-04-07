@@ -1,14 +1,14 @@
 import { useState } from "react";
-import * as S from "./styled";
-import step0 from "../../assets/img/us/step0.svg";
-import step1 from "../../assets/img/us/step1.svg";
-import step2 from "../../assets/img/us/step2.svg";
-import step3 from "../../assets/img/us/step3.svg";
-import step4 from "../../assets/img/us/step4.svg";
-import step1Pink from "../../assets/img/us/step1Pink.svg";
-import step2Pink from "../../assets/img/us/step2Pink.svg";
-import step3Pink from "../../assets/img/us/step3Pink.svg";
-import step4Pink from "../../assets/img/us/step4Pink.svg";
+import * as S from "./Us.styled";
+import step0 from "../../assets/image/us/step0.svg";
+import step1 from "../../assets/image/us/step1.svg";
+import step2 from "../../assets/image/us/step2.svg";
+import step3 from "../../assets/image/us/step3.svg";
+import step4 from "../../assets/image/us/step4.svg";
+import step1Pink from "../../assets/image/us/step1Pink.svg";
+import step2Pink from "../../assets/image/us/step2Pink.svg";
+import step3Pink from "../../assets/image/us/step3Pink.svg";
+import step4Pink from "../../assets/image/us/step4Pink.svg";
 
 const UsRanking = () => {
   const [myCard, setMyCard] = useState(2);
