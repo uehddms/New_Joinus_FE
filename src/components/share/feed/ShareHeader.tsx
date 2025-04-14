@@ -1,5 +1,6 @@
 import * as S from "./share.styled";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import writeButton from "@assets/image/writeButton.png";
 import rightButton from "@assets/image/rightButton.svg";
@@ -22,10 +23,12 @@ const ShareHeader = () => {
   return (
     <>
       <HeadWrapper>
-        <S.FeedContainer>
-          내 피드
-          <img src={rightButton} alt="피드로 이동" />
-        </S.FeedContainer>
+        <Link to="/feed/detail/1">
+          <S.FeedContainer>
+            내 피드
+            <img src={rightButton} alt="피드로 이동" />
+          </S.FeedContainer>
+        </Link>
         <img src={writeButton} alt="글작성 버튼" />
       </HeadWrapper>
       <S.PointSection>
@@ -37,7 +40,7 @@ const ShareHeader = () => {
       <S.DescriptContainer>
         <S.KeywordContainer>대기 전력</S.KeywordContainer>
         <span>키워드로 실천카드 만들어</span>
-        <span>&nbsp;피드 올리기</span>
+        <span>&nbsp;피드 올리기!</span>
       </S.DescriptContainer>
       <S.SortButton onClick={toggleDropdown}>
         {selected}

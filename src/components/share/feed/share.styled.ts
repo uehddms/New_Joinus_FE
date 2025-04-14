@@ -27,6 +27,8 @@ export const FeedContainer = styled.button`
   font-weight: 700;
   line-height: normal;
 
+  cursor: pointer;
+
   img {
     width: 24px;
     height: 24px;
@@ -107,10 +109,14 @@ export const DescriptContainer = styled.div`
   span:nth-of-type(2) {
     font-weight: bold;
   }
+
+  @media (max-width: 400px) {
+    font-size: 14px;
+  }
 `;
 
 export const KeywordContainer = styled.div`
-  padding: 0.75rem;
+  padding: 0.5rem 0.75rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -126,6 +132,10 @@ export const KeywordContainer = styled.div`
   font-weight: 700;
   line-height: normal;
   letter-spacing: -0.8px;
+
+  @media (max-width: 400px) {
+    font-size: 14px;
+  }
 `;
 
 export const SortButton = styled.button`
