@@ -10,7 +10,6 @@ const CommentBox = () => {
           <img src={send} alt="보내기" />
         </button>
       </S.CommentInputContainer>
-
       <S.AddedComment>댓글쓰기</S.AddedComment>
       <S.AddedComment>댓글쓰기- 댓글쓰기</S.AddedComment>
       <S.AddedComment>댓글쓰기</S.AddedComment>

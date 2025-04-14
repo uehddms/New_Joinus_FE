@@ -20,6 +20,7 @@ import MyContactPage from "./pages/myPage/MyContactPage";
 // import MyLogoutPage from "@pages/myPage/MyLogoutPage";
 // import MyQuitPage from "@pages/myPage/MyQuitPage";
 import { JoinFrame } from "@pages/joinPage/JoinFrame";
+import { JoinComplete } from "@components/join/JoinComplete";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,7 @@ export const router = createBrowserRouter([
       { path: "cate", element: <JoinCate /> },
       { path: "share", element: <SharePage /> },
       { path: "frame", element: <JoinFrame /> },
+      { path: "complete", element: <JoinComplete /> },
     ],
   },
 ]);
