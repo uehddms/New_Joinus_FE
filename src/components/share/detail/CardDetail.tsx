@@ -5,13 +5,27 @@ import test from "@assets/image/testimg.png";
 import leaf from "@assets/icons/leaf.png";
 import more from "@assets/icons/more-horizontal.svg";
 import { useState } from "react";
+import ReportModal from "@components/modal/ReportModal";
+import ReportModal2 from "@components/modal/ReportModal2";
 
 const CardDetail = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false);
+  const [isReportModal2Open, setIsReportModal2Open] = useState(false);
 
   const handleToggleText = () => {
     setIsExpanded(!isExpanded);
   };
+
+  const handleReportModal = () => {
+    setIsReportModalOpen(!isReportModalOpen);
+  };
+
+  const handleReportModal2Open = () => {
+    setIsReportModalOpen(false);
+    setIsReportModal2Open(true);
+  };
+
   return (
     <Wrapper>
       <S.CardContainer>
@@ -24,7 +38,7 @@ const CardDetail = () => {
               <img src={leaf} alt="point 로고" />
               <p>gdgdgd</p>
             </S.PointContainer>
-            <img src={more} alt="옵션 탭 열기" />
+            <img src={more} alt="옵션 탭 열기" onClick={handleReportModal} />
           </S.Container>
         </S.ContentContainer>
         <S.Title isExpanded={isExpanded}>
@@ -37,6 +51,15 @@ const CardDetail = () => {
           {isExpanded ? "접기" : "...더보기"}
         </S.Button>
       </S.CardContainer>
+      {isReportModalOpen && (
+        <ReportModal
+          onClose={() => setIsReportModalOpen(false)}
+          onConfirm={handleReportModal2Open}
+        />
+      )}
+      {isReportModal2Open && (
+        <ReportModal2 onClose={() => setIsReportModal2Open(false)} />
+      )}
     </Wrapper>
   );
 };

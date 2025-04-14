@@ -130,9 +130,18 @@ export const Button = styled.button`
 `;
 
 // Comment Box
+export const CommentInputContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 0.5rem;
+
+  width: 100%;
+`;
 
 export const InputComment = styled.input`
-  width: 100%;
+  width: 90%;
 
   border-radius: 24px;
   border-width: 1px;

@@ -27,6 +27,8 @@ export const FeedContainer = styled.button`
   font-weight: 700;
   line-height: normal;
 
+  cursor: pointer;
+
   img {
     width: 24px;
     height: 24px;
