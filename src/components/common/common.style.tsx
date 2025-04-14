@@ -31,6 +31,6 @@ export const CommonButton = styled.button<ButtonProps>`
     letter-spacing: -0.8px;
   }
 
-  color: ${({ color = "gray5", theme }) => theme.colors[color]};
+  color: ${({ color = "white", theme }) => theme.colors[color]};
   cursor: pointer;
 `;
