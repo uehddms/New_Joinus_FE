@@ -242,3 +242,21 @@ export const CardContainer = styled.div`
     font-weight: bold;
   }
 `;
+
+// MyFeedHeader
+
+export const BackContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  p {
+    color: ${({ theme }) => theme.colors.gray5};
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.96px;
+  }
+`;
