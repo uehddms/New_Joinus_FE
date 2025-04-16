@@ -23,7 +23,7 @@ const ShareHeader = () => {
   return (
     <>
       <HeadWrapper>
-        <Link to="/feed/detail/1">
+        <Link to="/myFeed">
           <S.FeedContainer>
             내 피드
             <img src={rightButton} alt="피드로 이동" />

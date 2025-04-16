@@ -11,8 +11,8 @@ import RankPage from "@pages/RankPage";
 import { JoinUpload } from "@pages/joinPage/JoinUpload";
 import { JoinExplain } from "@pages/joinPage/JoinExplain";
 import { JoinCate } from "@pages/joinPage/JoinCate";
-import SharePage from "@pages/SharePage";
-import FeedDetailPage from "@pages/FeedDetailPage";
+import SharePage from "@pages/feedPage/SharePage";
+import FeedDetailPage from "@pages/feedPage/FeedDetailPage";
 import MyInfoEditPage from "@pages/myPage/MyInfoEditPage";
 // import MyThemePage from "@pages/myPage/MyThemePage";
 // import MyShoppinglistPage from "@pages/myPage/MyShoppinglistPage";
@@ -21,7 +21,8 @@ import MyContactPage from "./pages/myPage/MyContactPage";
 // import MyQuitPage from "@pages/myPage/MyQuitPage";
 import { JoinFrame } from "@pages/joinPage/JoinFrame";
 import { JoinComplete } from "@components/join/JoinComplete";
-
+import MyFeed from "@pages/feedPage/MyFeedPage";
+import StoreFeedPage from "@pages/feedPage/StoreFeedPage";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -53,6 +54,8 @@ export const router = createBrowserRouter([
       { path: "share", element: <SharePage /> },
       { path: "frame", element: <JoinFrame /> },
       { path: "complete", element: <JoinComplete /> },
+      { path: "myFeed", element: <MyFeed /> },
+      { path: "storeFeed", element: <StoreFeedPage /> },
     ],
   },
 ]);
