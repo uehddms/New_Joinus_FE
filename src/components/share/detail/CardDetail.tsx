@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> b4c65692642ec088a2e85d3156e8099cecb811b5
 import styled from "styled-components";
 import * as S from "./detail.styled";
 import card from "@assets/image/cardContainer.png";
