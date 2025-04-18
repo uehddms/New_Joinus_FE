@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-/* MyContainer */
-export const MyPageContainer = styled.div`
+export const MyLogoutContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   max-width: 31.25rem;
   margin: 0 auto;
@@ -11,79 +12,61 @@ export const MyPageContainer = styled.div`
   background-color: white;
 `;
 
-export const MyContainer = styled.div`
+export const ModalContainer = styled.div`
+  margin-top: 40%;
   display: flex;
+  width: 20rem;
+  padding: 1rem 1.0625rem;
   flex-direction: column;
-  flex: 1;
-  padding-bottom: 1.25rem;
-  width: calc(100% - 2.5rem);
-`;
-
-export const EditBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 1.875rem;
-  height: 28.125rem;
-`;
-
-export const UsernameTitle = styled.div`
-  color: ${({ theme }) => theme.colors.gray4};
-  font-size: 1.0625rem;
-  font-weight: 700;
-  align-self: flex-start;
-  text-align: left;
-`;
-
-export const UsernameCurrentBox = styled.div`
-  width: 100%;
-  height: 3.125rem;
-  display: flex;
   align-items: center;
-  padding: 0 1.25rem;
-  border-radius: 1.5625rem;
+  gap: 1rem;
+  border-radius: 1.5rem;
+  box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.08);
   border: 1px solid ${({ theme }) => theme.colors.gray2};
-  background: white;
-  color: ${({ theme }) => theme.colors.gray5};
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
+  background: ${({ theme }) => theme.colors.white};
 `;
 
-export const UsernameInputBox = styled.input`
-  width: 100%;
-  height: 3.125rem;
-  padding: 0 1.25rem;
-  border-radius: 1.5625rem;
-  border: 1px solid ${({ theme }) => theme.colors.gray2};
-  background: white;
-  color: ${({ theme }) => theme.colors.gray5};
-  font-size: 1rem;
-  font-weight: 400;
-  outline: none;
-
-  &::placeholder {
-    color: ${({ theme }) => theme.colors.gray3};
-  }
-`;
-
-export const ValidationMessage = styled.div<{ isError: boolean }>`
-  text-align: right;
-  font-size: 0.75rem;
-  margin-top: -0.3125rem;
-  margin-left: 0.5rem;
-  color: ${(props) => (props.isError ? "#DB7575" : "#73C56A")};
-`;
-
-export const ButtonSection = styled.div``;
-
-/* MyLogout.jsx */
-export const Logout_text = styled.h2`
-  margin-bottom: 1.875rem;
+export const Title = styled.h2`
   color: var(--Gray5, #2e302d);
+  font-family: Pretendard;
+  font-size: 1.25rem;
+`;
+
+export const BtnContainer = styled.div`
+  display: flex;
+  width: 17.5rem;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const GreenBtn = styled.button`
+  width: 8rem;
+  height: 3rem;
+  flex-shrink: 0;
+  border-radius: 1rem;
+  background: ${({ theme }) => theme.colors.primaryColor};
+  color: var(--White, #fff);
   font-family: Pretendard;
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 700;
-  line-height: normal;
+  line-height: 150%;
   letter-spacing: -0.05rem;
+  cursor: pointer;
+`;
+
+export const GreyBtn = styled.button`
+  width: 8rem;
+  height: 3rem;
+  flex-shrink: 0;
+  border-radius: 1rem;
+  border: 1px solid ${({ theme }) => theme.colors.gray2};
+  background: ${({ theme }) => theme.colors.gray1};
+  color: ${({ theme }) => theme.colors.gray5};
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+  cursor: pointer;
 `;
