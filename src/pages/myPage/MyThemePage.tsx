@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import MyHeader from "../../components/my/MyHeader";
-import MyTheme from "../../components/my/MyTheme";
+import MyTheme from "../../components/my/theme/MyTheme";
 
 const Layout = styled.div`
   width: 100%;

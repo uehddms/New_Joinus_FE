@@ -1,4 +1,4 @@
-import * as S from "./My.styled";
+import * as S from "./styled";
 
 const MyContact: React.FC = () => {
   const link =
