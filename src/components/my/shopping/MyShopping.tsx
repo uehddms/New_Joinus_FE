@@ -1,26 +1,36 @@
 import { useState } from "react";
 import * as S from "./styled";
 import { Link } from "react-router-dom";
+import sticker from "../../../assets/image/market/sticker.svg";
+import theme from "../../../assets/image/market/theme.svg";
+import frame1 from "../../../assets/image/market/frame1.svg";
+import frame2 from "../../../assets/image/market/frame2.svg";
 
 const MyShoppinglist = () => {
   const [itemData] = useState([
     {
       item: 1,
-      item_image: "https://via.placeholder.com/150",
-      item_name: "에코백",
-      price: "5,000 포인트",
+      item_image: sticker,
+      item_name: "조인어스 디지털 스티커",
+      price: 3000,
     },
     {
       item: 2,
-      item_image: "https://via.placeholder.com/150",
-      item_name: "텀블러",
-      price: "10,000 포인트",
+      item_image: theme,
+      item_name: "조인어스 라라테마",
+      price: 4000,
     },
     {
       item: 3,
-      item_image: "https://via.placeholder.com/150",
-      item_name: "다회용 컵",
-      price: "7,000 포인트",
+      item_image: frame1,
+      item_name: "조인어스 프레임1",
+      price: 3000,
+    },
+    {
+      item: 4,
+      item_image: frame2,
+      item_name: "조인어스 프레임2",
+      price: 3000,
     },
   ]);
   //   const [loading, setLoading] = useState(false);
@@ -48,37 +58,29 @@ const MyShoppinglist = () => {
   //   }, [token]);
 
   return (
-    <>
-      <S.MyContainer>
-        <S.ShoppinglistMain>
-          {itemData.length > 0 ? (
-            itemData.map((item, index) => (
-              <S.CardContainer key={index}>
-                <Link
-                  to={`/market/detail/${item.item}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <S.ImgContainer>
-                    <S.MarketItemImg
-                      src={item.item_image}
-                      alt={item.item_name}
-                    />
-                  </S.ImgContainer>
-                  <S.ItemNameContainer>
-                    <S.ItemName>{item.item_name}</S.ItemName>
-                  </S.ItemNameContainer>
-                  <S.ItemPointContainer>
-                    <S.Point>{item.price}</S.Point>
-                  </S.ItemPointContainer>
-                </Link>
-              </S.CardContainer>
-            ))
-          ) : (
-            <S.Quit_Warning>구매한 아이템이 없습니다.</S.Quit_Warning>
-          )}
-        </S.ShoppinglistMain>
-      </S.MyContainer>
-    </>
+    <S.ShoppingWrapper>
+      <S.MyShoppingContainer>
+        {itemData.length > 0 ? (
+          itemData.map((item, index) => (
+            <Link
+              key={index}
+              to={`/market/detail/${item.item}`}
+              style={{ textDecoration: "none" }}
+            >
+              <S.ShoppingItem>
+                <S.ImgContainer>
+                  <S.MarketItemImg src={item.item_image} alt={item.item_name} />
+                </S.ImgContainer>
+                <S.ItemNameContainer>{item.item_name}</S.ItemNameContainer>
+                <S.ItemPointContainer>{item.price}</S.ItemPointContainer>
+              </S.ShoppingItem>
+            </Link>
+          ))
+        ) : (
+          <S.Quit_Warning>구매한 아이템이 없습니다.</S.Quit_Warning>
+        )}
+      </S.MyShoppingContainer>
+    </S.ShoppingWrapper>
   );
 };
 
