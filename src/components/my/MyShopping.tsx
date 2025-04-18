@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import * as S from "./My.styled";
 import { Link } from "react-router-dom";
 
 const MyShoppinglist = () => {
-  const [itemData, setItemData] = useState([
+  const [itemData] = useState([
     {
       item: 1,
       item_image: "https://via.placeholder.com/150",
