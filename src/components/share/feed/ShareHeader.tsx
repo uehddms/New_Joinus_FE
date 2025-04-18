@@ -23,17 +23,15 @@ const ShareHeader = () => {
   return (
     <>
       <HeadWrapper>
-<<<<<<< HEAD
         <Link to="/myFeed">
-=======
-        <Link to="/feed/detail/1">
->>>>>>> b4c65692642ec088a2e85d3156e8099cecb811b5
           <S.FeedContainer>
             내 피드
             <img src={rightButton} alt="피드로 이동" />
           </S.FeedContainer>
         </Link>
-        <img src={writeButton} alt="글작성 버튼" />
+        <Link to="/feed/choose">
+          <img src={writeButton} alt="글작성 버튼" />
+        </Link>
       </HeadWrapper>
       <S.PointSection>
         <S.PointWrapper>

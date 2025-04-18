@@ -23,6 +23,7 @@ import { JoinFrame } from "@pages/joinPage/JoinFrame";
 import { JoinComplete } from "@components/join/JoinComplete";
 import MyFeed from "@pages/feedPage/MyFeedPage";
 import StoreFeedPage from "@pages/feedPage/StoreFeedPage";
+import ChooseFeedPage from "@pages/feedPage/ChooseFeedPage";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -39,6 +40,7 @@ export const router = createBrowserRouter([
       { path: "myContact", element: <MyContactPage /> },
       // { path: "myLogout", element: <MyLogoutPage /> },
       // { path: "myQuit", element: <MyQuitPage /> },
+      { path: "feed/choose", element: <ChooseFeedPage /> },
     ],
   },
   {
