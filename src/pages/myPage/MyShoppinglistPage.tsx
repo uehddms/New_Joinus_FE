@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import MyHeader from "../../components/my/MyHeader";
-import MyShopping from "../../components/my/MyShopping";
+import MyShopping from "../../components/my/shopping/MyShopping";
 
 const Layout = styled.div`
   width: 100%;

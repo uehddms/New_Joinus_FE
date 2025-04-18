@@ -1,12 +1,12 @@
 import { useState } from "react";
-import * as S from "./My.styled";
-import { CommonButton } from "../common/common.style.tsx";
-import BasicThemeImg from "../../assets/image/BasicThemeImg.svg";
-import PinkThemeImg from "../../assets/image/MyPinkTheme.svg";
-import MyTheme1 from "../../assets/image/MyTheme1.svg";
-import MyTheme2 from "../../assets/image/MyTheme2.svg";
-import SelectImg from "../../assets/image/MySelectImg.svg";
-import NonSelectImg from "../../assets/image/MyNonSelectImg.svg";
+import * as S from "./styled.ts";
+import { CommonButton } from "../../common/common.style.tsx";
+import BasicThemeImg from "../../../assets/image/BasicThemeImg.svg";
+import PinkThemeImg from "../../../assets/image/MyPinkTheme.svg";
+import MyTheme1 from "../../../assets/image/MyTheme1.svg";
+import MyTheme2 from "../../../assets/image/MyTheme2.svg";
+import SelectImg from "../../../assets/image/MySelectImg.svg";
+import NonSelectImg from "../../../assets/image/MyNonSelectImg.svg";
 
 const MyTheme = () => {
   const [myTheme, setMyTheme] = useState("");
@@ -88,7 +88,7 @@ const MyTheme = () => {
 
   return (
     <>
-      <S.MyContainer>
+      <S.MyThemeContainer>
         <S.MyThemeMain>
           <S.ThemeBox>
             <S.ThemeImg src={BasicThemeImg} />
@@ -130,7 +130,7 @@ const MyTheme = () => {
             <span>변경하기</span>
           </CommonButton>
         </S.ButtonSection>
-      </S.MyContainer>
+      </S.MyThemeContainer>
     </>
   );
 };

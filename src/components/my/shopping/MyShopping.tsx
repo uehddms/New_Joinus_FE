@@ -1,5 +1,5 @@
 import { useState } from "react";
-import * as S from "./My.styled";
+import * as S from "./styled";
 import { Link } from "react-router-dom";
 
 const MyShoppinglist = () => {
