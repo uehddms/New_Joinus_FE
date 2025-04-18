@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import * as S from "./MyHeader.styled";
+import * as S from "./My.styled";
 import back from "../../assets/icons/back.svg";
 import edit from "../../assets/icons/edit.svg";
 import theme from "../../assets/icons/theme.svg";
