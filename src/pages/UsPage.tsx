@@ -16,10 +16,10 @@ const Layout = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+  width: 100%;
 `;
 
 const ContentWrapper = styled.div`
-  height: 100%;
   overflow-y: auto; /* 컨텐츠만 스크롤 */
   padding: 0 10px;
   &::-webkit-scrollbar {

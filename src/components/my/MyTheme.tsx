@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import * as S from "./My.styled";
 import { CommonButton } from "../common/common.style.tsx";
 import BasicThemeImg from "../../assets/image/BasicThemeImg.svg";
@@ -11,8 +11,8 @@ import NonSelectImg from "../../assets/image/MyNonSelectImg.svg";
 const MyTheme = () => {
   const [myTheme, setMyTheme] = useState("");
   const [themeList, setThemeList] = useState([BasicThemeImg, PinkThemeImg]);
-  const [isCheckLoading, setIsCheckLoading] = useState(false);
-  const [isChangeLoading, setIsChangeLoading] = useState(false);
+  //const [isCheckLoading, setIsCheckLoading] = useState(false);
+  //const [isChangeLoading, setIsChangeLoading] = useState(false);
 
   //   useEffect(() => {
   //     // 처음 컴포넌트가 마운트 될 때 테마 조회
@@ -21,7 +21,7 @@ const MyTheme = () => {
 
   // 테마 선택 함수
   const handleThemeSelection = (theme: string) => {
-    setMyTheme(theme); // 테마 선택만 업데이트
+    setMyTheme(theme);
   };
 
   //   // 테마 조회 함수
