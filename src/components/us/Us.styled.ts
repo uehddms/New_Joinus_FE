@@ -257,7 +257,7 @@ export const MarketImg = styled.img`
 export const MarketList = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: calc(100% - 1rem);
   margin-top: 0.625rem;
 `;
 
