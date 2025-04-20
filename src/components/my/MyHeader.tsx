@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import * as S from "./My.styled";
+import * as S from "./styled";
 import back from "../../assets/icons/back.svg";
 import edit from "../../assets/icons/edit.svg";
 import theme from "../../assets/icons/theme.svg";
@@ -15,7 +15,7 @@ interface MyHeaderProps {
 const MyHeader: React.FC<MyHeaderProps> = ({ pageName }) => {
   const navigate = useNavigate();
 
-  const hadleBack = () => {
+  const handleBack = () => {
     navigate("/us");
   };
 
@@ -40,7 +40,7 @@ const MyHeader: React.FC<MyHeaderProps> = ({ pageName }) => {
 
   return (
     <S.MyHeaderContainer>
-      <S.Back src={back} onClick={hadleBack} />
+      <S.Back src={back} onClick={handleBack} />
       <S.PageIcon src={whatIcon(pageName)} />
       <S.PageName>{pageName}</S.PageName>
     </S.MyHeaderContainer>
