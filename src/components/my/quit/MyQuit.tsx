@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./styled";
-import MyModal from "../../modal/YesNoModal";
+import YesNoModal from "../../modal/YesNoModal";
 import { CommonButton } from "../../common/common.style";
 
 const MyQuit = () => {
@@ -21,13 +21,13 @@ const MyQuit = () => {
       <S.MyQuitContainer>
         {isModalOpen && (
           <S.ModalContainer>
-            <MyModal
+            <YesNoModal
               handleYes={handleYes}
               handleNo={handleNo}
               $noColor="negativeErrorCancel"
             >
               정말 탈퇴 하시겠습니까?
-            </MyModal>
+            </YesNoModal>
           </S.ModalContainer>
         )}
         <S.QuitNotice>
