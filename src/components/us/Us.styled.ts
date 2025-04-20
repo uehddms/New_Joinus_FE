@@ -15,7 +15,7 @@ export const PageName = styled.div`
 /* UsRanking.tsx -------- */
 export const Ranking = styled.div`
   display: inline-flex;
-  padding: 0.4375rem 0.6875rem 0.75rem 0.8125rem;
+  margin-bottom: 0.75rem;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
