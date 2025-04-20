@@ -50,13 +50,6 @@ const MyHeader: React.FC<MyHeaderProps> = ({ pageName }) => {
 export default MyHeader;
 
 const MyHeaderContainer = styled.div`
-  /* display: flex;
-  width: 12.5rem;
-  justify-content: left;
-  align-items: center;
-  gap: 0.9375rem;
-  flex-shrink: 0;
-  margin: 1.25rem 0 0 3.75rem; */
   display: flex;
   width: 100%;
   justify-content: left;
