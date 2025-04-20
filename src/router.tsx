@@ -24,6 +24,7 @@ import { JoinComplete } from "@components/join/JoinComplete";
 import MyFeed from "@pages/feedPage/MyFeedPage";
 import StoreFeedPage from "@pages/feedPage/StoreFeedPage";
 import ChooseFeedPage from "@pages/feedPage/ChooseFeedPage";
+import { JoinPost } from "@pages/joinPage/JoinPost";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -58,6 +59,7 @@ export const router = createBrowserRouter([
       { path: "complete", element: <JoinComplete /> },
       { path: "myFeed", element: <MyFeed /> },
       { path: "storeFeed", element: <StoreFeedPage /> },
+      { path: "post", element: <JoinPost /> },
     ],
   },
 ]);
