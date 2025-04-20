@@ -6,7 +6,7 @@ export const MarketHeader = () => {
   const navigate = useNavigate();
 
   const backClick = () => {
-    navigate(-1);
+    navigate("/us");
   };
 
   const point = 1000;
@@ -37,6 +37,7 @@ const BackTitleContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  cursor: pointer;
 `;
 
 const BackImg = styled.img``;
