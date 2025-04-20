@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import MyHeader from "../../components/my/MyHeader";
-import MyInfoEdit from "../../components/my/MyInfoEdit";
+import MyInfoEdit from "../../components/my/info/MyInfoEdit";
 
 const Layout = styled.div`
   width: 100%;
