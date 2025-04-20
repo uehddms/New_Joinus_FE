@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./styled";
-import MyModal from "../../modal/MyModal";
+import MyModal from "../../modal/YesNoModal";
 import { CommonButton } from "../../common/common.style";
 
 const MyQuit = () => {

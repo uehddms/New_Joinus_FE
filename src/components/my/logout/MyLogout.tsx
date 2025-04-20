@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import * as S from "./styled";
-import MyModal from "../../modal/MyModal";
+import MyModal from "../../modal/YesNoModal";
 
 const MyLogout = () => {
   const navigate = useNavigate();
