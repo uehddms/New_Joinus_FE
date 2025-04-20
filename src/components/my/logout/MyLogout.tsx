@@ -1,17 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import * as S from "./styled";
+import MyModal from "../../modal/MyModal";
 
 const MyLogout = () => {
   const navigate = useNavigate();
+
+  const handleYes = () => {
+    navigate("/");
+  };
+
+  const handleNo = () => {
+    navigate("/us");
+  };
   return (
     <S.MyLogoutContainer>
-      <S.ModalContainer>
-        <S.Title>로그아웃 하시겠습니까?</S.Title>
-        <S.BtnContainer>
-          <S.GreyBtn onClick={() => navigate("/")}>네</S.GreyBtn>
-          <S.GreenBtn onClick={() => navigate("/us")}>아니요</S.GreenBtn>
-        </S.BtnContainer>
-      </S.ModalContainer>
+      <MyModal
+        handleYes={handleYes}
+        handleNo={handleNo}
+        $noColor="primaryColor"
+      >
+        로그아웃 하시겠습니까?
+      </MyModal>
     </S.MyLogoutContainer>
   );
 };
