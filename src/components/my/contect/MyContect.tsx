@@ -1,4 +1,4 @@
-import * as S from "./My.styled";
+import * as S from "./styled";
 
 const MyContact: React.FC = () => {
   const link =
@@ -9,14 +9,14 @@ const MyContact: React.FC = () => {
   };
 
   return (
-    <S.MyContainer>
+    <S.MyContactContainer>
       <S.ContactText>문의는 이곳으로 해주세요!</S.ContactText>
       <S.SNSBox onClick={handleLinkClick}>
         Instagram
         <br />
         <S.Bold>joinusearth_25</S.Bold>
       </S.SNSBox>
-    </S.MyContainer>
+    </S.MyContactContainer>
   );
 };
 
