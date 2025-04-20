@@ -7,7 +7,12 @@ interface MyModalProps {
   $noColor: string;
 }
 
-const MyModal = ({ handleYes, handleNo, $noColor, children }: MyModalProps) => {
+const YesNoModal = ({
+  handleYes,
+  handleNo,
+  $noColor,
+  children,
+}: MyModalProps) => {
   return (
     <ModalContainer>
       <Title>{children}</Title>
@@ -21,7 +26,7 @@ const MyModal = ({ handleYes, handleNo, $noColor, children }: MyModalProps) => {
   );
 };
 
-export default MyModal;
+export default YesNoModal;
 
 const ModalContainer = styled.div`
   display: flex;
