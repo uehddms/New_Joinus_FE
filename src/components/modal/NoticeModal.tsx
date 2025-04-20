@@ -24,7 +24,7 @@ const ModalContainer = styled.div`
   padding: 1rem 1.0625rem;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.25rem;
   border-radius: 1.5rem;
   box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.08);
   border: 1px solid ${({ theme }) => theme.colors.gray2};
@@ -32,15 +32,15 @@ const ModalContainer = styled.div`
 `;
 
 const Icon = styled.img`
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 `;
 
 const Text = styled.h2`
   color: ${({ theme }) => theme.colors.gray5};
   text-align: center;
   font-family: Pretendard;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-style: normal;
   font-weight: 500;
   line-height: 150%; /* 1.5rem */
