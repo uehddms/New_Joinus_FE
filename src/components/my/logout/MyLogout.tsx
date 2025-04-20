@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import * as S from "./styled";
-import MyModal from "../../modal/YesNoModal";
+import YesNoModal from "../../modal/YesNoModal";
 
 const MyLogout = () => {
   const navigate = useNavigate();
@@ -14,13 +14,13 @@ const MyLogout = () => {
   };
   return (
     <S.MyLogoutContainer>
-      <MyModal
+      <YesNoModal
         handleYes={handleYes}
         handleNo={handleNo}
         $noColor="primaryColor"
       >
         로그아웃 하시겠습니까?
-      </MyModal>
+      </YesNoModal>
     </S.MyLogoutContainer>
   );
 };
