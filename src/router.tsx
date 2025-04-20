@@ -25,6 +25,9 @@ import MyFeed from "@pages/feedPage/MyFeedPage";
 import StoreFeedPage from "@pages/feedPage/StoreFeedPage";
 import ChooseFeedPage from "@pages/feedPage/ChooseFeedPage";
 import { JoinPost } from "@pages/joinPage/JoinPost";
+import MarketPage from "@pages/marketPage/MarketPage";
+// import MarketDetailPage from "@pages/marketPage/MarketDetailPage";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -42,6 +45,8 @@ export const router = createBrowserRouter([
       { path: "myLogout", element: <MyLogoutPage /> },
       { path: "myQuit", element: <MyQuitPage /> },
       { path: "feed/choose", element: <ChooseFeedPage /> },
+      { path: "market", element: <MarketPage /> },
+      // { path: "market/detail", element: <MarketDetailPage /> },
     ],
   },
   {
