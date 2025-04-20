@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const MenuContainer = styled.div<{ $isOpen: boolean }>`
   position: absolute;
-  padding-top: 20px;
+  padding-top: 10px;
   top: 0;
   left: 0px;
   width: 234px;

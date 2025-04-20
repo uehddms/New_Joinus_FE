@@ -14,17 +14,20 @@ import { JoinCate } from "@pages/joinPage/JoinCate";
 import SharePage from "@pages/feedPage/SharePage";
 import FeedDetailPage from "@pages/feedPage/FeedDetailPage";
 import MyInfoEditPage from "@pages/myPage/MyInfoEditPage";
-// import MyThemePage from "@pages/myPage/MyThemePage";
-// import MyShoppinglistPage from "@pages/myPage/MyShoppinglistPage";
-import MyContactPage from "./pages/myPage/MyContactPage";
-// import MyLogoutPage from "@pages/myPage/MyLogoutPage";
-// import MyQuitPage from "@pages/myPage/MyQuitPage";
+import MyThemePage from "@pages/myPage/MyThemePage";
+import MyShoppinglistPage from "@pages/myPage/MyShoppinglistPage";
+import MyContactPage from "@pages/myPage/MyContactPage";
+import MyLogoutPage from "@pages/myPage/MyLogoutPage";
+import MyQuitPage from "@pages/myPage/MyQuitPage";
 import { JoinFrame } from "@pages/joinPage/JoinFrame";
 import { JoinComplete } from "@components/join/JoinComplete";
 import MyFeed from "@pages/feedPage/MyFeedPage";
 import StoreFeedPage from "@pages/feedPage/StoreFeedPage";
 import ChooseFeedPage from "@pages/feedPage/ChooseFeedPage";
 import { JoinPost } from "@pages/joinPage/JoinPost";
+import MarketPage from "@pages/marketPage/MarketPage";
+import MarketDetailPage from "@pages/marketPage/MarketDetailPage";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -36,12 +39,14 @@ export const router = createBrowserRouter([
       { path: "ex", element: <JoinExplain /> },
       { path: "feed/detail/1", element: <FeedDetailPage /> },
       { path: "myEdit", element: <MyInfoEditPage /> },
-      // { path: "myTheme", element: <MyThemePage /> },
-      // { path: "myShopping", element: <MyShoppinglistPage /> },
+      { path: "myTheme", element: <MyThemePage /> },
+      { path: "myShopping", element: <MyShoppinglistPage /> },
       { path: "myContact", element: <MyContactPage /> },
-      // { path: "myLogout", element: <MyLogoutPage /> },
-      // { path: "myQuit", element: <MyQuitPage /> },
+      { path: "myLogout", element: <MyLogoutPage /> },
+      { path: "myQuit", element: <MyQuitPage /> },
       { path: "feed/choose", element: <ChooseFeedPage /> },
+      { path: "market", element: <MarketPage /> },
+      { path: "market/detail/:id", element: <MarketDetailPage /> },
     ],
   },
   {

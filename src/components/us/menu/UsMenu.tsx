@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import * as S from "./UsMenu.styled";
+import * as S from "./styled";
 import back from "../../../assets/icons/back.svg";
 import UsMenuBlocks from "./UsMenuBlocks";
 
