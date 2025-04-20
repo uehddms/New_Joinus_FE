@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import * as S from "./My.styled";
+import styled from "styled-components";
 import back from "../../assets/icons/back.svg";
 import edit from "../../assets/icons/edit.svg";
 import theme from "../../assets/icons/theme.svg";
@@ -15,7 +15,7 @@ interface MyHeaderProps {
 const MyHeader: React.FC<MyHeaderProps> = ({ pageName }) => {
   const navigate = useNavigate();
 
-  const hadleBack = () => {
+  const handleBack = () => {
     navigate("/us");
   };
 
@@ -23,7 +23,7 @@ const MyHeader: React.FC<MyHeaderProps> = ({ pageName }) => {
     switch (pageName) {
       case "회원정보 수정":
         return edit;
-      case "어스 테마 바꾸기":
+      case "어스테마 바꾸기":
         return theme;
       case "구매목록":
         return shopping;
@@ -39,12 +39,38 @@ const MyHeader: React.FC<MyHeaderProps> = ({ pageName }) => {
   };
 
   return (
-    <S.MyHeaderContainer>
-      <S.Back src={back} onClick={hadleBack} />
-      <S.PageIcon src={whatIcon(pageName)} />
-      <S.PageName>{pageName}</S.PageName>
-    </S.MyHeaderContainer>
+    <MyHeaderContainer>
+      <BackImg src={back} onClick={handleBack} />
+      <PageIcon src={whatIcon(pageName)} />
+      <PageName>{pageName}</PageName>
+    </MyHeaderContainer>
   );
 };
 
 export default MyHeader;
+
+const MyHeaderContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: left;
+  align-items: center;
+  padding: 0 1.25rem;
+  gap: 0.9375rem;
+`;
+
+const BackImg = styled.img`
+  cursor: pointer;
+`;
+
+const PageIcon = styled.img`
+  width: 1.25rem;
+  height: 1.25rem;
+`;
+const PageName = styled.div`
+  color: ${({ theme }) => theme.colors.gray5};
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.04rem;
+  margin-left: -0.4373rem;
+`;
