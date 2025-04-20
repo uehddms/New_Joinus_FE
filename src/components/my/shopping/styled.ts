@@ -18,10 +18,12 @@ export const ShoppingWrapper = styled.div`
       #ffffff 100%
     );
     pointer-events: none;
+    z-index: 1;
   }
 `;
 
 export const MyShoppingContainer = styled.div`
+  position: relative;
   width: 100%;
   max-width: 24rem;
   margin: 0 auto;
