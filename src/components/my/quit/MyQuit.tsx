@@ -34,9 +34,9 @@ const MyQuit = () => {
           정말 탈퇴하시겠습니까? <br />
           <br />
           <br />
-          탈퇴 시 <span style={{ color: "#DB7575" }}>복구가 불가능</span>하며,
+          탈퇴 시 <span>복구가 불가능</span>하며,
           <br />
-          <span style={{ color: "#DB7575" }}>모든 기록이 삭제</span>됩니다.
+          <span>모든 기록이 삭제</span>됩니다.
         </S.QuitNotice>
         <S.QuitBtnContainer>
           <CommonButton

@@ -35,6 +35,10 @@ export const QuitNotice = styled.div`
   font-weight: 700;
   line-height: 175%;
   letter-spacing: -0.05rem;
+
+  span {
+    color: ${({ theme }) => theme.colors.negativeErrorCancel};
+  }
 `;
 
 export const QuitBtnContainer = styled.div`
