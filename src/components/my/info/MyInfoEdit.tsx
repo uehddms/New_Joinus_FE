@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { CommonButton } from "../common/common.style.tsx";
-import * as S from "./My.styled";
+import { CommonButton } from "../../common/common.style.tsx";
+import * as S from "./styled.ts";
 
 const MyInfoEdit = () => {
   const [currentUsername, setCurrentUsername] = useState("조인어스"); // 현재 닉네임

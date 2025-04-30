@@ -1,10 +1,11 @@
-import styled from "styled-components";
 import MonthButton from "@components/share/feed/MonthButton";
-import { useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import * as S from "./feedPage.styled";
 import ArrowDown from "@assets/icons/chevron-down.svg";
 import Card from "@components/share/feed/Card";
+import KeywordModal from "@components/modal/KeywordModal";
 const ChooseFeedPage = () => {
+  const [isKeywordModalOpen, setIsKeywordModalOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -39,9 +40,9 @@ const ChooseFeedPage = () => {
       <S.Hr />
       <S.KeyContainer>
         <S.ChooseMonthContainer>3월</S.ChooseMonthContainer>
-        <S.KeyWordContainer>
+        <S.KeyWordContainer onClick={() => setIsKeywordModalOpen(true)}>
           키워드 선택
-          <img src={ArrowDown} alt="" />
+          <img src={ArrowDown} alt="키워드 선택 모달" />
         </S.KeyWordContainer>
       </S.KeyContainer>
       <S.CardContainer>
@@ -52,6 +53,9 @@ const ChooseFeedPage = () => {
         <Card />
         <Card />
       </S.CardContainer>
+      {isKeywordModalOpen && (
+        <KeywordModal onClose={() => setIsKeywordModalOpen(false)} />
+      )}
     </>
   );
 };
