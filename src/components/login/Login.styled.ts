@@ -28,6 +28,7 @@ export const Input = styled.input`
   border-width: 1px;
   border-style: solid;
   border-color: ${({ theme }) => theme.colors.gray2};
+  position: relative;
 `;
 
 export const FindPwBtnWrapper = styled.div`

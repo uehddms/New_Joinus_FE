@@ -28,3 +28,15 @@ export const ButtonWrapper = styled.section`
   flex-direction: column;
   align-items: center;
 `;
+
+export const CheckDuplication = styled.button`
+  position: absolute;
+  right: 20px;
+
+  width: 24px;
+  height: 24px;
+
+  background-color:${({ theme }) => theme.colors.gray1}
+  border-radius:30px;
+  border:1px solid ${({ theme }) => theme.colors.gray2}
+`;

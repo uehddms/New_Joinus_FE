@@ -1,4 +1,4 @@
-import { CommonButton } from "../common/common.style";
+import { CommonButton } from "@components/common/common.style";
 import { ButtonWrapper } from "./signup.styled";
 
 export const ButtonSection = () => {
