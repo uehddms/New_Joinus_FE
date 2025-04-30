@@ -4,185 +4,191 @@ import styled, { keyframes } from "styled-components";
 export const PageName = styled.div`
   color: #000;
   font-family: Pretendard;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  letter-spacing: -0.96px;
+  letter-spacing: -0.06rem;
   width: 100%;
 `;
 
 /* UsRanking.tsx -------- */
 export const Ranking = styled.div`
   display: inline-flex;
-  padding: 7px 11px 12px 13px;
+  margin-bottom: 0.75rem;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
 `;
 
 export const MyRanking = styled.div`
   display: flex;
-  padding: 10px;
+  padding: 0.625rem;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  border-radius: 80px;
+  gap: 0.625rem;
+  border-radius: 5rem;
   border: 1px solid ${({ theme }) => theme.colors.gray2};
   background: ${({ theme }) => theme.colors.gray1};
   color: ${({ theme }) => theme.colors.primaryColor};
   text-align: center;
   font-family: Pretendard;
-  font-size: 24px;
+  font-size: 1.3rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  letter-spacing: -0.96px;
+  letter-spacing: -0.06rem;
 `;
 
 export const RankingText = styled.div`
   color: ${({ theme }) => theme.colors.gray5};
   text-align: center;
   font-family: Pretendard;
-  font-size: 16px;
+  font-size: 0.9rem;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   line-height: normal;
-  letter-spacing: -0.64px;
+  letter-spacing: -0.04rem;
 `;
 
 /* UsMain.tsx ------- */
 export const StepContainer = styled.div`
-  margin-top: -25px;
+  margin-top: -2.5rem;
+  height: auto;
 `;
+
 export const StepImage = styled.img`
   position: relative;
   margin: 0 auto;
   z-index: -10;
-  width: 350px;
+  width: 20rem;
   flex-shrink: 0;
 `;
+
 export const TextBox = styled.div`
   position: relative;
-  margin: -200px auto 130px auto;
-  padding-left: 15px;
+  margin: -12rem auto 9rem auto;
+  padding-left: 0.9375rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 15px;
+  gap: 0.75rem;
   flex-shrink: 0;
 `;
+
 export const Name = styled.h2`
   color: ${({ theme }) => theme.colors.black};
   text-align: center;
   font-family: Pretendard;
-  font-size: 20px;
+  font-size: 1.2rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.05rem;
 `;
+
 export const Commt = styled.span`
   color: ${({ theme }) => theme.colors.gray5};
   text-align: center;
   font-family: Pretendard;
-  font-size: 14px;
+  font-size: 0.7rem;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
-  letter-spacing: -0.56px;
+  letter-spacing: -0.02rem;
 `;
 
 /* UsStepCard -------- */
 export const Bold = styled.span`
   font-weight: 700;
 `;
+
 export const UsBottom = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: -1.875rem auto 0 auto;
+  width: calc(100% - 3rem);
+  height: auto;
 `;
 
 export const Bottom1 = styled.div`
   display: flex;
-  justify-content: space-between; // 좌우 정렬
+  justify-content: space-between;
   align-items: center;
-  width: calc(100% - 20px);
-  gap: 8px;
+  width: 100%;
 `;
 
 export const Card = styled.div`
-  white-space: nowrap; // 텍스트 줄바꿈 방지
+  white-space: nowrap;
   display: inline-flex;
-  height: 28px;
-  padding: 4px 12px;
+  height: 1.6rem;
+  padding: 0.25rem 0.75rem;
   justify-content: center;
   align-items: center;
-  gap: 3px;
+  gap: 0.1875rem;
   color: ${({ theme }) => theme.colors.gray5};
   font-family: Pretendardx;
-  font-size: 14px;
+  font-size: 0.8rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  letter-spacing: -0.64px;
-  border-radius: 34px;
+  letter-spacing: -0.02rem;
+  border-radius: 2.125rem;
   border: 1px solid ${({ theme }) => theme.colors.gray2};
   background: ${({ theme }) => theme.colors.white};
 `;
+
 export const CardImg = styled.img`
-  margin-right: 3px;
-  padding: 3px;
+  margin-right: 0.1875rem;
+  padding: 0.1875rem;
 `;
 
 export const MyCard = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.gray2};
-  border-radius: 34px;
-  padding: 4px 12px;
+  border-radius: 1.5rem;
+  padding: 0.25rem 0.75rem;
   align-items: center;
 `;
 
 export const Point = styled.div`
-  margin-left: auto; // 오른쪽으로 정렬
   display: flex;
-  height: 28px;
+  height: 1.6rem;
   align-items: flex-start;
   flex-shrink: 0;
-  display: flex;
-  height: 28px;
-  padding: 4px 12px;
+  padding: 0.25rem 0.75rem;
   justify-content: flex-end;
   align-items: center;
-  gap: 8px;
-  border-radius: 24px;
+  gap: 0.5rem;
+  border-radius: 1.5rem;
   border: 1px solid ${({ theme }) => theme.colors.gray2};
   background: ${({ theme }) => theme.colors.gray1};
   color: ${({ theme }) => theme.colors.primaryColor};
   text-align: right;
   font-family: Pretendard;
-  font-size: 16px;
+  font-size: 0.9rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  letter-spacing: -0.64px;
+  letter-spacing: -0.04rem;
 `;
 
 export const Bottom2 = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: calc(100% - 20px);
-  max-width: 380px;
+  width: 100%;
+  max-width: 23.75rem;
 `;
 
 export const StepGraph = styled.div`
-  margin-top: 10px;
+  margin-top: 0.625rem;
   position: relative;
-  border: 1px solid #e0e0e0;
-  border-radius: 34px;
-  height: 24px;
-  padding: 4px 12px;
+  border: 1px solid ${({ theme }) => theme.colors.gray2};
+  border-radius: 2.125rem;
+  height: 1.4rem;
+  padding: 0.25rem 0.75rem;
   width: 100%;
   display: flex;
   align-items: center;
@@ -202,63 +208,80 @@ interface StepBarProps {
 }
 
 export const StepBar = styled.div<StepBarProps>`
-  background-color: #417e59;
-  height: 3px;
+  background-color: ${({ theme }) => theme.colors.primaryColor};
+  height: 0.1875rem;
   flex-shrink: 0;
   animation: ${({ width }) => widthAnimation(width)} 1s ease forwards;
 `;
 
-export const StepImg = styled.img``;
+export const StepImg = styled.img`
+  width: 0.8rem;
+`;
 
 /* UsMarketContainer ------- */
 export const UsMarketContainer = styled.div`
-  margin: 15px auto;
-  width: calc(100% - 20px);
+  margin: 0.8rem auto;
+  width: calc(100% - 2.5rem);
+  max-width: 24rem;
   display: flex;
   flex-direction: column;
   align-items: baseline;
 `;
+
 export const MarketButton = styled.button`
   display: inline-flex;
-  padding: 4px 12px;
+  padding: 0.25rem 0.75rem;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  border-radius: 80px;
+  gap: 0.5rem;
+  border-radius: 5rem;
   border: 1px solid ${({ theme }) => theme.colors.gray2};
   background: ${({ theme }) => theme.colors.gray1};
   cursor: pointer;
 `;
+
 export const MarketText = styled.div`
   color: ${({ theme }) => theme.colors.gray5};
   text-align: center;
   font-family: Pretendard;
-  font-size: 17px;
+  font-size: 0.95rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 `;
+
 export const MarketImg = styled.img`
-  width: 17px;
+  width: 0.9rem;
 `;
+
 export const MarketList = styled.div`
   display: flex;
-  gap: 11px;
-  margin-top: 10px;
+  justify-content: space-between;
+  width: calc(100% - 1rem);
+  margin-top: 0.625rem;
 `;
+
 export const MarketItem = styled.div`
-  width: 75px;
-  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22%;
+  aspect-ratio: 1;
   flex-shrink: 0;
-  border-radius: 24px;
+  border-radius: 1.5rem;
   border: 1px solid ${({ theme }) => theme.colors.gray2};
   background: ${({ theme }) => theme.colors.white};
+
+  img {
+    height: 90%;
+  }
 `;
+
 export const MarketCommt = styled.div`
-  margin-top: 10px;
+  margin: 0.3rem 0 0 0.6rem;
   color: ${({ theme }) => theme.colors.gray4};
   text-align: center;
-  font-size: 12px;
+  font-size: 0.7rem;
   font-weight: 300;
-  letter-spacing: -0.48px;
+  letter-spacing: -0.03rem;
 `;
