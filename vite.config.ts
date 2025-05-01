@@ -16,17 +16,16 @@ export default defineConfig({
       "@styles": path.resolve(__dirname, "src/styles"),
     },
   },
-  server:{
-    https:{
-      key:fs.readFileSync(path.resolve(__dirname,"localhost-key.pem")),
-      cert:fs.readFileSync(path.resolve(__dirname,"localhost.pem")),
-    },
-    port:5173,
-  },
+  // server: {
+  //   https: {
+  //     key: fs.readFileSync(path.resolve(__dirname, "localhost-key.pem")),
+  //     cert: fs.readFileSync(path.resolve(__dirname, "localhost.pem")),
+  //   },
+  //   port: 5173,
+  // },
 });
 
-
-// // 배포 서버에서 https 실행
+// 배포 서버에서 https 실행
 // import { defineConfig } from "vite";
 // import react from "@vitejs/plugin-react";
 
