@@ -29,14 +29,41 @@ export const ButtonWrapper = styled.section`
   align-items: center;
 `;
 
+export const CheckDupContainer = styled.div<{ isNickNameDup?: boolean | null }>`
+  position: relative;
+  width: 100%;
+  p {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    color: ${({ theme, isNickNameDup }) =>
+      isNickNameDup
+        ? theme.colors.negativeErrorCancel
+        : theme.colors.positiceSuccess};
+    text-align: right;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.48px;
+  }
+`;
 export const CheckDuplication = styled.button`
   position: absolute;
-  right: 20px;
-
-  width: 24px;
+  right: 60px;
+  top: 13px;
+  width: 55px;
   height: 24px;
 
-  background-color:${({ theme }) => theme.colors.gray1}
-  border-radius:30px;
-  border:1px solid ${({ theme }) => theme.colors.gray2}
+  background-color: ${({ theme }) => theme.colors.gray1};
+  border-radius: 30px;
+  border: 1px solid ${({ theme }) => theme.colors.gray2};
+
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.48px;
 `;

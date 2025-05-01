@@ -20,33 +20,45 @@ export const InputWrapper = styled.section`
   width: 100%;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<{ isNickNameDup?: boolean | null }>`
   width: 80%;
   height: 50px;
   padding: 1rem;
   border-radius: 69px;
   border-width: 1px;
   border-style: solid;
-  border-color: ${({ theme }) => theme.colors.gray2};
+  border-color: ${({ theme, isNickNameDup, name }) =>
+    name === "nickname"
+      ? isNickNameDup === null
+        ? theme.colors.gray2
+        : isNickNameDup
+        ? theme.colors.negativeErrorCancel
+        : theme.colors.positiceSuccess
+      : theme.colors.gray2};
+
   position: relative;
+
+  &:focus {
+    outline: 0;
+  }
 `;
 
-export const FindPwBtnWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  padding: 0 10%;
-`;
-export const FindPwBtn = styled.button`
-  width: auto;
-  padding: 4px 8px;
+// export const FindPwBtnWrapper = styled.div`
+//   width: 100%;
+//   display: flex;
+//   justify-content: flex-end;
+//   padding: 0 10%;
+// `;
+// export const FindPwBtn = styled.button`
+//   width: auto;
+//   padding: 4px 8px;
 
-  border-radius: 34px;
-  background-color: ${({ theme }) => theme.colors.gray1};
-  border-width: 1px;
-  border-style: solid;
-  border-color: ${({ theme }) => theme.colors.gray2};
-`;
+//   border-radius: 34px;
+//   background-color: ${({ theme }) => theme.colors.gray1};
+//   border-width: 1px;
+//   border-style: solid;
+//   border-color: ${({ theme }) => theme.colors.gray2};
+// `;
 
 export const ButtonWrapper = styled.section`
   width: 100%;

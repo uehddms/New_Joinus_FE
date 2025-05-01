@@ -2,7 +2,7 @@ import { Input } from "../login/Login.styled";
 import { CommonButton } from "@components/common/common.style";
 import { ButtonWrapper } from "./signup.styled";
 import * as S from "./signup.styled";
-import { useRef, FormEvent } from "react";
+import { useRef, FormEvent, useState } from "react";
 import axios from "axios";
 
 // axios 인스턴스 생성
@@ -11,8 +11,24 @@ const api = axios.create({
 });
 
 export const InputSection = () => {
+  const [isNickNameDup, setIsNickNameDup] = useState<boolean | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
+  const handleDupCheck = async () => {
+    try {
+      const response = await api.post("users/username_unique/");
+      console.log(response);
+      if (response.status === 200) {
+        setIsNickNameDup(false);
+      } else if (response.status === 202) {
+        setIsNickNameDup(true);
+      }
+    } catch (e) {
+      console.log("error");
+      setIsNickNameDup(true);
+      console.log(isNickNameDup);
+    }
+  };
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -20,27 +36,33 @@ export const InputSection = () => {
 
     const formData = new FormData(formRef.current);
     const nickname = formData.get("nickname") as string;
-    const username = formData.get("username") as string;
+    const userid = formData.get("userid") as string;
     const password = formData.get("password") as string;
-    const passwordConfirm = formData.get("passwordConfirm") as string;
+    const password2 = formData.get("password2") as string;
 
     // 비밀번호 확인
-    if (password !== passwordConfirm) {
+    if (password !== password2) {
       alert("비밀번호가 일치하지 않습니다.");
       return;
     }
 
     try {
-      const response = await api.post("/signup", {
+      const response = await api.post("/users/register/", {
         nickname,
-        username,
+        userid,
         password,
+        password2,
       });
 
       if (response.status === 200) {
         alert("회원가입이 완료되었습니다.");
         // 회원가입 성공 후 로그인 페이지로 이동
         window.location.href = "/login";
+      } else if (response.status === 202) {
+        console.log(response.data.errors[0]);
+        alert(response.data.errors[0]);
+      } else {
+        alert("알수 없는 오류 발생");
       }
     } catch (error) {
       console.error("회원가입 실패:", error);
@@ -52,16 +74,31 @@ export const InputSection = () => {
     <form ref={formRef} onSubmit={handleSubmit} style={{ width: "100%" }}>
       <S.InputWrapper>
         <p>회원가입</p>
-        <Input name="nickname" placeholder="닉네임을 입력해주세요." />
-        <S.CheckDuplication>중복확인</S.CheckDuplication>
-        <Input name="username" placeholder="아이디를 입력해주세요." />
+        <S.CheckDupContainer isNickNameDup={isNickNameDup}>
+          <Input
+            name="nickname"
+            placeholder="닉네임을 입력해주세요."
+            isNickNameDup={isNickNameDup}
+          />
+          <S.CheckDuplication type="button" onClick={handleDupCheck}>
+            중복확인
+          </S.CheckDuplication>
+          {isNickNameDup === null ? (
+            <></>
+          ) : isNickNameDup ? (
+            <p>중복된 닉네임입니다.</p>
+          ) : (
+            <p>사용가능한 닉네임입니다.</p>
+          )}
+        </S.CheckDupContainer>
+        <Input name="userid" placeholder="아이디를 입력해주세요." />
         <Input
           name="password"
           type="password"
           placeholder="비밀번호를 입력해주세요."
         />
         <Input
-          name="passwordConfirm"
+          name="password2"
           type="password"
           placeholder="비밀번호를 다시 입력해주세요."
         />
