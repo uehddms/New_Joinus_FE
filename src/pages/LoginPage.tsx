@@ -1,14 +1,12 @@
 import styled from "styled-components";
 import LogoSection from "@components/login/LogoSection";
 import { InputSection } from "@components/login/InputSection";
-import { ButtonSection } from "@components/login/ButtonSection";
 
 export const LoginPage = () => {
   return (
     <Wrapper>
       <LogoSection />
       <InputSection />
-      <ButtonSection />
     </Wrapper>
   );
 };
