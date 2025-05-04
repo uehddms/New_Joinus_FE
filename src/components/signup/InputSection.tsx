@@ -1,4 +1,3 @@
-import { Input } from "../login/Login.styled";
 import { CommonButton } from "@components/common/common.style";
 import { ButtonWrapper } from "./signup.styled";
 import * as S from "./signup.styled";
@@ -8,15 +7,24 @@ import axios from "axios";
 // axios 인스턴스 생성
 const api = axios.create({
   baseURL: import.meta.env.VITE_SERVER_API,
+  headers: {
+    "Content-Type": "application/json",
+  },
+  responseType: "json",
 });
 
 export const InputSection = () => {
   const [isNickNameDup, setIsNickNameDup] = useState<boolean | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const maxLength = 15; // 입력 필드 제한
 
   const handleDupCheck = async () => {
+    if (!usernameRef.current) return;
     try {
-      const response = await api.post("users/username_unique/");
+      const response = await api.post("users/username_unique/", {
+        username: usernameRef.current.value,
+      });
       console.log(response);
       if (response.status === 200) {
         setIsNickNameDup(false);
@@ -24,7 +32,7 @@ export const InputSection = () => {
         setIsNickNameDup(true);
       }
     } catch (e) {
-      console.log("error");
+      console.log(e, "error");
       setIsNickNameDup(true);
       console.log(isNickNameDup);
     }
@@ -35,7 +43,7 @@ export const InputSection = () => {
     if (!formRef.current) return;
 
     const formData = new FormData(formRef.current);
-    const nickname = formData.get("nickname") as string;
+    const username = formData.get("username") as string;
     const userid = formData.get("userid") as string;
     const password = formData.get("password") as string;
     const password2 = formData.get("password2") as string;
@@ -48,11 +56,12 @@ export const InputSection = () => {
 
     try {
       const response = await api.post("/users/register/", {
-        nickname,
+        username,
         userid,
         password,
         password2,
       });
+      console.log(response);
 
       if (response.status === 200) {
         alert("회원가입이 완료되었습니다.");
@@ -75,10 +84,12 @@ export const InputSection = () => {
       <S.InputWrapper>
         <p>회원가입</p>
         <S.CheckDupContainer isNickNameDup={isNickNameDup}>
-          <Input
-            name="nickname"
+          <S.SignUpInput
+            name="username"
             placeholder="닉네임을 입력해주세요."
             isNickNameDup={isNickNameDup}
+            ref={usernameRef}
+            maxLength={8}
           />
           <S.CheckDuplication type="button" onClick={handleDupCheck}>
             중복확인
@@ -91,16 +102,22 @@ export const InputSection = () => {
             <p>사용가능한 닉네임입니다.</p>
           )}
         </S.CheckDupContainer>
-        <Input name="userid" placeholder="아이디를 입력해주세요." />
-        <Input
+        <S.SignUpInput
+          name="userid"
+          placeholder="아이디를 입력해주세요."
+          maxLength={maxLength}
+        />
+        <S.SignUpInput
           name="password"
           type="password"
           placeholder="비밀번호를 입력해주세요."
+          maxLength={maxLength}
         />
-        <Input
+        <S.SignUpInput
           name="password2"
           type="password"
           placeholder="비밀번호를 다시 입력해주세요."
+          maxLength={maxLength}
         />
       </S.InputWrapper>
       <ButtonWrapper>
