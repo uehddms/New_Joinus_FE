@@ -67,3 +67,26 @@ export const CheckDuplication = styled.button`
   line-height: normal;
   letter-spacing: -0.48px;
 `;
+
+export const SignUpInput = styled.input<{ isNickNameDup?: boolean | null }>`
+  width: 80%;
+  height: 50px;
+  padding: 1rem;
+  border-radius: 69px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${({ theme, isNickNameDup, name }) =>
+    name === "nickname"
+      ? isNickNameDup === null
+        ? theme.colors.gray2
+        : isNickNameDup
+        ? theme.colors.negativeErrorCancel
+        : theme.colors.positiceSuccess
+      : theme.colors.gray2};
+
+  position: relative;
+
+  &:focus {
+    outline: 0;
+  }
+`;
