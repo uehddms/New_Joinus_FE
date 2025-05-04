@@ -18,23 +18,30 @@ export const InputWrapper = styled.section`
   align-items: center;
 
   width: 100%;
+  p {
+    position: absolute;
+    top: 55px;
+    left: 50px;
+    color: ${({ theme }) => theme.colors.negativeErrorCancel};
+    text-align: right;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.48px;
+  }
 `;
 
-export const Input = styled.input<{ isNickNameDup?: boolean | null }>`
+export const LoginInput = styled.input<{ islogin?: boolean }>`
   width: 80%;
   height: 50px;
   padding: 1rem;
   border-radius: 69px;
   border-width: 1px;
   border-style: solid;
-  border-color: ${({ theme, isNickNameDup, name }) =>
-    name === "nickname"
-      ? isNickNameDup === null
-        ? theme.colors.gray2
-        : isNickNameDup
-        ? theme.colors.negativeErrorCancel
-        : theme.colors.positiceSuccess
-      : theme.colors.gray2};
+  border-color: ${({ theme, islogin }) =>
+    islogin ? theme.colors.gray2 : theme.colors.negativeErrorCancel};
 
   position: relative;
 
@@ -67,4 +74,15 @@ export const ButtonWrapper = styled.section`
   flex-direction: column;
   align-items: center;
   gap: 24px;
+`;
+
+export const PdCheckContainer = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+export const pdCheckButton = styled.button`
+  position: absolute;
+  right: 60px;
+  top: 13px;
 `;
