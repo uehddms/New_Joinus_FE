@@ -29,15 +29,15 @@ export const ButtonWrapper = styled.section`
   align-items: center;
 `;
 
-export const CheckDupContainer = styled.div<{ isNickNameDup?: boolean | null }>`
+export const CheckDupContainer = styled.div<{ isnicknamedup?: boolean | null }>`
   position: relative;
   width: 100%;
   p {
     position: absolute;
     top: 50px;
     right: 50px;
-    color: ${({ theme, isNickNameDup }) =>
-      isNickNameDup
+    color: ${({ theme, isnicknamedup }) =>
+      isnicknamedup
         ? theme.colors.negativeErrorCancel
         : theme.colors.positiceSuccess};
     text-align: right;
@@ -68,18 +68,18 @@ export const CheckDuplication = styled.button`
   letter-spacing: -0.48px;
 `;
 
-export const SignUpInput = styled.input<{ isNickNameDup?: boolean | null }>`
+export const SignUpInput = styled.input<{ isnicknamedup?: boolean | null }>`
   width: 80%;
   height: 50px;
   padding: 1rem;
   border-radius: 69px;
   border-width: 1px;
   border-style: solid;
-  border-color: ${({ theme, isNickNameDup, name }) =>
+  border-color: ${({ theme, isnicknamedup, name }) =>
     name === "nickname"
-      ? isNickNameDup === null
+      ? isnicknamedup === null
         ? theme.colors.gray2
-        : isNickNameDup
+        : isnicknamedup
         ? theme.colors.negativeErrorCancel
         : theme.colors.positiceSuccess
       : theme.colors.gray2};
