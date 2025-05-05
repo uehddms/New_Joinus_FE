@@ -83,11 +83,11 @@ export const InputSection = () => {
     <form ref={formRef} onSubmit={handleSubmit} style={{ width: "100%" }}>
       <S.InputWrapper>
         <p>회원가입</p>
-        <S.CheckDupContainer isNickNameDup={isNickNameDup}>
+        <S.CheckDupContainer isnicknamedup={isNickNameDup}>
           <S.SignUpInput
             name="username"
             placeholder="닉네임을 입력해주세요."
-            isNickNameDup={isNickNameDup}
+            isnicknamedup={isNickNameDup}
             ref={usernameRef}
             maxLength={8}
           />

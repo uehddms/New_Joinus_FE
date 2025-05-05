@@ -33,15 +33,15 @@ export const InputWrapper = styled.section`
   }
 `;
 
-export const LoginInput = styled.input<{ islogin?: boolean }>`
+export const LoginInput = styled.input<{ $islogin?: boolean }>`
   width: 80%;
   height: 50px;
   padding: 1rem;
   border-radius: 69px;
   border-width: 1px;
   border-style: solid;
-  border-color: ${({ theme, islogin }) =>
-    islogin ? theme.colors.gray2 : theme.colors.negativeErrorCancel};
+  border-color: ${({ theme, $islogin }) =>
+    $islogin ? theme.colors.gray2 : theme.colors.negativeErrorCancel};
 
   position: relative;
 

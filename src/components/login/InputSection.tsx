@@ -1,7 +1,9 @@
 import * as S from "./Login.styled";
 import { CommonButton } from "../common/common.style";
-import axios from "axios";
 import { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import Cookies from "js-cookie";
 import pwvisible from "@assets/icons/pwVisible.svg";
 import pwNonvisible from "@assets/icons/pw-nonVisible.svg";
 
@@ -12,6 +14,7 @@ export const InputSection = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const maxLength = 15; // 입력 필드 제한
+  const navigate = useNavigate();
   const handlePW = (): void => {
     setVisible(!visible);
   };
@@ -22,8 +25,6 @@ export const InputSection = () => {
     const formData = new FormData(formRef.current);
     const userid = formData.get("userid") as string;
     const password = formData.get("password") as string;
-    console.log("id", userid);
-    console.log("pw", password);
     try {
       const response = await api.post("/users/login/", {
         userid,
@@ -31,16 +32,19 @@ export const InputSection = () => {
       });
       console.log(response);
       if (response.status === 200) {
-        console.log("로그인 성공");
+        const token = response.data.token;
+        Cookies.set("access_token", token, {
+          path: "/",
+          secure: true,
+          samSite: "None",
+        });
+        navigate("/us");
       } else {
         setIsLogin(false);
       }
     } catch (e) {
       console.log(e);
     }
-  };
-  const LinkToSignUp = (): void => {
-    window.location.href = "/signup";
   };
   return (
     <>
@@ -49,7 +53,7 @@ export const InputSection = () => {
           <S.LoginInput
             name="userid"
             placeholder="아이디를 입력해주세요."
-            islogin={isLogin}
+            $islogin={isLogin}
             maxLength={maxLength}
           />
           <S.PdCheckContainer>
@@ -57,7 +61,7 @@ export const InputSection = () => {
               name="password"
               placeholder="비밀번호를 입력해주세요."
               type={visible ? "text" : "password"}
-              islogin={isLogin}
+              $islogin={isLogin}
               maxLength={maxLength}
             />
             <S.pdCheckButton onClick={handlePW} type="button">
@@ -79,7 +83,7 @@ export const InputSection = () => {
             bgcolor="gray2"
             border="gray1"
             type="button"
-            onClick={LinkToSignUp}
+            onClick={() => navigate("/signup")}
           >
             <span>회원가입</span>
           </CommonButton>
