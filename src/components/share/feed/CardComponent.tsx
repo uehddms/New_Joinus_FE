@@ -34,7 +34,6 @@ const CardComponent = () => {
     setIsLoading(false);
   };
   useEffect(() => {
-    console.log("page", page);
     fetch();
   }, [page]);
 
