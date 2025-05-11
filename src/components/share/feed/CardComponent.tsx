@@ -5,6 +5,7 @@ import * as S from "./share.styled";
 import leaf from "@assets/icons/leaf.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 interface dogInterface {
   id: string;
@@ -64,7 +65,7 @@ const CardComponent = () => {
         <p>100</p>
       </S.CardContainer> */}
       {data.map((data, index) => (
-        <S.CardContainer key={index}>
+        <S.CardContainer key={index} as={Link} to={`/feed/detail/${index + 1}`}>
           <img src={card} alt="카드 프레임" />
           <img src={data.dogUrl} alt="사용자가 추가한 이미지" />
           <img src={leaf} alt="point 모양" />

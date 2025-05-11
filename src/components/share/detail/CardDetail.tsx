@@ -7,6 +7,7 @@ import more from "@assets/icons/more-horizontal.svg";
 import { useState } from "react";
 import ReportModal from "@components/modal/ReportModal";
 import ReportModal2 from "@components/modal/ReportModal2";
+import { ApiwithToken } from "@api/ApiWithToken";
 
 const CardDetail = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -21,9 +22,18 @@ const CardDetail = () => {
     setIsReportModalOpen(!isReportModalOpen);
   };
 
-  const handleReportModal2Open = () => {
+  const handleReport = async () => {
     setIsReportModalOpen(false);
     setIsReportModal2Open(true);
+    try {
+      await ApiwithToken.post("share/reports/", {
+        data: {
+          sharecard: 1,
+        },
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -38,7 +48,7 @@ const CardDetail = () => {
               <img src={leaf} alt="point 로고" />
               <p>gdgdgd</p>
             </S.PointContainer>
-            <img src={more} alt="옵션 탭 열기" onClick={handleReportModal} />
+            <img src={more} alt="신고하기" onClick={handleReportModal} />
           </S.Container>
         </S.ContentContainer>
         <S.Title isExpanded={isExpanded}>
@@ -54,7 +64,7 @@ const CardDetail = () => {
       {isReportModalOpen && (
         <ReportModal
           onClose={() => setIsReportModalOpen(false)}
-          onConfirm={handleReportModal2Open}
+          onConfirm={handleReport}
         />
       )}
       {isReportModal2Open && (

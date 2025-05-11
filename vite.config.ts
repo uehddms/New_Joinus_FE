@@ -14,15 +14,16 @@ export default defineConfig({
       "@pages": path.resolve(__dirname, "src/pages"),
       "@assets": path.resolve(__dirname, "src/assets"),
       "@styles": path.resolve(__dirname, "src/styles"),
+      "@api": path.resolve(__dirname, "src/api"),
     },
   },
-  server: {
-    https: {
-      key: fs.readFileSync(path.resolve(__dirname, "localhost-key.pem")),
-      cert: fs.readFileSync(path.resolve(__dirname, "localhost.pem")),
-    },
-    port: 5173,
-  },
+  // server: {
+  //   https: {
+  //     key: fs.readFileSync(path.resolve(__dirname, "localhost-key.pem")),
+  //     cert: fs.readFileSync(path.resolve(__dirname, "localhost.pem")),
+  //   },
+  //   port: 5173,
+  // },
 });
 
 // 배포 서버에서 https 실행
