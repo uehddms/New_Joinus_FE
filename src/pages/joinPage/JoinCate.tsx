@@ -1,6 +1,7 @@
 import * as S from "./JoinCate.styled";
 import { JoinHeader } from "@components/join/JoinHeader";
 import { CommonButton } from "@components/common/common.style";
+import { useNavigate } from "react-router";
 
 export const JoinCate = () => {
     const cates = [
@@ -15,6 +16,12 @@ export const JoinCate = () => {
         "기타"
     ];
 
+    const navigate = useNavigate()
+
+    const goFrame = () => {
+        navigate("/frame");
+    };
+
     return (
         <S.Wrapper>
             <JoinHeader />
@@ -28,7 +35,7 @@ export const JoinCate = () => {
                     나의 실천은 어떤 키워드에 해당하나요?
                 </S.Content>
             </S.Container>
-            <CommonButton>
+            <CommonButton type="button" onClick={goFrame}>
                 <span>다음</span>
             </CommonButton>
         </S.Wrapper>
