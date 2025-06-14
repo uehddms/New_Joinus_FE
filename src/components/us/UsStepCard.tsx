@@ -2,17 +2,12 @@ import { useState, useEffect } from "react";
 import * as S from "./Us.styled";
 import card from "../../assets/image/us/card.svg";
 import StepImg from "../../assets/image/us/stepImg.svg";
-import { usApi, usAPI } from "@api/us/UsApi";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 
 const UsBottom = () => {
-  const [myCard, setMyCard] = useState<number | undefined>(2);
-  const [point, setPoint] = useState<number | undefined>(10000);
+  const [myCard, setMyCard] = useState<number>(2);
+  const [point, setPoint] = useState<number>(10000);
   const [barWidth, setBarWidth] = useState<string>("0%");
-  const [myStep, setMyStep] = useState<number | undefined>(2);
-  const [isLoading, setIsLoading] = useState(false);
-  const [usAPI, setUsAPI] = useState<usAPI>();
+  const [myStep, setMyStep] = useState<number>(2);
 
   const stepFunc = (myStep: number): string => {
     switch (myStep) {
@@ -30,72 +25,37 @@ const UsBottom = () => {
   };
 
   useEffect(() => {
-    if (myStep) {
-      setBarWidth(stepFunc(myStep));
-    }
+    setBarWidth(stepFunc(myStep));
   }, [myStep]);
 
   useEffect(() => {
-    const fetchUs = async () => {
-      try {
-        setIsLoading(true);
-        const data = await usApi.getUs();
-        setUsAPI(data[0]);
-        setMyCard(usAPI?.total_cards);
-        setPoint(usAPI?.points);
-        setMyStep(2);
-      } catch (error) {
-        console.error("어스 step card 가져오기 실패: ", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    getUs();
+  }, []);
 
-    fetchUs();
-  }, [usAPI?.total_cards, usAPI?.points]);
-
-  // // 임시 함수 (API 연결 전)
-  // const getUs = () => {
-  //   setMyCard(2);
-  //   setPoint(10000);
-  //   setMyStep(2);
-  // };
+  // 임시 함수 (API 연결 전)
+  const getUs = () => {
+    setMyCard(2);
+    setPoint(10000);
+    setMyStep(2);
+  };
 
   return (
     <S.UsBottom>
-      {isLoading ? (
-        <>
-          <S.Bottom1>
-            <S.Card>
-              <Skeleton width={"100%"} />
-            </S.Card>
-            <S.Point>
-              <Skeleton width={"100%"} />
-            </S.Point>
-          </S.Bottom1>
-          <S.Bottom2>
-            <S.StepGraph></S.StepGraph>
-          </S.Bottom2>
-        </>
-      ) : (
-        <>
-          <S.Bottom1>
-            <S.Card>
-              <S.CardImg src={card} />
-              누적 실천카드 개수 : <S.Bold>{myCard}</S.Bold>
-            </S.Card>
-            <S.Point>
-              <S.Bold>{point}</S.Bold>P
-            </S.Point>
-          </S.Bottom1>
-          <S.Bottom2>
-            <S.StepGraph>
-              <S.StepBar width={barWidth} />
-              <S.StepImg src={StepImg} alt="단계 그래프" />
-            </S.StepGraph>
-          </S.Bottom2>
-        </>
-      )}
+      <S.Bottom1>
+        <S.Card>
+          <S.CardImg src={card} />
+          누적 실천카드 개수 : <S.Bold>{myCard}</S.Bold>
+        </S.Card>
+        <S.Point>
+          <S.Bold>{point}</S.Bold>P
+        </S.Point>
+      </S.Bottom1>
+      <S.Bottom2>
+        <S.StepGraph>
+          <S.StepBar width={barWidth} />
+          <S.StepImg src={StepImg} alt="단계 그래프" />
+        </S.StepGraph>
+      </S.Bottom2>
     </S.UsBottom>
   );
 };
