@@ -7,8 +7,8 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const UsBottom = () => {
-  const [myCard, setMyCard] = useState<number | undefined>(2);
-  const [point, setPoint] = useState<number | undefined>(10000);
+  const [myCard, setMyCard] = useState<number>(2);
+  const [point, setPoint] = useState<number>(10000);
   const [barWidth, setBarWidth] = useState<string>("0%");
   const [myStep, setMyStep] = useState<number | undefined>(2);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,9 +29,7 @@ const UsBottom = () => {
   };
 
   useEffect(() => {
-    if (myStep) {
-      setBarWidth(stepFunc(myStep));
-    }
+    setBarWidth(stepFunc(myStep));
   }, [myStep]);
 
   useEffect(() => {
