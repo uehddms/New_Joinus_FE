@@ -66,15 +66,23 @@ const UsPage: React.FC = () => {
 export default UsPage;
 
 const Layout = styled.div`
-  padding: 0 10px;
-  font-family: pretendard;
-  max-height: calc(100vh - 78px);
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: calc(var(—dvh, 1vh) * 100);
+  height: calc(100dvh);
+  padding-bottom: 78px;
   &::-webkit-scrollbar {
     display: none;
   }
-  width: 100%;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  font-family: pretendard;
 `;
 
 const UsWrapper = styled.div`
@@ -98,6 +106,7 @@ const UsContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: -34px;
+  width: 100%;
 `;
 
 const MenuImage = styled.img`
