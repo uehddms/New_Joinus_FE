@@ -66,9 +66,8 @@ const UsBottom = () => {
               <Skeleton width={"100%"} />
             </S.Point>
           </S.Bottom1>
-          <S.Bottom2>
-            <S.StepGraph></S.StepGraph>
-          </S.Bottom2>
+
+          <S.StepGraph></S.StepGraph>
         </>
       ) : (
         <>
@@ -81,12 +80,11 @@ const UsBottom = () => {
               <S.Bold>{point}</S.Bold>P
             </S.Point>
           </S.Bottom1>
-          <S.Bottom2>
-            <S.StepGraph>
-              <S.StepBar width={barWidth} />
-              <S.StepImg src={StepImg} alt="단계 그래프" />
-            </S.StepGraph>
-          </S.Bottom2>
+
+          <S.StepGraph>
+            <S.StepBar width={barWidth} />
+            <S.StepImg src={StepImg} alt="단계 그래프" />
+          </S.StepGraph>
         </>
       )}
     </S.UsBottom>
