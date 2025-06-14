@@ -19,7 +19,7 @@ export const usApi = {
   getUs: async () => {
     try {
       const response = await ApiwithToken.get("/us/main/", {});
-      console.log("Us 데이터:", response.data);
+      // console.log("Us 데이터:", response.data);
 
       return response.data;
     } catch (error) {
