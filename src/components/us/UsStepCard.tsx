@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import * as S from "./Us.styled";
 import card from "../../assets/image/us/card.svg";
 import StepImg from "../../assets/image/us/stepImg.svg";
-import { usApi, usAPI } from "@api/us/UsApi";
+import { usApi } from "@api/us/UsApi";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -12,7 +12,6 @@ const UsBottom = () => {
   const [barWidth, setBarWidth] = useState<string>("0%");
   const [myStep, setMyStep] = useState<number | undefined>(2);
   const [isLoading, setIsLoading] = useState(false);
-  const [usAPI, setUsAPI] = useState<usAPI>();
 
   const stepFunc = (myStep: number): string => {
     switch (myStep) {
@@ -36,14 +35,15 @@ const UsBottom = () => {
   }, [myStep]);
 
   useEffect(() => {
-    const fetchUs = async () => {
+    const fetchData = async () => {
       try {
         setIsLoading(true);
         const data = await usApi.getUs();
-        setUsAPI(data[0]);
-        setMyCard(usAPI?.total_cards);
-        setPoint(usAPI?.points);
-        setMyStep(2);
+        if (data) {
+          setMyCard(data.total_cards);
+          setPoint(data.points);
+          setMyStep(data.step);
+        }
       } catch (error) {
         console.error("어스 step card 가져오기 실패: ", error);
       } finally {
@@ -51,15 +51,8 @@ const UsBottom = () => {
       }
     };
 
-    fetchUs();
-  }, [usAPI?.total_cards, usAPI?.points]);
-
-  // // 임시 함수 (API 연결 전)
-  // const getUs = () => {
-  //   setMyCard(2);
-  //   setPoint(10000);
-  //   setMyStep(2);
-  // };
+    fetchData();
+  }, []);
 
   return (
     <S.UsBottom>
