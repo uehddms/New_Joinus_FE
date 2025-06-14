@@ -20,6 +20,7 @@ const UsRanking = () => {
   const [myName, setMyName] = useState<string>("");
   const [dailyMessage, setDailyMessage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [imageUrl, setImageUrl] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,29 +49,31 @@ const UsRanking = () => {
 
     return themeImages[myStep - 1] || step1;
   };
+
+  useEffect(() => {
+    setImageUrl(getStepImage());
+  }, []);
+
   return (
     <>
       {isLoading ? (
         <>
-          <S.StepContainer>
-            <S.StepImage />
+          <S.StepBackground>
             <S.TextBox>
               <Skeleton width={"100%"} />
             </S.TextBox>
-          </S.StepContainer>
+          </S.StepBackground>
         </>
       ) : (
         <>
-          <S.StepContainer>
-            <S.StepImage src={getStepImage()} />
+          <S.StepBackground url={imageUrl}>
             <S.TextBox>
               <S.Name>{myName} 님</S.Name>
               <S.Commt>{dailyMessage}</S.Commt>
             </S.TextBox>
-          </S.StepContainer>
+          </S.StepBackground>
         </>
       )}
-      ;
     </>
   );
 };
