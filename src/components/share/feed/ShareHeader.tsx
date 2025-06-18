@@ -8,7 +8,7 @@ import checkButton from "@assets/image/checkButton.svg";
 import downButton from "@assets/image/downButton.svg";
 import upButton from "@assets/image/upButton.svg";
 
-const ShareHeader = () => {
+const ShareHeader = ({ setOrder }: { setOrder: (order: string) => void }) => {
   const sortOptions = ["최신순", "인기순", "이번달", "랜덤"];
 
   const [selected, setSelected] = useState("최신순");
@@ -19,6 +19,7 @@ const ShareHeader = () => {
   const handleselect = (option: string) => {
     setSelected(option);
     setIsOpen(false);
+    setOrder(option);
   };
   return (
     <>
