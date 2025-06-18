@@ -1,13 +1,25 @@
 import styled from "styled-components";
 import * as S from "./modal.styled";
 import report from "@assets/icons/report.svg";
+import { ApiwithToken } from "@api/ApiWithToken";
 
 interface ReportModalProps {
   onClose: () => void;
   onConfirm: () => void;
+  id: number;
 }
 
-const ReportModal = ({ onClose, onConfirm }: ReportModalProps) => {
+const ReportModal = ({ onClose, onConfirm, id }: ReportModalProps) => {
+  const handleReport = async () => {
+    try {
+      await ApiwithToken.post(`share/reports/`, {
+        sharedcard: id,
+      });
+      onConfirm();
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <Wrapper>
       <S.ReportModalWrapper>
@@ -24,7 +36,7 @@ const ReportModal = ({ onClose, onConfirm }: ReportModalProps) => {
             justifyContent: "center",
           }}
         >
-          <S.ReportModalButton onClick={onConfirm}>네</S.ReportModalButton>
+          <S.ReportModalButton onClick={handleReport}>네</S.ReportModalButton>
           <S.ReportModalButton bgcolor="primaryColor" onClick={onClose}>
             아니오
           </S.ReportModalButton>
