@@ -6,6 +6,10 @@ import Card from "@components/share/feed/Card";
 import KeywordModal from "@components/modal/KeywordModal";
 const ChooseFeedPage = () => {
   const [isKeywordModalOpen, setIsKeywordModalOpen] = useState(false);
+  const [selectedMonth, setSelectedMonth] = useState<number>(
+    new Date().getMonth() + 1
+  );
+  const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,22 +28,41 @@ const ChooseFeedPage = () => {
     };
   }, []);
 
+  const handleMonthClick = (month: number) => {
+    setSelectedMonth(month);
+  };
+
+  const handleKeywordSelect = (keyword: string) => {
+    setSelectedKeywords((prev) => {
+      if (prev.includes(keyword)) {
+        return prev.filter((k) => k !== keyword);
+      }
+      if (prev.length >= 2) {
+        return [prev[1], keyword];
+      }
+      return [...prev, keyword];
+    });
+  };
+
   return (
     <>
       <S.TextContainer>
         피드에 <span>업로드 할 실천카드</span>를 선택해주세요.
       </S.TextContainer>
       <S.ButtonContainer ref={containerRef}>
-        <MonthButton>1월</MonthButton>
-        <MonthButton>2월</MonthButton>
-        <MonthButton>3월</MonthButton>
-        <MonthButton>3월</MonthButton>
-        <MonthButton>3월</MonthButton>
-        <MonthButton>3월</MonthButton>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((month) => (
+          <MonthButton
+            key={month}
+            onClick={() => handleMonthClick(month)}
+            isSelected={selectedMonth === month}
+          >
+            {month}월
+          </MonthButton>
+        ))}
       </S.ButtonContainer>
       <S.Hr />
       <S.KeyContainer>
-        <S.ChooseMonthContainer>3월</S.ChooseMonthContainer>
+        <S.ChooseMonthContainer>{selectedMonth}월</S.ChooseMonthContainer>
         <S.KeyWordContainer onClick={() => setIsKeywordModalOpen(true)}>
           키워드 선택
           <img src={ArrowDown} alt="키워드 선택 모달" />
@@ -47,14 +70,13 @@ const ChooseFeedPage = () => {
       </S.KeyContainer>
       <S.CardContainer>
         <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
       </S.CardContainer>
       {isKeywordModalOpen && (
-        <KeywordModal onClose={() => setIsKeywordModalOpen(false)} />
+        <KeywordModal
+          onClose={() => setIsKeywordModalOpen(false)}
+          selectedKeywords={selectedKeywords}
+          onKeywordSelect={handleKeywordSelect}
+        />
       )}
     </>
   );

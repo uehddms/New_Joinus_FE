@@ -34,4 +34,18 @@ export const shareApi = {
     const response = await ApiwithToken.get(`/share/sharedcards/${id}`);
     return response.data;
   },
+  getMyShare: async ({
+    are_targets_stored,
+    cursor,
+    page_size = 20,
+  }: {
+    are_targets_stored: boolean;
+    cursor?: string;
+    page_size: number;
+  }) => {
+    const response = await ApiwithToken.get("sharedcards/my/", {
+      params: { are_targets_stored, cursor, page_size },
+    });
+    return response.data;
+  },
 };
