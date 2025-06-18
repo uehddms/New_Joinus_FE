@@ -30,4 +30,8 @@ export const shareApi = {
       return [];
     }
   },
+  getShareDetail: async ({ id }: { id: number }) => {
+    const response = await ApiwithToken.get(`/share/sharedcards/${id}`);
+    return response.data;
+  },
 };
