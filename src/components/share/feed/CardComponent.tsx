@@ -1,78 +1,93 @@
 import styled from "styled-components";
 import card from "@assets/image/cardContainer.png";
-import test from "@assets/image/testimg.png";
 import * as S from "./share.styled";
 import leaf from "@assets/icons/leaf.png";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { shareApi } from "@api/share/ShareApi";
 
-interface dogInterface {
-  id: string;
-  dogUrl: string;
-}
-const CardComponent = () => {
-  const [page, setPage] = useState(0);
+const CardComponent = ({ order }: { order: string }) => {
+  const [data, setData] = useState<any[]>([]);
+  const [next, setNext] = useState<string | null>(null);
+  const [previous, setPrevious] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // 개 api로 가져온 데이터
-  const [data, setData] = useState<dogInterface[]>([]);
-  const fetch = async () => {
+  const fetch = async (
+    cursor?: string,
+    direction: "next" | "previous" | null = null
+  ) => {
     try {
-      const response = await axios.get(
-        `https://api.thedogapi.com/v1/images/search?size=small&format=json&has_breeds=true&order=ASC&page=${page}&limit=10`
-      );
-      const newData = response.data.map(
-        (dogImg: { id: string; url: string }) => ({
-          id: dogImg.id,
-          dogUrl: dogImg.url,
-        })
-      );
-      setData((prev) => [...prev, ...newData]);
+      const response = await shareApi.getShare({
+        order,
+        only_this_month: false,
+        cursor,
+        page_size: 20,
+      });
+      setNext(response.next);
+      setPrevious(response.previous);
+      setData(response.results.sharedcards);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
   useEffect(() => {
     fetch();
-  }, [page]);
+    console.log(data);
+    console.log(order);
+  }, [order]);
 
-  // 무한 스크롤을 위한 핸들러
-  const handleScroll = (entries: IntersectionObserverEntry[]) => {
+  const handleScrollTop = (entries: IntersectionObserverEntry[]) => {
     const target = entries[0];
-    if (target.isIntersecting && !isLoading) {
-      setPage((prev) => prev + 1);
+    if (target.isIntersecting && previous && !isLoading) {
+      fetch(previous, "previous");
+    }
+  };
+
+  const handleScrollBottom = (entries: IntersectionObserverEntry[]) => {
+    const target = entries[0];
+    if (target.isIntersecting && next && !isLoading) {
+      fetch(next, "next");
     }
   };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(handleScroll, {
-      threshold: 0, // 교차점이 발생하면 실행하도록
+    const topObserver = new IntersectionObserver(handleScrollTop, {
+      threshold: 0,
     });
-    const observerTarget = document.querySelector("#observer");
+    const bottomObserver = new IntersectionObserver(handleScrollBottom, {
+      threshold: 0,
+    });
 
-    if (observerTarget) {
-      observer.observe(observerTarget);
-    }
-  }, []);
+    const topTarget = document.querySelector("#observerTop");
+    const bottomTarget = document.querySelector("#observerBottom");
+
+    if (topTarget) topObserver.observe(topTarget);
+    if (bottomTarget) bottomObserver.observe(bottomTarget);
+
+    return () => {
+      topObserver.disconnect();
+      bottomObserver.disconnect();
+    };
+  }, [next, previous, isLoading]);
+
   return (
     <Wrapper>
-      {/* <S.CardContainer>
-        <img src={card} alt="카드 프레임" />
-        <img src={test} alt="사용자가 추가한 이미지" />
-        <img src={leaf} alt="point 모양" />
-        <p>100</p>
-      </S.CardContainer> */}
+      <div id="observerTop" style={{ height: "10px" }}></div>
       {data.map((data, index) => (
         <S.CardContainer key={index} as={Link} to={`/feed/detail/${index + 1}`}>
           <img src={card} alt="카드 프레임" />
-          <img src={data.dogUrl} alt="사용자가 추가한 이미지" />
+          <img
+            src={data.cardpost.small_image_url}
+            alt="사용자가 추가한 이미지"
+          />
           <img src={leaf} alt="point 모양" />
-          <p>100</p>
+          <p>{data.like_count}</p>
         </S.CardContainer>
       ))}
-      <div id="observer" style={{ height: "10px" }}></div>
+
+      <div id="observerBottom" style={{ height: "10px" }}></div>
     </Wrapper>
   );
 };
@@ -87,5 +102,4 @@ const Wrapper = styled.section`
   gap: 10px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 `;
