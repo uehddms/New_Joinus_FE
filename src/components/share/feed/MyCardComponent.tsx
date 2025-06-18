@@ -2,24 +2,24 @@ import styled from "styled-components";
 import card from "@assets/image/cardContainer.png";
 import * as S from "./share.styled";
 import leaf from "@assets/icons/leaf.png";
-import { useEffect, useState } from "react";
+import pin from "@assets/icons/pin_unfilled.svg";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { shareApi } from "@api/share/ShareApi";
 
-const CardComponent = ({ order }: { order: string }) => {
+const MyCardComponent = () => {
   const [data, setData] = useState<any[]>([]);
   const [next, setNext] = useState<string | null>(null);
   const [previous, setPrevious] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-
   const fetch = async (
     cursor?: string,
     direction: "next" | "previous" | null = null
   ) => {
     try {
-      const response = await shareApi.getShare({
-        order,
-        only_this_month: false,
+      setIsLoading(true);
+      const response = await shareApi.getMyShare({
+        are_targets_stored: false,
         cursor,
         page_size: 20,
       });
@@ -34,9 +34,7 @@ const CardComponent = ({ order }: { order: string }) => {
   };
   useEffect(() => {
     fetch();
-    console.log(data);
-    console.log(order);
-  }, [order]);
+  }, []);
 
   const handleScrollTop = (entries: IntersectionObserverEntry[]) => {
     const target = entries[0];
@@ -83,16 +81,43 @@ const CardComponent = ({ order }: { order: string }) => {
             alt="사용자가 추가한 이미지"
           />
           <img src={leaf} alt="point 모양" />
+          <img
+            src={pin}
+            alt="핀 모양"
+            style={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              zIndex: 6,
+              width: "24px",
+              height: "24px",
+            }}
+          />
           <p>{data.like_count}</p>
         </S.CardContainer>
       ))}
-
+      <S.CardContainer>
+        <img src={card} alt="카드 프레임" />
+        <img src={card} alt="사용자가 추가한 이미지" />
+        <img src={leaf} alt="point 모양" />
+        <img
+          src={pin}
+          alt="핀 모양"
+          style={{
+            position: "absolute",
+            top: "0px",
+            right: "0px",
+            zIndex: 6,
+            width: "24px",
+            height: "24px",
+          }}
+        />
+        <p>100</p>
+      </S.CardContainer>
       <div id="observerBottom" style={{ height: "10px" }}></div>
     </Wrapper>
   );
 };
-
-export default CardComponent;
 
 const Wrapper = styled.section`
   width: 100%;
@@ -103,3 +128,5 @@ const Wrapper = styled.section`
   display: flex;
   flex-wrap: wrap;
 `;
+
+export default MyCardComponent;

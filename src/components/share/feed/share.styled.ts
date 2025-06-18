@@ -205,7 +205,7 @@ export const CardContainer = styled.div`
   border-radius: 5%;
   z-index: 1;
   padding-top: calc(90% * 2 / 3 + 60px);
-
+  cursor: pointer;
   img:nth-of-type(1) {
     width: 90%; /* 너비를 90%로 고정 */
     position: absolute;
@@ -223,6 +223,7 @@ export const CardContainer = styled.div`
     left: 50%;
     transform: translate(-50%);
     z-index: 3;
+    border-radius: 10px;
   }
   img:nth-of-type(3) {
     position: absolute;
