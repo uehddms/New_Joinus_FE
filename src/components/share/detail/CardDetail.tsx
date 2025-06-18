@@ -22,6 +22,7 @@ const CardDetail = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [isReportModal2Open, setIsReportModal2Open] = useState(false);
+  const [isMoreOpen, setIsMoreOpen] = useState(false);
   const titleRef = useRef<HTMLParagraphElement>(null);
   const [isOverflow, setIsOverflow] = useState(false);
 
@@ -33,18 +34,13 @@ const CardDetail = ({
     setIsReportModalOpen(!isReportModalOpen);
   };
 
-  const handleReport = async () => {
+  const handleMore = () => {
+    setIsMoreOpen(!isMoreOpen);
+  };
+
+  const onConfirm = async () => {
     setIsReportModalOpen(false);
     setIsReportModal2Open(true);
-    try {
-      await ApiwithToken.post("share/reports/", {
-        data: {
-          sharecard: 1,
-        },
-      });
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   const handleLike = async () => {
@@ -105,7 +101,7 @@ const CardDetail = ({
               />
               <p>{data.like_count}</p>
             </S.PointContainer>
-            <img src={more} alt="신고하기" onClick={handleReportModal} />
+            <img src={more} alt="더보기" onClick={handleMore} />
           </S.Container>
         </S.ContentContainer>
         <S.Title ref={titleRef} isExpanded={isExpanded}>
@@ -116,11 +112,22 @@ const CardDetail = ({
             {isExpanded ? "접기" : "...더보기"}
           </S.Button>
         )}
+        {isMoreOpen && (
+          <S.MoreMenuContainer>
+            <S.MoreMenu>
+              <button>공유</button>
+            </S.MoreMenu>
+            <S.MoreMenu>
+              <button onClick={handleReportModal}>신고</button>
+            </S.MoreMenu>
+          </S.MoreMenuContainer>
+        )}
       </S.CardContainer>
       {isReportModalOpen && (
         <ReportModal
           onClose={() => setIsReportModalOpen(false)}
-          onConfirm={handleReport}
+          onConfirm={onConfirm}
+          id={Number(id)}
         />
       )}
       {isReportModal2Open && (
