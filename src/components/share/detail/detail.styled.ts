@@ -109,7 +109,7 @@ export const Title = styled.p<{ isExpanded: boolean }>`
   overflow: hidden;
   text-overflow: ellipsis;
 
-  padding: 0.5rem 0 0;
+  padding: 0.5rem 0;
 
   color: ${({ theme }) => theme.colors.gray5};
   font-family: Pretendard;
