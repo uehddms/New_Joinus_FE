@@ -1,11 +1,23 @@
 import styled from "styled-components";
 
-const MonthButton = ({ children }: { children: React.ReactNode }) => {
-  return <ButtonContainer>{children}</ButtonContainer>;
+const MonthButton = ({
+  children,
+  onClick,
+  isSelected,
+}: {
+  children: React.ReactNode;
+  onClick?: () => void;
+  isSelected?: boolean;
+}) => {
+  return (
+    <ButtonContainer onClick={onClick} isSelected={isSelected}>
+      {children}
+    </ButtonContainer>
+  );
 };
 export default MonthButton;
 
-const ButtonContainer = styled.button`
+const ButtonContainer = styled.button<{ isSelected?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +30,10 @@ const ButtonContainer = styled.button`
   border-radius: 24px;
   border: 1px solid ${({ theme }) => theme.colors.gray2};
 
-  color: ${({ theme }) => theme.colors.gray5};
+  color: ${({ theme, isSelected }) =>
+    isSelected ? theme.colors.white : theme.colors.gray5};
+  background-color: ${({ theme, isSelected }) =>
+    isSelected ? theme.colors.primaryColor : "transparent"};
   font-family: Pretendard;
   font-size: 24px;
   font-style: normal;
