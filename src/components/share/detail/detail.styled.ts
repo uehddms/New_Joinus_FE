@@ -1,7 +1,8 @@
 import styled from "styled-components";
 export const Wrapper = styled.header`
   width: 100%;
-  margin-bottom: 20px;
+  box-sizing: border-box;
+  padding: 0 0 20px 30px;
 
   display: flex;
   flex-direction: row;
@@ -109,7 +110,7 @@ export const Title = styled.p<{ isExpanded: boolean }>`
   overflow: hidden;
   text-overflow: ellipsis;
 
-  padding: 0.5rem 0 0;
+  padding: 0.5rem 0;
 
   color: ${({ theme }) => theme.colors.gray5};
   font-family: Pretendard;
@@ -160,6 +161,7 @@ export const InputComment = styled.input`
 `;
 
 export const AddedComment = styled.div`
+  position: relative;
   width: 100%;
 
   padding: 0.5rem;
@@ -176,4 +178,34 @@ export const AddedComment = styled.div`
   letter-spacing: -0.56px;
 
   text-align: start;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const MoreMenu = styled.div`
+  width: 40px;
+  height: 25px;
+  background-color: ${({ theme }) => theme.colors.white};
+  border-radius: 10px;
+  color: ${({ theme }) => theme.colors.black};
+  border: 1px solid ${({ theme }) => theme.colors.gray2};
+  font-family: Pretendard;
+  font-size: 12px;
+
+  text-align: center;
+  line-height: 25px;
+`;
+
+export const MoreMenuContainer = styled.div`
+  position: absolute;
+  right: 15px;
+  bottom: 20px;
+  z-index: 30;
+
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
 `;
