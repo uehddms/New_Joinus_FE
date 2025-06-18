@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import * as S from "./detail.styled";
 import send from "@assets/icons/send.svg";
+import more from "@assets/icons/more-horizontal.svg";
 import { useEffect, useState } from "react";
 import { ApiwithToken } from "@api/ApiWithToken";
 interface CommentData {
@@ -15,6 +16,7 @@ interface CommentData {
 const CommentBox = ({ id }: { id: string }) => {
   const [commentData, setCommentData] = useState<CommentData[]>([]);
   const [comment, setComment] = useState("");
+  const [isMoreOpen, setIsMoreOpen] = useState<number | null>(null);
   // 댓글 데이터 불러오기
   useEffect(() => {
     const fetchCommentData = async () => {
@@ -47,6 +49,21 @@ const CommentBox = ({ id }: { id: string }) => {
       console.log(e);
     }
   };
+
+  const handleDelete = async (commentId: number) => {};
+
+  const handleMore = (commentId: number) => {
+    if (isMoreOpen === commentId) {
+      setIsMoreOpen(null);
+    } else {
+      setIsMoreOpen(commentId);
+    }
+  };
+
+  const handleCloseMore = () => {
+    setIsMoreOpen(null);
+  };
+
   return (
     <Wrapper>
       <S.CommentInputContainer>
@@ -63,7 +80,30 @@ const CommentBox = ({ id }: { id: string }) => {
         </button>
       </S.CommentInputContainer>
       {commentData.map((comment) => (
-        <S.AddedComment key={comment.id}>{comment.content}</S.AddedComment>
+        <div
+          key={comment.id}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-end",
+          }}
+        >
+          <S.AddedComment>
+            <p>{comment.content}</p>
+            <div>
+              <img
+                src={more}
+                alt="더보기"
+                onClick={() => handleMore(comment.id)}
+              />
+            </div>
+          </S.AddedComment>
+          {isMoreOpen === comment.id && (
+            <S.MoreMenu>
+              <button onClick={handleCloseMore}>삭제</button>
+            </S.MoreMenu>
+          )}
+        </div>
       ))}
     </Wrapper>
   );
