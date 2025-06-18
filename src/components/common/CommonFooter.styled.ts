@@ -21,51 +21,87 @@ export const Container = styled.section`
   }
 `;
 
-export const JoinContainer = styled.div`
+interface ActiveProps {
+  isActive: boolean;
+}
+
+export const JoinContainer = styled.div<ActiveProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 80px;
-  width: 20%;
+  width: 23%;
+  padding: 12px 0;
+  background-color: ${({ isActive }) => (isActive ? "#4F8D64" : "transparent")};
+
+  span {
+    color: ${({ isActive }) => (isActive ? "#fff" : "#000")};
+    font-size: 14px;
+    margin-top: 4px;
+  }
 
   @media (max-height: 800px) {
-    width: 15%;
+    width: 20%;
   }
 `;
 
-export const UsContainer = styled.div`
+export const UsContainer = styled.div<ActiveProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 80px;
-  width: 20%;
+  width: 23%;
+  padding: 12px 0;
+  background-color: ${({ isActive }) => (isActive ? "#4F8D64" : "transparent")};
+
+  span {
+    color: ${({ isActive }) => (isActive ? "#fff" : "#000")};
+    font-size: 14px;
+    margin-top: 4px;
+  }
 
   @media (max-height: 800px) {
-    width: 15%;
+    width: 20%;
   }
 `;
 
-export const ShareContainer = styled.div`
+export const ShareContainer = styled.div<ActiveProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 80px;
-  width: 20%;
+  width: 23%;
+  padding: 12px 0;
+  background-color: ${({ isActive }) => (isActive ? "#4F8D64" : "transparent")};
+
+  span {
+    color: ${({ isActive }) => (isActive ? "#fff" : "#000")};
+    font-size: 14px;
+    margin-top: 4px;
+  }
 
   @media (max-height: 800px) {
-    width: 15%;
+    width: 20%;
   }
 `;
 
-export const RankContainer = styled.div`
+export const RankContainer = styled.div<ActiveProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 80px;
-  width: 20%;
+  width: 23%;
+  padding: 12px 0;
+  background-color: ${({ isActive }) => (isActive ? "#4F8D64" : "transparent")};
+
+  span {
+    color: ${({ isActive }) => (isActive ? "#fff" : "#000")};
+    font-size: 14px;
+    margin-top: 4px;
+  }
 
   @media (max-height: 800px) {
-    width: 15%;
+    width: 20%;
   }
 `;
 

@@ -1,12 +1,17 @@
 import styled from "styled-components";
-import * as S from "./modal.styled";
 import { useCallback } from "react";
 
 interface KeywordModalProps {
   onClose: () => void;
+  selectedKeywords: string[];
+  onKeywordSelect: (keyword: string) => void;
 }
 
-const KeywordModal = ({ onClose }: KeywordModalProps) => {
+const KeywordModal = ({
+  onClose,
+  selectedKeywords,
+  onKeywordSelect,
+}: KeywordModalProps) => {
   const handleClose = useCallback(() => {
     onClose();
   }, [onClose]);
@@ -19,14 +24,66 @@ const KeywordModal = ({ onClose }: KeywordModalProps) => {
           <CloseButton onClick={handleClose}>×</CloseButton>
         </ModalHeader>
         <KeywordList>
-          <KeywordItem>건강</KeywordItem>
-          <KeywordItem>운동</KeywordItem>
-          <KeywordItem>독서</KeywordItem>
-          <KeywordItem>학습</KeywordItem>
-          <KeywordItem>취미</KeywordItem>
-          <KeywordItem>여행</KeywordItem>
-          <KeywordItem>음식</KeywordItem>
-          <KeywordItem>명상</KeywordItem>
+          <KeywordItem
+            onClick={() => onKeywordSelect("전체")}
+            isSelected={selectedKeywords.includes("전체")}
+          >
+            전체
+          </KeywordItem>
+          <KeywordItem
+            onClick={() => onKeywordSelect("대기전력")}
+            isSelected={selectedKeywords.includes("대기전력")}
+          >
+            대기전력
+          </KeywordItem>
+          <KeywordItem
+            onClick={() => onKeywordSelect("재활용")}
+            isSelected={selectedKeywords.includes("재활용")}
+          >
+            재활용
+          </KeywordItem>
+          <KeywordItem
+            onClick={() => onKeywordSelect("물절약")}
+            isSelected={selectedKeywords.includes("물절약")}
+          >
+            물절약
+          </KeywordItem>
+          <KeywordItem
+            onClick={() => onKeywordSelect("분리배출")}
+            isSelected={selectedKeywords.includes("분리배출")}
+          >
+            분리배출
+          </KeywordItem>
+          <KeywordItem
+            onClick={() => onKeywordSelect("다회용기")}
+            isSelected={selectedKeywords.includes("다회용기")}
+          >
+            다회용기
+          </KeywordItem>
+          <KeywordItem
+            onClick={() => onKeywordSelect("친환경")}
+            isSelected={selectedKeywords.includes("친환경")}
+          >
+            친환경
+          </KeywordItem>
+          <KeywordItem
+            onClick={() => onKeywordSelect("텀블러")}
+            isSelected={selectedKeywords.includes("텀블러")}
+          >
+            텀블러
+          </KeywordItem>
+          <KeywordItem
+            onClick={() => onKeywordSelect("캠페인")}
+            isSelected={selectedKeywords.includes("캠페인")}
+          >
+            캠페인
+          </KeywordItem>
+          <KeywordItem
+            onClick={() => onKeywordSelect("기타")}
+            isSelected={selectedKeywords.includes("기타")}
+          >
+            기타
+          </KeywordItem>
         </KeywordList>
       </ModalContent>
     </Wrapper>
@@ -89,13 +146,17 @@ const KeywordList = styled.div`
   gap: 10px;
 `;
 
-const KeywordItem = styled.button`
+const KeywordItem = styled.button<{ isSelected?: boolean }>`
   padding: 8px 16px;
-  background-color: ${({ theme }) => theme.colors.gray1};
-  border: 1px solid ${({ theme }) => theme.colors.gray2};
+  background-color: ${({ theme, isSelected }) =>
+    isSelected ? theme.colors.primaryColor : theme.colors.gray1};
+  border: 1px solid
+    ${({ theme, isSelected }) =>
+      isSelected ? theme.colors.primaryColor : theme.colors.gray2};
   border-radius: 20px;
   font-size: 14px;
-  color: ${({ theme }) => theme.colors.gray5};
+  color: ${({ theme, isSelected }) =>
+    isSelected ? theme.colors.white : theme.colors.gray5};
   cursor: pointer;
   transition: all 0.2s;
 

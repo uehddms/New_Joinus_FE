@@ -1,11 +1,11 @@
-import CardComponent from "@components/share/feed/CardComponent";
 import MyFeedHeader from "@components/share/feed/Myfeedheader";
 import styled from "styled-components";
+import MyCardComponent from "@components/share/feed/MyCardComponent";
 const MyFeed = () => {
   return (
     <>
       <MyFeedHeader />
-      <CardComponent />
+      <MyCardComponent />
       <Shadow />
     </>
   );
