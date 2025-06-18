@@ -1,7 +1,8 @@
 import styled from "styled-components";
 export const Wrapper = styled.header`
   width: 100%;
-  margin-bottom: 20px;
+  box-sizing: border-box;
+  padding: 0 0 20px 30px;
 
   display: flex;
   flex-direction: row;
