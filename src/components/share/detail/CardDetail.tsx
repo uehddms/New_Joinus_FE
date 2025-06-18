@@ -8,15 +8,20 @@ import { useEffect, useState, useRef } from "react";
 import ReportModal from "@components/modal/ReportModal";
 import ReportModal2 from "@components/modal/ReportModal2";
 import { ApiwithToken } from "@api/ApiWithToken";
-import { useParams } from "react-router-dom";
 import { shareApi } from "@api/share/ShareApi";
 
-const CardDetail = () => {
-  const { id } = useParams();
+const CardDetail = ({
+  data,
+  id,
+  setData,
+}: {
+  data: any;
+  id: string;
+  setData: (data: any) => void;
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [isReportModal2Open, setIsReportModal2Open] = useState(false);
-  const [data, setData] = useState<any>(null);
   const titleRef = useRef<HTMLParagraphElement>(null);
   const [isOverflow, setIsOverflow] = useState(false);
 
@@ -63,14 +68,7 @@ const CardDetail = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await shareApi.getShareDetail({ id: Number(id) });
-      setData(response);
-    };
-    fetchData();
-  }, [id]);
-
+  // 텍스트 오버플로우 체크
   useEffect(() => {
     if (titleRef.current) {
       // isExpanded가 false일 때만 overflow 체크
@@ -136,7 +134,6 @@ export default CardDetail;
 
 const Wrapper = styled.section`
   width: 80%;
-
   display: flex;
   justify-content: center;
 `;
