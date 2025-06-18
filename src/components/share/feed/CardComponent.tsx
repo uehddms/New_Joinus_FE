@@ -75,8 +75,8 @@ const CardComponent = ({ order }: { order: string }) => {
   return (
     <Wrapper>
       <div id="observerTop" style={{ height: "10px" }}></div>
-      {data.map((data, index) => (
-        <S.CardContainer key={index} as={Link} to={`/feed/detail/${index + 1}`}>
+      {data.map((data) => (
+        <S.CardContainer key={data.id} as={Link} to={`/feed/detail/${data.id}`}>
           <img src={card} alt="카드 프레임" />
           <img
             src={data.cardpost.small_image_url}
