@@ -12,11 +12,11 @@ export const CommonButton = styled.button<ButtonProps>`
   height: 60px;
 
   border-radius: 94px;
-  background-color: ${({ bgcolor = "gray2", theme }) => theme.colors[bgcolor]};
+  background-color: ${({ bgcolor = "primaryColor", theme }) => theme.colors[bgcolor]};
   border-width: 2px;
   border-style: solid;
   border-color: ${(props) => {
-    const bgcolor = props.bgcolor ?? "gray2";
+    const bgcolor = props.bgcolor ?? "primaryColor";
     const border = props.border ?? bgcolor;
     return props.theme.colors[border];
   }};

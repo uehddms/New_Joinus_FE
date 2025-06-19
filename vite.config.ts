@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import fs from "fs";
+// import fs from "fs";
 import path from "path";
 
 // 로컬 호스트에서 https 실행
@@ -19,8 +19,8 @@ export default defineConfig({
   },
   // server: {
   //   https: {
-  //     key: fs.readFileSync(path.resolve(__dirname, "localhost-key.pem")),
-  //     cert: fs.readFileSync(path.resolve(__dirname, "localhost.pem")),
+  //     key: fs.readFileSync(path.resolve(__dirname, "localhost+2-key.pem")),
+  //     cert: fs.readFileSync(path.resolve(__dirname, "localhost+2.pem")),
   //   },
   //   port: 5173,
   // },
