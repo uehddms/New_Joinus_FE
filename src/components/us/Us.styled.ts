@@ -2,8 +2,7 @@ import styled, { keyframes } from "styled-components";
 
 /* UsHeader.jsx -------- */
 export const PageName = styled.div`
-  color: #000;
-  font-family: Pretendard;
+  color: ${({ theme }) => theme.colors.gray5};
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
@@ -14,14 +13,18 @@ export const PageName = styled.div`
 
 /* UsRanking.tsx -------- */
 export const Ranking = styled.div`
-  display: inline-flex;
-  margin-bottom: 0.75rem;
+  margin: 0 auto;
+  display: flex;
+  width: 3.5625rem;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.625rem;
 `;
 
 export const MyRanking = styled.div`
+  min-width: 3.125rem;
+  height: 3.0625rem;
+
   display: flex;
   padding: 0.625rem;
   justify-content: center;
@@ -30,10 +33,10 @@ export const MyRanking = styled.div`
   border-radius: 5rem;
   border: 1px solid ${({ theme }) => theme.colors.gray2};
   background: ${({ theme }) => theme.colors.gray1};
+
   color: ${({ theme }) => theme.colors.primaryColor};
   text-align: center;
-  font-family: Pretendard;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -41,47 +44,55 @@ export const MyRanking = styled.div`
 `;
 
 export const RankingText = styled.div`
+  align-self: stretch;
+
   color: ${({ theme }) => theme.colors.gray5};
   text-align: center;
-  font-family: Pretendard;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: normal;
   letter-spacing: -0.04rem;
 `;
 
 /* UsMain.tsx ------- */
-export const StepContainer = styled.div`
-  margin-top: -2.5rem;
-  height: auto;
-`;
+interface StepBackgroundProps {
+  url?: string;
+}
 
-export const StepImage = styled.img`
-  position: relative;
-  margin: 0 auto;
-  z-index: -10;
-  width: 20rem;
+export const StepBackground = styled.div<StepBackgroundProps>`
+  margin: 0;
+
+  display: flex;
+  width: 23.60631rem;
+  height: 23.60631rem;
+  padding: 10.1875rem 7.375rem 8.1875rem 8.75rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.625rem;
   flex-shrink: 0;
+
+  background-image: url(${({ url }) => url});
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 `;
 
 export const TextBox = styled.div`
-  position: relative;
-  margin: -12rem auto 9rem auto;
-  padding-left: 0.9375rem;
   display: flex;
+  width: 7.0625rem;
+  height: 5.125rem;
+
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1.5rem;
   flex-shrink: 0;
 `;
 
 export const Name = styled.h2`
   color: ${({ theme }) => theme.colors.black};
   text-align: center;
-  font-family: Pretendard;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -89,14 +100,14 @@ export const Name = styled.h2`
 `;
 
 export const Commt = styled.span`
+  width: 7.25rem;
   color: ${({ theme }) => theme.colors.gray5};
   text-align: center;
-  font-family: Pretendard;
-  font-size: 0.7rem;
+  font-size: 0.875rem;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
-  letter-spacing: -0.02rem;
+  letter-spacing: -0.035rem;
 `;
 
 /* UsStepCard -------- */
@@ -105,93 +116,78 @@ export const Bold = styled.span`
 `;
 
 export const UsBottom = styled.div`
+  margin: 0 auto;
   display: flex;
+  width: 90%;
   flex-direction: column;
-  align-items: center;
-  margin: -1.875rem auto 0 auto;
-  width: calc(100% - 3rem);
-  height: auto;
+  align-items: flex-start;
+  gap: 1rem;
 `;
 
 export const Bottom1 = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  align-self: stretch;
 `;
 
 export const Card = styled.div`
-  white-space: nowrap;
-  display: inline-flex;
-  height: 1.6rem;
+  display: flex;
+  height: 1.75rem;
   padding: 0.25rem 0.75rem;
   justify-content: center;
   align-items: center;
-  gap: 0.1875rem;
-  color: ${({ theme }) => theme.colors.gray5};
-  font-family: Pretendardx;
-  font-size: 0.8rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: -0.02rem;
-  border-radius: 2.125rem;
+  gap: 0.5rem;
+
+  border-radius: 1.5rem;
   border: 1px solid ${({ theme }) => theme.colors.gray2};
   background: ${({ theme }) => theme.colors.white};
-`;
 
-export const CardImg = styled.img`
-  margin-right: 0.1875rem;
-  padding: 0.1875rem;
-`;
-
-export const MyCard = styled.div`
-  border: 1px solid ${({ theme }) => theme.colors.gray2};
-  border-radius: 1.5rem;
-  padding: 0.25rem 0.75rem;
-  align-items: center;
-`;
-
-export const Point = styled.div`
-  display: flex;
-  height: 1.6rem;
-  align-items: flex-start;
-  flex-shrink: 0;
-  padding: 0.25rem 0.75rem;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 0.5rem;
-  border-radius: 1.5rem;
-  border: 1px solid ${({ theme }) => theme.colors.gray2};
-  background: ${({ theme }) => theme.colors.gray1};
-  color: ${({ theme }) => theme.colors.primaryColor};
-  text-align: right;
-  font-family: Pretendard;
-  font-size: 0.9rem;
+  color: ${({ theme }) => theme.colors.gray5};
+  font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.04rem;
 `;
 
-export const Bottom2 = styled.div`
+export const CardImg = styled.img`
+  width: 1rem;
+  height: 1.15156rem;
+`;
+
+export const Point = styled.div`
   display: flex;
-  flex-direction: column;
+  height: 1.75rem;
+  padding: 0.25rem 0.75rem;
+  justify-content: flex-end;
   align-items: center;
-  width: 100%;
-  max-width: 23.75rem;
+  gap: 0.5rem;
+
+  border-radius: 1.5rem;
+  border: 1px solid ${({ theme }) => theme.colors.gray2};
+  background: ${({ theme }) => theme.colors.gray1};
+
+  color: ${({ theme }) => theme.colors.primaryColor};
+  text-align: right;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.04rem;
 `;
 
 export const StepGraph = styled.div`
-  margin-top: 0.625rem;
-  position: relative;
-  border: 1px solid ${({ theme }) => theme.colors.gray2};
-  border-radius: 2.125rem;
-  height: 1.4rem;
-  padding: 0.25rem 0.75rem;
   width: 100%;
+  height: 1.5rem;
+  flex-shrink: 0;
+
+  border-radius: 1.5rem;
+  background: ${({ theme }) => theme.colors.gray1};
+
   display: flex;
   align-items: center;
+  padding: 0.25rem 0.75rem;
 `;
 
 const widthAnimation = (width: string) => keyframes`
@@ -209,23 +205,23 @@ interface StepBarProps {
 
 export const StepBar = styled.div<StepBarProps>`
   background-color: ${({ theme }) => theme.colors.primaryColor};
-  height: 0.1875rem;
+  height: 2.5px;
   flex-shrink: 0;
   animation: ${({ width }) => widthAnimation(width)} 1s ease forwards;
 `;
 
 export const StepImg = styled.img`
-  width: 0.8rem;
+  width: 0.9rem;
 `;
 
 /* UsMarketContainer ------- */
 export const UsMarketContainer = styled.div`
-  margin: 0.8rem auto;
-  width: calc(100% - 2.5rem);
-  max-width: 24rem;
+  margin: 1.25rem auto;
+  width: 90%;
+
   display: flex;
   flex-direction: column;
-  align-items: baseline;
+  align-items: flex-start;
 `;
 
 export const MarketButton = styled.button`
@@ -234,6 +230,7 @@ export const MarketButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+
   border-radius: 5rem;
   border: 1px solid ${({ theme }) => theme.colors.gray2};
   background: ${({ theme }) => theme.colors.gray1};
@@ -243,34 +240,43 @@ export const MarketButton = styled.button`
 export const MarketText = styled.div`
   color: ${({ theme }) => theme.colors.gray5};
   text-align: center;
-  font-family: Pretendard;
-  font-size: 0.95rem;
+  font-size: 1.25rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  letter-spacing: -0.05rem;
 `;
 
 export const MarketImg = styled.img`
-  width: 0.9rem;
+  width: 1.5rem;
+  height: 1.5rem;
 `;
 
 export const MarketList = styled.div`
   display: flex;
+  width: 100%;
+  height: 5rem;
   justify-content: space-between;
-  width: calc(100% - 1rem);
+  align-items: center;
+
   margin-top: 0.625rem;
 `;
 
 export const MarketItem = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 22%;
-  aspect-ratio: 1;
+  width: 5rem;
+  height: 5rem;
   flex-shrink: 0;
+
   border-radius: 1.5rem;
   border: 1px solid ${({ theme }) => theme.colors.gray2};
   background: ${({ theme }) => theme.colors.white};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  overflow: hidden;
+  flex-shrink: 0;
 
   img {
     height: 90%;
@@ -278,10 +284,17 @@ export const MarketItem = styled.div`
 `;
 
 export const MarketCommt = styled.div`
-  margin: 0.3rem 0 0 0.6rem;
+  margin-top: 0.75rem;
+  color: ${({ theme }) => theme.colors.gray4};
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: -0.03rem;
+  /* margin: 0.3rem 0 0 0.6rem;
   color: ${({ theme }) => theme.colors.gray4};
   text-align: center;
   font-size: 0.7rem;
   font-weight: 300;
-  letter-spacing: -0.03rem;
+  letter-spacing: -0.03rem; */
 `;
