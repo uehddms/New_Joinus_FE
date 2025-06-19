@@ -28,7 +28,7 @@ export const InfoEditApi = {
         "/users/usernameupdate/",
         putUpdateUsername
       );
-      // console.log("닉네임 변경 post:", response.data);
+      // console.log("닉네임 변경 put:", response.data);
 
       return response.data;
     } catch (error) {
