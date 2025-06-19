@@ -1,7 +1,14 @@
 import * as S from "./JoinMain.styled";
 import ImgBox from "../../assets/icons/ImgBox.svg";
+import { useNavigate } from "react-router";
 
 export const JoinMain = () => {
+    const navigate = useNavigate()
+    
+    const goTutorial = () => {
+        navigate("/ex");
+    };
+
     return (
         <S.Wrapper>
             <S.ImgWrapper>
@@ -15,7 +22,7 @@ export const JoinMain = () => {
                     <span>예시</span>
                 </S.Month>
             </S.MonthContainer>
-            <S.MakeBtn>
+            <S.MakeBtn onClick={goTutorial}>
                 <span>실천카드 만들러 가기</span>
             </S.MakeBtn>
         </S.Wrapper>
