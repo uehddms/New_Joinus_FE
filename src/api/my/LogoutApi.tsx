@@ -9,7 +9,7 @@ export const logoutApi = {
   postLogout: async () => {
     try {
       const response = await ApiwithToken.post("/users/logout/", {});
-      console.log("로그아웃 데이터:", response.data);
+      // console.log("로그아웃 데이터:", response.data);
 
       return response.data;
     } catch (error) {
