@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import CardComponent from "@components/share/feed/CardComponent";
 import StoreFeedHeader from "@components/share/feed/StoreFeedHeader";
+import StoredCardComponent from "@components/share/feed/StoredCardComponent";
 const StoreFeedPage = () => {
   return (
     <>
       <StoreFeedHeader />
-      <CardComponent />
+      <StoredCardComponent />
       <Shadow />
     </>
   );
