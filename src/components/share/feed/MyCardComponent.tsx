@@ -25,7 +25,7 @@ const MyCardComponent = () => {
       });
       setNext(response.next);
       setPrevious(response.previous);
-      setData(response.results.sharedcards);
+      setData(response.results);
     } catch (error) {
       console.log(error);
     } finally {
@@ -34,6 +34,7 @@ const MyCardComponent = () => {
   };
   useEffect(() => {
     fetch();
+    console.log(data);
   }, []);
 
   const handleScrollTop = (entries: IntersectionObserverEntry[]) => {
