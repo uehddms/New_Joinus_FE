@@ -50,7 +50,19 @@ const CommentBox = ({ id }: { id: string }) => {
     }
   };
 
-  const handleDelete = async (commentId: number) => {};
+  const handleDelete = async (commentId: number) => {
+    try {
+      await ApiwithToken.delete(`share/comments/${commentId}/`);
+      const response = await ApiwithToken.get(`share/comments/`, {
+        params: {
+          sharedcard: id,
+        },
+      });
+      setCommentData(response.data.comments);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const handleMore = (commentId: number) => {
     if (isMoreOpen === commentId) {
@@ -100,7 +112,7 @@ const CommentBox = ({ id }: { id: string }) => {
           </S.AddedComment>
           {isMoreOpen === comment.id && (
             <S.MoreMenu>
-              <button onClick={handleCloseMore}>삭제</button>
+              <button onClick={() => handleDelete(comment.id)}>삭제</button>
             </S.MoreMenu>
           )}
         </div>

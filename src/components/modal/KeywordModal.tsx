@@ -16,6 +16,10 @@ const KeywordModal = ({
     onClose();
   }, [onClose]);
 
+  const handleKeywordClick = (keyword: string) => {
+    onKeywordSelect(keyword);
+  };
+
   return (
     <Wrapper onClick={handleClose}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
@@ -25,61 +29,61 @@ const KeywordModal = ({
         </ModalHeader>
         <KeywordList>
           <KeywordItem
-            onClick={() => onKeywordSelect("전체")}
+            onClick={() => handleKeywordClick("전체")}
             isSelected={selectedKeywords.includes("전체")}
           >
             전체
           </KeywordItem>
           <KeywordItem
-            onClick={() => onKeywordSelect("대기전력")}
+            onClick={() => handleKeywordClick("대기전력")}
             isSelected={selectedKeywords.includes("대기전력")}
           >
             대기전력
           </KeywordItem>
           <KeywordItem
-            onClick={() => onKeywordSelect("재활용")}
+            onClick={() => handleKeywordClick("재활용")}
             isSelected={selectedKeywords.includes("재활용")}
           >
             재활용
           </KeywordItem>
           <KeywordItem
-            onClick={() => onKeywordSelect("물절약")}
+            onClick={() => handleKeywordClick("물절약")}
             isSelected={selectedKeywords.includes("물절약")}
           >
             물절약
           </KeywordItem>
           <KeywordItem
-            onClick={() => onKeywordSelect("분리배출")}
+            onClick={() => handleKeywordClick("분리배출")}
             isSelected={selectedKeywords.includes("분리배출")}
           >
             분리배출
           </KeywordItem>
           <KeywordItem
-            onClick={() => onKeywordSelect("다회용기")}
+            onClick={() => handleKeywordClick("다회용기")}
             isSelected={selectedKeywords.includes("다회용기")}
           >
             다회용기
           </KeywordItem>
           <KeywordItem
-            onClick={() => onKeywordSelect("친환경")}
+            onClick={() => handleKeywordClick("친환경")}
             isSelected={selectedKeywords.includes("친환경")}
           >
             친환경
           </KeywordItem>
           <KeywordItem
-            onClick={() => onKeywordSelect("텀블러")}
+            onClick={() => handleKeywordClick("텀블러")}
             isSelected={selectedKeywords.includes("텀블러")}
           >
             텀블러
           </KeywordItem>
           <KeywordItem
-            onClick={() => onKeywordSelect("캠페인")}
+            onClick={() => handleKeywordClick("캠페인")}
             isSelected={selectedKeywords.includes("캠페인")}
           >
             캠페인
           </KeywordItem>
           <KeywordItem
-            onClick={() => onKeywordSelect("기타")}
+            onClick={() => handleKeywordClick("기타")}
             isSelected={selectedKeywords.includes("기타")}
           >
             기타
