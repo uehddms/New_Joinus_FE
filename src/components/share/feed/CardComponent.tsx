@@ -34,8 +34,6 @@ const CardComponent = ({ order }: { order: string }) => {
   };
   useEffect(() => {
     fetch();
-    console.log(data);
-    console.log(order);
   }, [order]);
 
   const handleScrollTop = (entries: IntersectionObserverEntry[]) => {

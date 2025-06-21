@@ -4,6 +4,7 @@ import * as S from "./feedPage.styled";
 import ArrowDown from "@assets/icons/chevron-down.svg";
 import Card from "@components/share/feed/Card";
 import KeywordModal from "@components/modal/KeywordModal";
+import { shareApi } from "@api/share/ShareApi";
 const ChooseFeedPage = () => {
   const [isKeywordModalOpen, setIsKeywordModalOpen] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState<number>(
@@ -11,6 +12,7 @@ const ChooseFeedPage = () => {
   );
   const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -44,6 +46,31 @@ const ChooseFeedPage = () => {
     });
   };
 
+  const getKeywordDisplayText = () => {
+    if (selectedKeywords.length === 0) {
+      return "키워드 선택";
+    } else if (selectedKeywords.length === 1) {
+      return selectedKeywords[0];
+    } else {
+      return selectedKeywords.join(" | ");
+    }
+  };
+
+  const handleGetShareBymonth = async () => {
+    const response = await shareApi.getShareBymonth({
+      keywords: selectedKeywords,
+      month: selectedMonth,
+      only_not_shared: false,
+      ordered_by_is_shared: false,
+    });
+    setData(response.data.cardposts);
+  };
+
+  useEffect(() => {
+    handleGetShareBymonth();
+    console.log(data);
+  }, [selectedMonth, selectedKeywords]);
+
   return (
     <>
       <S.TextContainer>
@@ -64,12 +91,14 @@ const ChooseFeedPage = () => {
       <S.KeyContainer>
         <S.ChooseMonthContainer>{selectedMonth}월</S.ChooseMonthContainer>
         <S.KeyWordContainer onClick={() => setIsKeywordModalOpen(true)}>
-          키워드 선택
+          {getKeywordDisplayText()}
           <img src={ArrowDown} alt="키워드 선택 모달" />
         </S.KeyWordContainer>
       </S.KeyContainer>
       <S.CardContainer>
-        <Card />
+        {data.map((item) => (
+          <Card key={item.id} item={item} />
+        ))}
       </S.CardContainer>
       {isKeywordModalOpen && (
         <KeywordModal

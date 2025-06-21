@@ -43,8 +43,29 @@ export const shareApi = {
     cursor?: string;
     page_size: number;
   }) => {
-    const response = await ApiwithToken.get("sharedcards/my/", {
+    const response = await ApiwithToken.get("/share/sharedcards/my/", {
       params: { are_targets_stored, cursor, page_size },
+    });
+    return response.data;
+  },
+  getShareBymonth: async ({
+    keywords,
+    month,
+    only_not_shared,
+    ordered_by_is_shared,
+  }: {
+    keywords: string[];
+    month: number;
+    only_not_shared: boolean;
+    ordered_by_is_shared: boolean;
+  }) => {
+    const response = await ApiwithToken.get("/join/cards/", {
+      params: {
+        keywords,
+        month,
+        only_not_shared,
+        ordered_by_is_shared,
+      },
     });
     return response.data;
   },
