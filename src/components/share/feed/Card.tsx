@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import card from "@assets/image/cardContainer.png";
-import test from "@assets/image/testimg.png";
 
-const Card = () => {
+const Card = ({ item }: { item: any }) => {
   return (
     <CardContainer>
       <img src={card} alt="카드 프레임" />
-      <img src={test} alt="사용자가 추가한 이미지" />
-      <CreatedAt>2025.01.01</CreatedAt>
+      <img src={item.small_image_url} alt="사용자가 추가한 이미지" />
+      <CreatedAt>{item.created_at.split("T")[0]}</CreatedAt>
     </CardContainer>
   );
 };
