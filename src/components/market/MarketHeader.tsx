@@ -1,15 +1,28 @@
 import BackBtn from "@assets/icons/back.svg";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { itemListApi } from "@api/market/ItemListApi";
+import { useState, useEffect } from "react";
 
 export const MarketHeader = () => {
   const navigate = useNavigate();
+  const [point, setPoint] = useState<number>();
 
   const backClick = () => {
-    navigate("/us");
+    navigate(-1);
   };
 
-  const point = 1000;
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await itemListApi.getItemList();
+      if (data) {
+        setPoint(data.points);
+        // console.log(data);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <MarketHeaderContainer>
