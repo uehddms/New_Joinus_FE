@@ -25,7 +25,25 @@ export const ImageContainer = styled.div`
 `;
 
 export const Plus = styled.div`
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    .icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .preview {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 `;
 
 export const TextContainer = styled.div`

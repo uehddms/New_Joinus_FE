@@ -15,7 +15,7 @@ export const PageName = styled.div`
 export const Ranking = styled.div`
   margin: 0 auto;
   display: flex;
-  width: 3.5625rem;
+  /* width: 3.5625rem; */
   flex-direction: column;
   align-items: center;
   gap: 0.625rem;

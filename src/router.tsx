@@ -11,6 +11,7 @@ import RankPage from "@pages/ranking/RankPage";
 import { JoinUpload } from "@pages/joinPage/JoinUpload";
 import { JoinExplain } from "@pages/joinPage/JoinExplain";
 import { JoinCate } from "@pages/joinPage/JoinCate";
+import { JoinPostDetail } from "@pages/joinPage/JoinPostDetail";
 import SharePage from "@pages/feedPage/SharePage";
 import FeedDetailPage from "@pages/feedPage/FeedDetailPage";
 import MyInfoEditPage from "@pages/myPage/MyInfoEditPage";
@@ -67,6 +68,7 @@ export const router = createBrowserRouter([
       { path: "myFeed", element: <MyFeed /> },
       { path: "storeFeed", element: <StoreFeedPage /> },
       { path: "post", element: <JoinPost /> },
+      { path: "detail/:id", element: <JoinPostDetail /> },
     ],
   },
 ]);
