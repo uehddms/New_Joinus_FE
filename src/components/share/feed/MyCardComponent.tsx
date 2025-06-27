@@ -7,14 +7,27 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { shareApi } from "@api/share/ShareApi";
 
+interface CardData {
+  cardpost: {
+    id: number;
+    keywords: string;
+    created_at: string;
+    small_image_url: string;
+  };
+  is_pinned: boolean;
+  like_count: number;
+  is_stored: boolean;
+  id: number;
+}
+
 const MyCardComponent = () => {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<CardData[]>([]);
   const [next, setNext] = useState<string | null>(null);
   const [previous, setPrevious] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const fetch = async (
     cursor?: string,
-    direction: "next" | "previous" | null = null
+    _direction: "next" | "previous" | null = null
   ) => {
     try {
       setIsLoading(true);
@@ -25,7 +38,8 @@ const MyCardComponent = () => {
       });
       setNext(response.next);
       setPrevious(response.previous);
-      setData(response.results);
+      setData(response.results.sharedcards);
+      console.log("response", response);
     } catch (error) {
       console.log(error);
     } finally {
@@ -77,7 +91,10 @@ const MyCardComponent = () => {
       {data.map((data) => (
         <S.CardContainer key={data.id} as={Link} to={`/feed/detail/${data.id}`}>
           <img src={card} alt="카드 프레임" />
-          <img src={data.small_image_url} alt="사용자가 추가한 이미지" />
+          <img
+            src={data.cardpost.small_image_url}
+            alt="사용자가 추가한 이미지"
+          />
           <img src={leaf} alt="point 모양" />
           {data.is_pinned && (
             <img
@@ -96,24 +113,6 @@ const MyCardComponent = () => {
           <p>{data.like_count}</p>
         </S.CardContainer>
       ))}
-      <S.CardContainer>
-        <img src={card} alt="카드 프레임" />
-        <img src={card} alt="사용자가 추가한 이미지" />
-        <img src={leaf} alt="point 모양" />
-        <img
-          src={pin}
-          alt="핀 모양"
-          style={{
-            position: "absolute",
-            top: "0px",
-            right: "0px",
-            zIndex: 6,
-            width: "24px",
-            height: "24px",
-          }}
-        />
-        <p>100</p>
-      </S.CardContainer>
       <div id="observerBottom" style={{ height: "10px" }}></div>
     </Wrapper>
   );
