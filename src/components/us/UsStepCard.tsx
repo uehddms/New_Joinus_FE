@@ -10,7 +10,7 @@ const UsBottom = () => {
   const [myCard, setMyCard] = useState<number>(2);
   const [point, setPoint] = useState<number>(10000);
   const [barWidth, setBarWidth] = useState<string>("0%");
-  const [myStep, setMyStep] = useState<number | undefined>(2);
+  const [myStep, setMyStep] = useState<number>(2);
   const [isLoading, setIsLoading] = useState(false);
 
   const stepFunc = (myStep: number): string => {
