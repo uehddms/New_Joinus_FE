@@ -2,14 +2,20 @@ import RankingHeader from "@components/ranking/RankingHeader";
 import RankUser from "@components/ranking/RankUser";
 import { ApiwithToken } from "@api/ApiWithToken";
 import { useEffect, useState } from "react";
+import Notification from "@components/ranking/Notification";
+import MyRankBar from "@components/ranking/MyRankBar";
 
 const RankPage = () => {
   const [data, setData] = useState([]);
+  const [myRank, setMyRank] = useState(0);
+  const [myCardCount, setMyCardCount] = useState(0);
   const [isnoti, setIsnoti] = useState<boolean>(false);
   const fetch = async () => {
     const response = await ApiwithToken.get("ranking/main/");
     setData(response.data.top_20);
     setIsnoti(response.data.notification);
+    setMyRank(response.data.my_rank);
+    setMyCardCount(response.data.my_card_count);
   };
   useEffect(() => {
     fetch();
@@ -18,6 +24,7 @@ const RankPage = () => {
   return (
     <>
       <RankingHeader />
+      {isnoti && <Notification onClose={() => setIsnoti(false)} />}
       {data.map((item: any) => (
         <RankUser
           rank={item.rank}
@@ -26,7 +33,21 @@ const RankPage = () => {
           id={item.user_id}
         />
       ))}
-      {isnoti && <div>알림</div>}
+      <div
+        style={{
+          position: "fixed",
+          left: 0,
+          right: 0,
+          bottom: 70,
+          zIndex: 100,
+        }}
+      >
+        <MyRankBar
+          rank={myRank}
+          nickname="조인어스슈퍼노바"
+          cardCount={myCardCount}
+        />
+      </div>
     </>
   );
 };

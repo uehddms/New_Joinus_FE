@@ -3,7 +3,13 @@ import styled from "styled-components";
 import backButton from "@assets/icons/BackBtn.svg";
 import * as S from "./Rankin.style";
 import { useTheme } from "styled-components";
-export const UserHeader = ({ rank }: { rank: number }) => {
+export const UserHeader = ({
+  rank,
+  username,
+}: {
+  rank: number;
+  username: string;
+}) => {
   const theme = useTheme();
   const isTop3 = rank <= 3;
   return (
@@ -16,12 +22,17 @@ export const UserHeader = ({ rank }: { rank: number }) => {
           backgroundColor: isTop3
             ? theme.colors.primaryColor
             : theme.colors.gray4,
+          width: "30px",
+          height: "30px",
         }}
       >
         <span style={{ color: "#fff", fontWeight: 700, fontSize: 18 }}>
           {rank}
         </span>
       </S.RankScore>
+      <span style={{ marginLeft: 16, fontWeight: 700, fontSize: 18 }}>
+        {username}
+      </span>
     </Wrapper>
   );
 };
