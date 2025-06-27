@@ -67,12 +67,14 @@ export default UsPage;
 
 const Layout = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   width: 100%;
   min-height: calc(var(—dvh, 1vh) * 100);
   height: calc(100dvh);
   padding-bottom: 78px;
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -87,7 +89,6 @@ const Layout = styled.div`
 
 const UsWrapper = styled.div`
   overflow-y: auto; /* 컨텐츠만 스크롤 */
-  padding: 0 10px;
   &::-webkit-scrollbar {
     display: none;
   }
