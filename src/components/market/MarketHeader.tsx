@@ -17,7 +17,7 @@ export const MarketHeader = () => {
       const data = await itemListApi.getItemList();
       if (data) {
         setPoint(data.points);
-        console.log(data);
+        // console.log(data);
       }
     };
 
