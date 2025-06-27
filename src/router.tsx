@@ -7,7 +7,7 @@ import { JoinMain } from "./pages/joinPage/JoinMain";
 import { SignUpPage } from "./pages/SignUpPage";
 import UsPage from "./pages/UsPage";
 import { JoinStart } from "./pages/joinPage/JoinStart";
-import RankPage from "@pages/RankPage";
+import RankPage from "@pages/ranking/RankPage";
 import { JoinUpload } from "@pages/joinPage/JoinUpload";
 import { JoinExplain } from "@pages/joinPage/JoinExplain";
 import { JoinCate } from "@pages/joinPage/JoinCate";
@@ -27,6 +27,7 @@ import ChooseFeedPage from "@pages/feedPage/ChooseFeedPage";
 import { JoinPost } from "@pages/joinPage/JoinPost";
 import MarketPage from "@pages/marketPage/MarketPage";
 import MarketDetailPage from "@pages/marketPage/MarketDetailPage";
+import RankUserPage from "@pages/ranking/RankUserPage";
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +58,7 @@ export const router = createBrowserRouter([
       { path: "start", element: <JoinStart /> },
       { path: "us", element: <UsPage /> },
       { path: "rank", element: <RankPage /> },
+      { path: "rank/user/:id", element: <RankUserPage /> },
       { path: "upload", element: <JoinUpload /> },
       { path: "cate", element: <JoinCate /> },
       { path: "share", element: <SharePage /> },
