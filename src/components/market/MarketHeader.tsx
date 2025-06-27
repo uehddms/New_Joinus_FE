@@ -9,7 +9,7 @@ export const MarketHeader = () => {
   const [point, setPoint] = useState<number>();
 
   const backClick = () => {
-    navigate("/us");
+    navigate(-1);
   };
 
   useEffect(() => {
