@@ -10,7 +10,7 @@ export const itemListApi = {
   getItemList: async () => {
     try {
       const response = await ApiwithToken.get("/market/itemlist/", {});
-      console.log("item list 데이터:", response.data);
+      // console.log("item list 데이터:", response.data);
 
       return response.data;
     } catch (error) {
