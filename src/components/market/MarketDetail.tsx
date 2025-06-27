@@ -16,6 +16,13 @@ const MarketDetail = () => {
   const [detailData, setDetailData] = useState<
     itemDetailType & { item_image: string }
   >();
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState<boolean>(false);
+  const [isYesNoModalOpen, setIsYesNoModalOpen] = useState<boolean>(false);
+  const [actionType, setActionType] = useState<
+    "구매하기" | "다운받기" | "구매 완료"
+  >();
+  const [isPurchaseLoading, setIsPurchaseLoading] = useState<boolean>(false);
 
   const imageMap: { [key: string]: string } = {
     "조인어스 스티커": sticker,
@@ -35,21 +42,13 @@ const MarketDetail = () => {
           item_image: matchedImage,
         };
         setDetailData(mergedData);
-        console.log("상세 아이템 데이터:", mergedData);
+        setActionType(mergedData.button_text);
+        // console.log("상세 아이템 데이터:", mergedData);
       }
     };
 
     fetchData();
-  }, [id]);
-
-  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
-  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
-  const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
-  const [isPurchase, setIsPurchase] = useState(false);
-  const [isYesNoModalOpen, setIsYesNoModalOpen] = useState(false);
-  const [actionType, setActionType] = useState<"purchase" | "download">(
-    "purchase"
-  );
+  }, [id, actionType]);
 
   const handlePurchase = () => {
     if (!detailData) return;
@@ -61,23 +60,42 @@ const MarketDetail = () => {
     }
   };
 
-  const confirmPurchase = () => {
-    setIsYesNoModalOpen(false);
-    setIsPurchaseModalOpen(true);
-    setActionType("purchase");
+  // 구매하기
+  const confirmPurchase = async () => {
+    if (!detailData) return;
 
-    setTimeout(() => {
-      setIsPurchaseModalOpen(false);
+    setIsYesNoModalOpen(false);
+    setIsPurchaseLoading(true); // 로딩 시작
+
+    const res = await itemDetailApi.postItemDetail(Number(id), {
+      item: Number(id),
+    });
+
+    setIsPurchaseLoading(false); // 로딩 종료
+
+    if (res.message === "구매가 완료되었습니다.") {
       setIsSuccessModalOpen(true);
-      setIsPurchase(true);
+
       setTimeout(() => setIsSuccessModalOpen(false), 1500);
-    }, 2000);
+    } else {
+      setIsErrorModalOpen(true);
+      setTimeout(() => setIsErrorModalOpen(false), 1500);
+    }
   };
 
-  const download = () => {
-    setActionType("download");
-    setIsSuccessModalOpen(true);
-    setTimeout(() => setIsSuccessModalOpen(false), 1500);
+  // 다운받기
+  const download = async () => {
+    if (!detailData) return;
+
+    const res = await itemDetailApi.downloadItem(Number(id));
+
+    if (res.download_url) {
+      window.open(res.download_url, "_blank"); // 새 창에서 이미지 다운로드
+      setIsSuccessModalOpen(true);
+      setTimeout(() => setIsSuccessModalOpen(false), 1500);
+    } else {
+      alert("다운로드 URL을 찾을 수 없습니다.");
+    }
   };
 
   return (
@@ -96,7 +114,7 @@ const MarketDetail = () => {
       {isSuccessModalOpen && (
         <S.ModalContainer>
           <NoticeModal isAlert={false}>
-            {actionType === "purchase" ? (
+            {actionType === "구매하기" ? (
               <>
                 구매가 완료되었습니다. <br />
                 사용방법은 상품의 상세페이지에서 확인해주세요.
@@ -108,7 +126,7 @@ const MarketDetail = () => {
         </S.ModalContainer>
       )}
 
-      {isPurchaseModalOpen && (
+      {isPurchaseLoading && (
         <S.ModalContainer>
           <NoticeModal isAlert={false}>구매를 진행 중입니다</NoticeModal>
         </S.ModalContainer>
@@ -149,7 +167,11 @@ const MarketDetail = () => {
       </S.MainContainer>
 
       <S.ButtonSection>
-        {isPurchase ? (
+        {actionType === "구매 완료" ? (
+          <CommonButton disabled>
+            <span>구매 완료</span>
+          </CommonButton>
+        ) : actionType === "다운받기" ? (
           <CommonButton onClick={download}>
             <span>다운받기</span>
           </CommonButton>
