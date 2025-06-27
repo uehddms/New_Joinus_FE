@@ -1,24 +1,46 @@
 import * as S from "./MarketDetail.styled";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CommonButton } from "@components/common/common.style";
 import NoticeModal from "@components/modal/NoticeModal";
 import YesNoModal from "@components/modal/YesNoModal";
-import MDtheme from "@assets/image/market/MDtheme.svg";
+
+import sticker from "../../assets/image/market/sticker.svg";
+import theme from "../../assets/image/market/theme.svg";
+import frame1 from "../../assets/image/market/frame1.svg";
+import frame2 from "../../assets/image/market/frame2.svg";
+import { itemDetailApi, itemDetailType } from "@api/market/ItemDetailApi";
+import { useParams } from "react-router";
 
 const MarketDetail = () => {
-  const detailData = {
-    my_point: 10000,
-    item: {
-      item_name: "조인어스 라라 테마",
-      item_image: MDtheme,
-      price: 5000,
-      description:
-        "화려하고 마치 동화 속 세상 같은 라라테마로 당신의 어스를 변화시켜보세요!",
-      description2: "(투명한 배경의 PNG 이미지입니다.)",
-      note: "*어스 왼쪽 상단의 메뉴 아이콘 클릭>어스테마 바꾸기에서 테마 변경 가능합니다.",
-    },
-    button_text: "구매하기",
+  const { id } = useParams();
+  const [detailData, setDetailData] = useState<
+    itemDetailType & { item_image: string }
+  >();
+
+  const imageMap: { [key: string]: string } = {
+    "조인어스 스티커": sticker,
+    "조인어스 라라테마": theme,
+    "조인어스 프레임1": frame1,
+    "조인어스 프레임2": frame2,
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!id) return;
+      const data = await itemDetailApi.getItemDetail(Number(id));
+      if (data) {
+        const matchedImage = imageMap[data.item_name] || "";
+        const mergedData = {
+          ...data,
+          item_image: matchedImage,
+        };
+        setDetailData(mergedData);
+        console.log("상세 아이템 데이터:", mergedData);
+      }
+    };
+
+    fetchData();
+  }, [id]);
 
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
@@ -30,7 +52,8 @@ const MarketDetail = () => {
   );
 
   const handlePurchase = () => {
-    if (detailData.my_point >= detailData.item.price) {
+    if (!detailData) return;
+    if (detailData.points >= detailData.price) {
       setIsYesNoModalOpen(true);
     } else {
       setIsErrorModalOpen(true);
@@ -105,25 +128,23 @@ const MarketDetail = () => {
 
       <S.MainContainer>
         <S.ItemImgContainer>
-          <S.Itemimg src={detailData.item?.item_image} />
+          <S.Itemimg src={detailData?.item_image} />
         </S.ItemImgContainer>
         <S.ItemInfoContainer>
-          <S.ItemText>{detailData.item?.item_name}</S.ItemText>
-          <S.PointContainerWhite>
-            {detailData.item?.price}P
-          </S.PointContainerWhite>
+          <S.ItemText>{detailData?.item_name}</S.ItemText>
+          <S.PointContainerWhite>{detailData?.price}P</S.PointContainerWhite>
         </S.ItemInfoContainer>
         <S.ItemDetailTextContainer>
           <S.ItemDetailText>
-            {detailData.item?.description}
-            {detailData.item?.description2 && (
+            {detailData?.description}
+            {/* {detailData?.description && (
               <>
                 <br />
-                <span>{detailData.item?.description2}</span>
+                <span>{detailData?.description}</span>
               </>
-            )}
+            )} */}
           </S.ItemDetailText>
-          <S.ItemDetailNote>{detailData.item?.note}</S.ItemDetailNote>
+          <S.ItemDetailNote>{detailData?.note}</S.ItemDetailNote>
         </S.ItemDetailTextContainer>
       </S.MainContainer>
 
