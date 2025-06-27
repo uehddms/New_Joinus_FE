@@ -1,61 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as S from "./MarketList.styled";
 import { Link } from "react-router-dom";
 import sticker from "../../assets/image/market/sticker.svg";
 import theme from "../../assets/image/market/theme.svg";
 import frame1 from "../../assets/image/market/frame1.svg";
 import frame2 from "../../assets/image/market/frame2.svg";
+import { itemListApi, itemListType } from "@api/market/ItemListApi";
 
 const MarketList = () => {
-  const [itemData] = useState([
-    {
-      item: 1,
-      item_image: sticker,
-      item_name: "조인어스 디지털 스티커",
-      price: 3000,
-    },
-    {
-      item: 2,
-      item_image: theme,
-      item_name: "조인어스 라라테마",
-      price: 4000,
-    },
-    {
-      item: 3,
-      item_image: frame1,
-      item_name: "조인어스 프레임1",
-      price: 3000,
-    },
-    {
-      item: 4,
-      item_image: frame2,
-      item_name: "조인어스 프레임2",
-      price: 3000,
-    },
-  ]);
-  //   const [loading, setLoading] = useState(false);
-  //   const token = Cookies.get("access_token");
+  const [itemData, setItemData] = useState<
+    (itemListType & { item_image: string })[]
+  >([]);
 
-  //   useEffect(() => {
-  //     const fetchData = async () => {
-  //       try {
-  //         setLoading(true);
-  //         const response = await apiCall(
-  //           "/users/order_detail",
-  //           "GET",
-  //           null,
-  //           token
-  //         );
-  //         setItemData(response.data || []);
-  //         if (response.data) {
-  //           setLoading(false);
-  //         }
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     };
-  //     fetchData();
-  //   }, [token]);
+  const imageMap: { [key: string]: string } = {
+    "조인어스 스티커": sticker,
+    "조인어스 라라테마": theme,
+    "조인어스 프레임1": frame1,
+    "조인어스 프레임2": frame2,
+  };
+
+  useEffect(() => {
+    const fetchItemList = async () => {
+      const res = await itemListApi.getItemList();
+      const itemsWithImage = res.item.map((item: itemListType) => ({
+        ...item,
+        item_image: imageMap[item.item_name] || "", // 없을 경우 빈 문자열 처리
+      }));
+      setItemData(itemsWithImage);
+    };
+
+    fetchItemList();
+  }, []);
 
   return (
     <S.MarketListWrapper>
@@ -64,7 +39,7 @@ const MarketList = () => {
           itemData.map((item, index) => (
             <Link
               key={index}
-              to={`/market/detail/${item.item}`}
+              to={`/market/detail/${item.id}`}
               style={{ textDecoration: "none" }}
             >
               <S.MarketItem>
@@ -77,7 +52,7 @@ const MarketList = () => {
             </Link>
           ))
         ) : (
-          <S.Quit_Warning>구매한 아이템이 없습니다.</S.Quit_Warning>
+          <S.Quit_Warning>마켓 아이템을 준비 중입니다.</S.Quit_Warning>
         )}
       </S.MarketListContainer>
     </S.MarketListWrapper>
