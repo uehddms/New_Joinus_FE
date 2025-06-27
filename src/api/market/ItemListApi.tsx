@@ -1,15 +1,9 @@
 import { ApiwithToken } from "@api/ApiWithToken";
 
 export type itemListType = {
-  points: 0;
-  item: [
-    {
-      item_name: string;
-      price: number;
-      id: number;
-    },
-    []
-  ];
+  item_name: string;
+  price: number;
+  id: number;
 };
 
 export const itemListApi = {
