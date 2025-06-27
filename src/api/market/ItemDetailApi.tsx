@@ -14,7 +14,7 @@ export const itemDetailApi = {
   getItemDetail: async (id: number) => {
     try {
       const response = await ApiwithToken.get(`market/item/${id}`, {});
-      console.log("item detail 데이터:", response.data);
+      // console.log("item detail 데이터:", response.data);
 
       return response.data;
     } catch (error) {
