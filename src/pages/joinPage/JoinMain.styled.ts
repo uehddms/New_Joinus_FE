@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.section`
-    /* width: 88%; */
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -16,17 +15,21 @@ export const Wrapper = styled.section`
 
 export const ImgWrapper = styled.div`
     display: flex;
-    width: 88%;
+    width: 70vw;
+    max-width: 320px;
     margin-bottom: 16px;
+    position: relative;
 
     @media (max-height: 800px) {
-        width: 70%;
+        width: 55vw;
+        max-width: 240px;
     } 
 `;
 
 export const ImgBox = styled.img`
     display: flex;
     width: 100%;
+    border-radius: 24px;
 `
 
 export const Text = styled.div`
@@ -53,41 +56,49 @@ export const Text = styled.div`
 export const MonthContainer = styled.section`
     display: flex;
     justify-content: flex-start;
-    width: 100%;
-
+    width: 88%;
+    max-width: 100vw;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+        display: none; /* Chrome, Safari */
+    }
     @media (max-height: 800px) {
-        width: 80%;
+        width: 88%;
+        max-width: 100vw;
     } 
 `;
 
-export const Month = styled.div`
+export const Month = styled.div<{
+  selected?: boolean;
+}>`
     display: flex;
     align-items: flex-start;
     border-radius: 24px;
-    background: ${({ theme }) => theme.colors.primaryColor};
-    /* width : 20%;
-    height: 10%;  */
+    background: ${({ selected, theme }) => selected ? theme.colors.primaryColor : theme.colors.white};
     width: 80px;
     height: 80px;
     flex-shrink: 0;
     margin-bottom: 20px;
     margin-top: 25px;
-
+    margin-right: 12px;
+    cursor: pointer;
+    border: ${({ selected, theme }) => selected ? 'none' : `1.5px solid ${theme.colors.gray2}`};
     @media (max-height: 800px) {
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
         flex-shrink: 0;
         border-radius: 18px;
     } 
-
     span {
         width: 100%;
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-
-        color: ${({ theme }) => theme.colors.white};
+        color: ${({ selected, theme }) => selected ? theme.colors.white : theme.colors.gray5};
         text-align: center;
         font-family: Pretendard;
         font-size: 24px;
@@ -95,9 +106,8 @@ export const Month = styled.div`
         font-weight: 700;
         line-height: normal;
         letter-spacing: -0.96px;
-
         @media (max-height: 800px) {
-            font-size: 16px;
+            font-size: 14px;
         }
     }
 `
@@ -106,7 +116,7 @@ export const MakeBtn = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 88%;
     border-radius: 80px;
     border: 1px solid ${({ theme }) => theme.colors.gray2};
     background: ${({ theme }) => theme.colors.gray1};
@@ -131,4 +141,19 @@ export const MakeBtn = styled.div`
         font-size: 16px;
     } 
 `
+
+export const FrameContainer = styled.div`
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+`;
+
+export const FrameOverlay = styled.img`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+`;
 

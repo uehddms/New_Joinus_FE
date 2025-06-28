@@ -43,6 +43,7 @@ export const JoinFrame = () => {
 
   const handleClick = (index: number) => {
     setSelectedFrameIndex(index);
+    sessionStorage.setItem("selectedFrameIndex", index.toString());
   };
 
   const handleSubmit = async () => {
@@ -66,30 +67,71 @@ export const JoinFrame = () => {
     };
 
     const mappedKeyword = keywordMap[selected] || "OTHER";
-    const file = dataURItoFile(imageData, "upload.jpg");
 
-    console.log("▶ 파일 정보", file);
-    const formData = new FormData();
-    formData.append("keyword", mappedKeyword);
-    formData.append("image", file);
-
-    for (const pair of formData.entries()) {
-      console.log("▶ formData:", pair[0], pair[1]);
-    }
-
-    try {
-      const response = await ApiwithToken.post("join/cards/", formData, {
+    const size = 500;
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const photo = new window.Image();
+    photo.crossOrigin = "anonymous";
+    let loaded = 0;
+    const uploadAfterDraw = (blob: Blob) => {
+      const formData = new FormData();
+      formData.append("keyword", mappedKeyword);
+      formData.append("image", blob, "card.png");
+      for (const pair of formData.entries()) {
+        console.log("▶ formData:", pair[0], pair[1]);
+      }
+      ApiwithToken.post("join/cards/", formData, {
         headers: {
           "Content-Type": undefined,
-          Authorization: `Token ${Cookies.get("access_token")}`, // ✅ 추가 필요
+          Authorization: `Token ${Cookies.get("access_token")}`,
         },
-      });
-      console.log("카드 생성 완료:", response.data);
-      navigate("/complete", { state: { cardId: Number(response.data.id) } });
-    } catch (error) {
-      console.error("카드 생성 실패:", error);
-      console.log("🔍 서버 응답:", error.response?.data);
+      })
+        .then((response) => {
+          console.log("카드 생성 완료:", response.data);
+          navigate("/complete", {
+            state: { cardId: Number(response.data.id) },
+          });
+        })
+        .catch((error) => {
+          console.error("카드 생성 실패:", error);
+          console.log("🔍 서버 응답:", error.response?.data);
+        });
+    };
+    if (selectedFrameIndex === -1) {
+      // 프레임 없이 사진만 업로드
+      photo.onload = () => {
+        ctx.drawImage(photo, 0, 0, size, size);
+        canvas.toBlob((blob) => {
+          if (blob) uploadAfterDraw(blob);
+          else alert("이미지 변환 실패");
+        }, "image/png");
+      };
+      photo.src = imageData;
+      return;
     }
+    // 프레임 합성
+    const frameUrl = Frames[selectedFrameIndex];
+    const frame = new window.Image();
+    frame.crossOrigin = "anonymous";
+    const checkAndDraw = () => {
+      loaded += 1;
+      if (loaded === 2) {
+        ctx.drawImage(photo, 0, 0, size, size);
+        ctx.drawImage(frame, 0, 0, size, size);
+        canvas.toBlob((blob) => {
+          if (blob) uploadAfterDraw(blob);
+          else alert("이미지 합성 실패");
+        }, "image/png");
+      }
+    };
+    photo.onload = checkAndDraw;
+    frame.onload = checkAndDraw;
+    photo.src = imageData;
+    frame.src = frameUrl;
   };
 
   return (
@@ -105,9 +147,11 @@ export const JoinFrame = () => {
             />
           </div>
         ))}
-        <S.FrameEmpty>
-          프레임<span>X</span>
-        </S.FrameEmpty>
+        <div onClick={() => handleClick(-1)}>
+          <S.FrameEmpty isSelected={selectedFrameIndex === -1}>
+            프레임<span>X</span>
+          </S.FrameEmpty>
+        </div>
       </S.FrameContainer>
       {frameNames.length > 0 && (
         <S.NameList>
@@ -120,6 +164,12 @@ export const JoinFrame = () => {
               {name}
             </S.FrameName>
           ))}
+          <S.FrameName
+            isSelected={selectedFrameIndex === -1}
+            onClick={() => handleClick(-1)}
+          >
+            프레임X
+          </S.FrameName>
         </S.NameList>
       )}
       <S.Text>원하는 프레임을 선택해주세요!</S.Text>

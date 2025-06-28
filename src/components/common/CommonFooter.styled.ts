@@ -112,3 +112,17 @@ export const UsImg = styled.img``;
 export const ShareImg = styled.img``;
 
 export const RankImg = styled.img``;
+
+export const FooterWrapper = styled.div`
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100px;
+  background-color: ${({ theme }) => theme.colors.white};
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+`;
