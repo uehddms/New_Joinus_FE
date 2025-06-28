@@ -2,7 +2,11 @@ import styled from "styled-components";
 
 export const TextContainer = styled.div`
   width: 100%;
-
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 1rem 2rem;
   color: ${({ theme }) => theme.colors.gray5};
   font-family: Pretendard;
   font-size: 16px;
@@ -107,4 +111,6 @@ export const CardContainer = styled.div`
   gap: 1rem;
 
   padding: 1rem 2rem;
+  height: 100vh;
+  overflow: auto;
 `;
