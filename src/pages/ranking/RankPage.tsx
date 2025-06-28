@@ -9,6 +9,7 @@ const RankPage = () => {
   const [data, setData] = useState([]);
   const [myRank, setMyRank] = useState(0);
   const [myCardCount, setMyCardCount] = useState(0);
+  const [myUsername, setMyUsername] = useState("");
   const [isnoti, setIsnoti] = useState<boolean>(false);
   const fetch = async () => {
     const response = await ApiwithToken.get("ranking/main/");
@@ -16,6 +17,7 @@ const RankPage = () => {
     setIsnoti(response.data.notification);
     setMyRank(response.data.my_rank);
     setMyCardCount(response.data.my_card_count);
+    setMyUsername(response.data.my_username);
   };
   useEffect(() => {
     fetch();
@@ -44,7 +46,7 @@ const RankPage = () => {
       >
         <MyRankBar
           rank={myRank}
-          nickname="조인어스슈퍼노바"
+          nickname={myUsername}
           cardCount={myCardCount}
         />
       </div>

@@ -1,12 +1,13 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import card from "@assets/image/cardContainer.png";
 
 const Card = ({ item }: { item: any }) => {
   return (
     <CardContainer>
-      <img src={card} alt="카드 프레임" />
-      <img src={item.small_image_url} alt="사용자가 추가한 이미지" />
-      <CreatedAt>{item.created_at.split("T")[0]}</CreatedAt>
+      <Link to={`/share/make/${item.id}`}>
+        <img src={item.small_image_url} alt="사용자가 추가한 이미지" />
+        <CreatedAt>{item.created_at.split("T")[0]}</CreatedAt>
+      </Link>
     </CardContainer>
   );
 };
@@ -19,8 +20,8 @@ const CardContainer = styled.div`
   padding-top: calc(90% * 2 / 3 + 20px);
   position: relative;
 
-  img:nth-of-type(1) {
-    width: 90%; /* 너비를 90%로 고정 */
+  img {
+    width: 90%;
     position: absolute;
     top: 1rem;
     left: 50%;
@@ -30,15 +31,6 @@ const CardContainer = styled.div`
 
     border-radius: 8px;
     border: 1px solid ${({ theme }) => theme.colors.gray2};
-  }
-  img:nth-of-type(2) {
-    // 내부 이미지
-    width: 90%;
-    position: absolute;
-    top: 1rem;
-    left: 50%;
-    transform: translate(-50%);
-    z-index: 3;
   }
 `;
 

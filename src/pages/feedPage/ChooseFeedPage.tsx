@@ -4,7 +4,44 @@ import * as S from "./feedPage.styled";
 import ArrowDown from "@assets/icons/chevron-down.svg";
 import Card from "@components/share/feed/Card";
 import KeywordModal from "@components/modal/KeywordModal";
-import { shareApi } from "@api/share/ShareApi";
+import back from "@assets/icons/back.svg";
+import { Link } from "react-router";
+import { ApiwithToken } from "@api/ApiWithToken";
+
+// 한글 → 영어 변환 함수
+const keywordToEnglish = (kor: string) => {
+  const map: { [key: string]: string } = {
+    전체: "ALL",
+    대기전력: "STANDBY_POWER",
+    재활용: "RECYCLING",
+    물절약: "SAVING",
+    분리배출: "SEPARATION",
+    다회용기: "REUSABLE",
+    친환경: "ECO_FRIENDLY",
+    텀블러: "TUMBLER",
+    캠페인: "CAMPAIGN",
+    기타: "OTHER",
+  };
+  return map[kor] || kor;
+};
+
+// 영어 → 한글 변환 함수
+const keywordToKorean = (eng: string) => {
+  const map: { [key: string]: string } = {
+    ALL: "전체",
+    STANDBY_POWER: "대기전력",
+    RECYCLING: "재활용",
+    SAVING: "물절약",
+    SEPARATION: "분리배출",
+    REUSABLE: "다회용기",
+    ECO_FRIENDLY: "친환경",
+    TUMBLER: "텀블러",
+    CAMPAIGN: "캠페인",
+    OTHER: "기타",
+  };
+  return map[eng] || eng;
+};
+
 const ChooseFeedPage = () => {
   const [isKeywordModalOpen, setIsKeywordModalOpen] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState<number>(
@@ -34,15 +71,17 @@ const ChooseFeedPage = () => {
     setSelectedMonth(month);
   };
 
-  const handleKeywordSelect = (keyword: string) => {
+  // 한글 키워드가 들어오면 영어로 변환해서 저장
+  const handleKeywordSelect = (korKeyword: string) => {
+    const engKeyword = keywordToEnglish(korKeyword);
     setSelectedKeywords((prev) => {
-      if (prev.includes(keyword)) {
-        return prev.filter((k) => k !== keyword);
+      if (prev.includes(engKeyword)) {
+        return prev.filter((k) => k !== engKeyword);
       }
       if (prev.length >= 2) {
-        return [prev[1], keyword];
+        return [prev[1], engKeyword];
       }
-      return [...prev, keyword];
+      return [...prev, engKeyword];
     });
   };
 
@@ -50,19 +89,20 @@ const ChooseFeedPage = () => {
     if (selectedKeywords.length === 0) {
       return "키워드 선택";
     } else if (selectedKeywords.length === 1) {
-      return selectedKeywords[0];
+      return keywordToKorean(selectedKeywords[0]);
     } else {
-      return selectedKeywords.join(" | ");
+      return selectedKeywords.map(keywordToKorean).join(" | ");
     }
   };
 
   const handleGetShareBymonth = async () => {
-    const response = await shareApi.getShareBymonth({
-      keywords: selectedKeywords,
-      month: selectedMonth,
-      only_not_shared: false,
-      ordered_by_is_shared: false,
-    });
+    // 쿼리스트링 직접 생성
+    const keywordQuery = selectedKeywords
+      .map((k) => `keywords=${encodeURIComponent(k)}`)
+      .join("&");
+    const url = `/join/cards/?${keywordQuery}&month=${selectedMonth}&only_not_shared=false&ordered_by_is_shared=false`;
+
+    const response = await ApiwithToken.get(url);
     setData(response.data.cardposts);
   };
 
@@ -74,7 +114,16 @@ const ChooseFeedPage = () => {
   return (
     <>
       <S.TextContainer>
-        피드에 <span>업로드 할 실천카드</span>를 선택해주세요.
+        <Link to="/share">
+          <img
+            src={back}
+            alt="뒤로가기"
+            style={{ width: "20px", height: "20px" }}
+          />
+        </Link>
+        <p>
+          피드에 <span>업로드 할 실천카드</span>를 선택해주세요.
+        </p>
       </S.TextContainer>
       <S.ButtonContainer ref={containerRef}>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((month) => (
@@ -103,7 +152,7 @@ const ChooseFeedPage = () => {
       {isKeywordModalOpen && (
         <KeywordModal
           onClose={() => setIsKeywordModalOpen(false)}
-          selectedKeywords={selectedKeywords}
+          selectedKeywords={selectedKeywords.map(keywordToKorean)}
           onKeywordSelect={handleKeywordSelect}
         />
       )}

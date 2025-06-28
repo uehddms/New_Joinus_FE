@@ -1,4 +1,3 @@
-import card from "@assets/image/cardContainer.png";
 import leaf from "@assets/icons/leaf.png";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -24,7 +23,6 @@ const UserCardComponent = ({ sharedcards }: UserCardComponentProps) => {
     <Wrapper>
       {sharedcards.map((data) => (
         <CardContainer key={data.id} as={Link} to={`/feed/detail/${data.id}`}>
-          <img src={card} alt="카드 프레임" />
           <img
             src={data.cardpost.small_image_url}
             alt="사용자가 추가한 이미지"
@@ -70,17 +68,9 @@ const CardContainer = styled.div`
     transform: translateX(-50%);
     z-index: 5;
     aspect-ratio: 2 / 3;
-  }
-  img:nth-of-type(2) {
-    width: 90%;
-    position: absolute;
-    top: 1rem;
-    left: 50%;
-    transform: translate(-50%);
-    z-index: 3;
     border-radius: 10px;
   }
-  img:nth-of-type(3) {
+  img:nth-of-type(2) {
     position: absolute;
     bottom: 10px;
     left: 10px;
