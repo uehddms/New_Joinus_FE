@@ -65,7 +65,7 @@ export const router = createBrowserRouter([
       { path: "complete", element: <JoinComplete /> },
       { path: "myFeed", element: <MyFeed /> },
       { path: "storeFeed", element: <StoreFeedPage /> },
-      { path: "post", element: <JoinPost /> },
+      { path: "post/:month", element: <JoinPost /> },
       { path: "detail/:id", element: <JoinPostDetail /> },
     ],
   },

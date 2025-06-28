@@ -19,36 +19,43 @@ export const CommonFooter = () => {
     navigate(path);
   };
 
+  const isJoinActive =
+    currentPath === "/join" ||
+    currentPath.startsWith("/post") ||
+    currentPath.startsWith("/detail");
+
   return (
-    <S.Container>
-      <S.JoinContainer
-        onClick={() => handleNavigation("/join")}
-        isActive={currentPath === "/join"}
-      >
-        <S.JoinImg src={currentPath === "/join" ? JoinActive : Join} />
-        <span>조인</span>
-      </S.JoinContainer>
-      <S.UsContainer
-        onClick={() => handleNavigation("/us")}
-        isActive={currentPath === "/us"}
-      >
-        <S.UsImg src={currentPath === "/us" ? UsActive : Us} />
-        <span>어스</span>
-      </S.UsContainer>
-      <S.ShareContainer
-        onClick={() => handleNavigation("/share")}
-        isActive={currentPath === "/share"}
-      >
-        <S.ShareImg src={currentPath === "/share" ? ShareActive : Share} />
-        <span>공유</span>
-      </S.ShareContainer>
-      <S.RankContainer
-        onClick={() => handleNavigation("/rank")}
-        isActive={currentPath === "/rank"}
-      >
-        <S.RankImg src={currentPath === "/rank" ? RankActive : Rank} />
-        <span>랭킹</span>
-      </S.RankContainer>
-    </S.Container>
+    <S.FooterWrapper>
+      <S.Container>
+        <S.JoinContainer
+          onClick={() => handleNavigation("/join")}
+          isActive={isJoinActive}
+        >
+          <S.JoinImg src={isJoinActive ? JoinActive : Join} />
+          <span>조인</span>
+        </S.JoinContainer>
+        <S.UsContainer
+          onClick={() => handleNavigation("/us")}
+          isActive={currentPath === "/us"}
+        >
+          <S.UsImg src={currentPath === "/us" ? UsActive : Us} />
+          <span>어스</span>
+        </S.UsContainer>
+        <S.ShareContainer
+          onClick={() => handleNavigation("/share")}
+          isActive={currentPath === "/share"}
+        >
+          <S.ShareImg src={currentPath === "/share" ? ShareActive : Share} />
+          <span>공유</span>
+        </S.ShareContainer>
+        <S.RankContainer
+          onClick={() => handleNavigation("/rank")}
+          isActive={currentPath === "/rank"}
+        >
+          <S.RankImg src={currentPath === "/rank" ? RankActive : Rank} />
+          <span>랭킹</span>
+        </S.RankContainer>
+      </S.Container>
+    </S.FooterWrapper>
   );
 };

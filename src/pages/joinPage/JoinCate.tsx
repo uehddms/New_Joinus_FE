@@ -21,6 +21,10 @@ export const JoinCate = () => {
   const [selectedCate, setSelectedCate] = useState<string | null>(null);
 
   useEffect(() => {
+    // 페이지 진입 시 값 초기화
+    sessionStorage.removeItem("selectedCate");
+    sessionStorage.removeItem("selectedFrameIndex");
+    setSelectedCate(null);
     const saved = sessionStorage.getItem("selectedCate");
     if (saved) setSelectedCate(saved);
   }, []);
