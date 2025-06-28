@@ -31,6 +31,11 @@ export const JoinUpload = () => {
   };
 
   useEffect(() => {
+    // 페이지 진입 시 값 초기화
+    sessionStorage.removeItem("imageFile");
+    sessionStorage.removeItem("selectedCate");
+    sessionStorage.removeItem("selectedFrameIndex");
+    setPreviewUrl(null);
     const saved = sessionStorage.getItem("imageFile");
     if (saved) {
       setPreviewUrl(saved);

@@ -32,6 +32,26 @@ export const JoinPostDetail = () => {
     navigate("/join");
   };
 
+  const handleDownload = async () => {
+    if (!card?.large_image_url) return;
+    try {
+      const response = await fetch(card.large_image_url, { mode: "cors" });
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "실천카드.png";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch (e) {
+      alert(
+        "이미지 저장에 실패했습니다. 브라우저 정책 또는 서버 설정(CORS) 문제일 수 있습니다."
+      );
+    }
+  };
+
   if (!card) return <div>로딩 중...</div>;
 
   return (
@@ -47,7 +67,7 @@ export const JoinPostDetail = () => {
           </CommonButton>
         </S.CommonContainer>
         <S.DownBtnContainer>
-          <S.DownBtn>
+          <S.DownBtn onClick={handleDownload}>
             <img src={Down} />
           </S.DownBtn>
         </S.DownBtnContainer>
