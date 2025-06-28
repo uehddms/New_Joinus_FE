@@ -27,18 +27,30 @@ interface Data {
 const FeedDetailPage = () => {
   const { id } = useParams();
   const [data, setData] = useState<Data>();
+  const [isOwner, setIsOwner] = useState(false);
+  const [isPinned, setIsPinned] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       const response = await shareApi.getShareDetail({ id: Number(id) });
       setData(response);
+      setIsOwner(response.author_info.is_owner);
+      setIsPinned(response.is_pinned);
     };
     fetchData();
+    console.log("data", data);
+    console.log("isOwner", isOwner);
   }, [id]);
 
   return (
     <>
       <DetailHeader data={data?.author_info.username || ""} />
-      <CardDetail data={data} id={id || ""} setData={setData} />
+      <CardDetail
+        data={data}
+        id={id || ""}
+        setData={setData}
+        isOwner={isOwner}
+        isPinned={isPinned}
+      />
       <CommentBox id={id || ""} />
     </>
   );

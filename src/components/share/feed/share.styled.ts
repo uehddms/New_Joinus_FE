@@ -214,18 +214,9 @@ export const CardContainer = styled.div`
     transform: translateX(-50%);
     z-index: 5;
     aspect-ratio: 2 / 3;
-  }
-  img:nth-of-type(2) {
-    // 내부 이미지
-    width: 90%;
-    position: absolute;
-    top: 1rem;
-    left: 50%;
-    transform: translate(-50%);
-    z-index: 3;
     border-radius: 10px;
   }
-  img:nth-of-type(3) {
+  img:nth-of-type(2) {
     position: absolute;
     bottom: 10px;
     left: 10px;
