@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { DefaultLayout } from "@layout/DefaultLayout";
 import { FooterLayout } from "@layout/FooterLayout";
-import { Main } from "@components/apply/Main";
 import { LoginPage } from "@pages/LoginPage";
 import { JoinMain } from "./pages/joinPage/JoinMain";
 import { SignUpPage } from "./pages/SignUpPage";
@@ -29,14 +28,14 @@ import { JoinPost } from "@pages/joinPage/JoinPost";
 import MarketPage from "@pages/marketPage/MarketPage";
 import MarketDetailPage from "@pages/marketPage/MarketDetailPage";
 import RankUserPage from "@pages/ranking/RankUserPage";
+import MakeSharePage from "@pages/feedPage/MakeSharePage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <DefaultLayout />,
     children: [
-      { path: "", element: <Main /> },
-      { path: "login", element: <LoginPage /> },
+      { path: "", element: <LoginPage /> },
       { path: "signup", element: <SignUpPage /> },
       { path: "ex", element: <JoinExplain /> },
       { path: "feed/detail/:id", element: <FeedDetailPage /> },
@@ -49,6 +48,8 @@ export const router = createBrowserRouter([
       { path: "feed/choose", element: <ChooseFeedPage /> },
       { path: "market", element: <MarketPage /> },
       { path: "market/detail/:id", element: <MarketDetailPage /> },
+      { path: "share/make/:id", element: <MakeSharePage /> },
+      { path: "share/edit/:id", element: <MakeSharePage /> },
     ],
   },
   {
