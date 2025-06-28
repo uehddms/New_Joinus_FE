@@ -9,16 +9,16 @@ import { CommonButton } from "@components/common/common.style";
 import { ApiwithToken } from "@api/ApiWithToken";
 import { useNavigate } from "react-router";
 
-function dataURItoFile(dataURI: string, fileName: string): File {
-  const byteString = atob(dataURI.split(",")[1]);
-  const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
-  const ab = new ArrayBuffer(byteString.length);
-  const ia = new Uint8Array(ab);
-  for (let i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i);
-  }
-  return new File([ab], fileName, { type: mimeString });
-}
+// function dataURItoFile(dataURI: string, fileName: string): File {
+//   const byteString = atob(dataURI.split(",")[1]);
+//   const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
+//   const ab = new ArrayBuffer(byteString.length);
+//   const ia = new Uint8Array(ab);
+//   for (let i = 0; i < byteString.length; i++) {
+//     ia[i] = byteString.charCodeAt(i);
+//   }
+//   return new File([ab], fileName, { type: mimeString });
+// }
 
 export const JoinFrame = () => {
   const navigate = useNavigate();
@@ -66,7 +66,8 @@ export const JoinFrame = () => {
       기타: "OTHER",
     };
 
-    const mappedKeyword = keywordMap[selected] || "OTHER";
+    const mappedKeyword =
+      keywordMap[selected as keyof typeof keywordMap] || "OTHER";
 
     const size = 500;
     const canvas = document.createElement("canvas");

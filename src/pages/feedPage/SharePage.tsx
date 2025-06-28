@@ -7,7 +7,7 @@ const SharePage = () => {
   const [order, setOrder] = useState("최신순");
   return (
     <>
-      <ShareHeader setOrder={setOrder} />
+      <ShareHeader setOrder={(order: string) => setOrder(order)} />
       <CardComponent order={order} />
       <Shadow />
     </>
