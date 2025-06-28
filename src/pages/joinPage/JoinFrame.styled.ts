@@ -32,11 +32,10 @@ export const FrameItem = styled.img<{ isSelected: boolean }>`
   }
 `;
 
-export const FrameEmpty = styled.div`
+export const FrameEmpty = styled.div<{ isSelected: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-
   color: ${({ theme }) => theme.colors.gray4};
   font-family: Pretendard;
   font-size: 16px;
@@ -44,6 +43,12 @@ export const FrameEmpty = styled.div`
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.64px;
+  border-radius: 8px;
+  aspect-ratio: 169 / 225;
+  border: ${({ isSelected, theme }) =>
+    isSelected ? `2px solid ${theme.colors.primaryColor}` : "none"};
+  background: none;
+  cursor: pointer;
 
   span {
     font-weight: 700;
