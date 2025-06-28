@@ -72,10 +72,6 @@ const CommentBox = ({ id }: { id: string }) => {
     }
   };
 
-  const handleCloseMore = () => {
-    setIsMoreOpen(null);
-  };
-
   return (
     <Wrapper>
       <S.CommentInputContainer>
