@@ -1,7 +1,7 @@
 import * as S from "./Login.styled";
 import { CommonButton } from "../common/common.style";
 import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import pwvisible from "@assets/icons/pwVisible.svg";

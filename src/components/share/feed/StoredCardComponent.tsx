@@ -14,7 +14,7 @@ const StoredCardComponent = () => {
 
   const fetch = async (
     cursor?: string,
-    direction: "next" | "previous" | null = null
+    _direction: "next" | "previous" | null = null
   ) => {
     try {
       const response = await shareApi.getMyShare({
