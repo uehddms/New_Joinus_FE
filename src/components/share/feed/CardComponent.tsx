@@ -14,7 +14,7 @@ const CardComponent = ({ order }: { order: string }) => {
 
   const fetch = async (
     cursor?: string,
-    direction: "next" | "previous" | null = null
+    _direction: "next" | "previous" | null = null
   ) => {
     try {
       const response = await shareApi.getShare({

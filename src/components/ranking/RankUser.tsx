@@ -1,19 +1,46 @@
 import * as S from "./Rankin.style";
-// import card from "../../assets/image/card.png";
+import cardIcon from "@assets/icons/cardicon.svg";
+import rightIcon from "@assets/icons/chevron-right.svg";
+import { Link } from "react-router-dom";
+import { useTheme } from "styled-components";
 
-const RankUser = () => {
+interface RankUserProps {
+  rank: number;
+  nickname: string;
+  cardCount: number;
+  id: number;
+}
+
+const RankUser = ({ rank, nickname, cardCount, id }: RankUserProps) => {
+  const theme = useTheme();
+  // 1~3위: primaryColor, 4위 이상: gray4
+  const isTop3 = rank <= 3;
   return (
     <S.UserContainer>
-      <S.RankScore>
-        <S.GreenText>1</S.GreenText>
+      <S.RankScore
+        style={{
+          backgroundColor: isTop3
+            ? theme.colors.primaryColor
+            : theme.colors.gray4,
+        }}
+      >
+        <span style={{ color: "#fff", fontWeight: 700, fontSize: 18 }}>
+          {rank}
+        </span>
       </S.RankScore>
-      <S.GreenText>조인어스조인어스</S.GreenText>
+      <S.GreenText>{nickname}</S.GreenText>
       <S.CardCountCotainer>
-        {/* <img src={card} alt="카드 이미지" /> */}
+        <img
+          src={cardIcon}
+          alt="카드 아이콘"
+          style={{ width: 22, height: 22 }}
+        />
         <S.Text>:</S.Text>
-        <S.GreenText>93</S.GreenText>
+        <S.GreenText>{cardCount}</S.GreenText>
       </S.CardCountCotainer>
-      <S.GreenText>{">"}</S.GreenText>
+      <Link to={`/rank/user/${id}`}>
+        <img src={rightIcon} alt=">" />
+      </Link>
     </S.UserContainer>
   );
 };

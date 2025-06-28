@@ -1,12 +1,20 @@
 import styled from "styled-components";
 
+// src/components/us/menu/styled.ts
 export const MenuContainer = styled.div<{ $isOpen: boolean }>`
   position: absolute;
-  padding-top: 10px;
-  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+
+  padding-top: 3rem;
+  top: -40px;
   left: 0px;
   width: 234px;
-  height: 100%;
+  height: 100dvh;
+
+  scrollbar-gutter: stable;
   background: white;
   z-index: 100;
   opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
@@ -14,6 +22,15 @@ export const MenuContainer = styled.div<{ $isOpen: boolean }>`
   transition: opacity 1.5s ease-in-out, transform 2s ease-out;
   box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
   will-change: transform, opacity;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
 
 export const Back = styled.img`
@@ -33,7 +50,7 @@ export const MenuSection = styled.div`
   width: 194px;
   height: 76px;
   padding: 8px 16px;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
