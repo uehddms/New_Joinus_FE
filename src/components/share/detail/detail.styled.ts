@@ -39,24 +39,7 @@ export const CardContainer = styled.div`
   position: relative;
   z-index: 1;
 
-  padding-top: calc(80% * 3 / 2 + 20px);
-
-  .card-frame {
-    width: 80%;
-    display: flex;
-    position: absolute;
-    top: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-
-    z-index: 5;
-    aspect-ratio: 2/3;
-
-    border-radius: 10%;
-    border-width: 2px;
-    border-style: solid;
-    border-color: ${({ theme }) => theme.colors.gray2};
-  }
+  padding-top: calc(80% * 3 / 2);
 
   .user-image {
     width: 80%;
@@ -68,6 +51,7 @@ export const CardContainer = styled.div`
     z-index: 3;
 
     border-radius: 10%;
+    border: 1px solid ${({ theme }) => theme.colors.gray2};
   }
 `;
 export const ContentContainer = styled.section`
@@ -186,17 +170,19 @@ export const AddedComment = styled.div`
 `;
 
 export const MoreMenu = styled.div`
-  width: 40px;
-  height: 25px;
+  width: 32px;
+  height: 24px;
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 10px;
   color: ${({ theme }) => theme.colors.black};
   border: 1px solid ${({ theme }) => theme.colors.gray2};
-  font-family: Pretendard;
-  font-size: 12px;
+  button {
+    font-family: Pretendard;
+    font-size: 12px;
 
-  text-align: center;
-  line-height: 25px;
+    text-align: center;
+    line-height: 24px;
+  }
 `;
 
 export const MoreMenuContainer = styled.div`

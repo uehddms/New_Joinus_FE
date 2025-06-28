@@ -29,6 +29,7 @@ export default MyRankBar;
 
 const Wrapper = styled.div`
   width: 95%;
+  max-width: 440px;
   margin: 0 auto 12px auto;
   background: #fff;
   border-radius: 18px;

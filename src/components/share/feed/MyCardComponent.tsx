@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import card from "@assets/image/cardContainer.png";
 import * as S from "./share.styled";
 import leaf from "@assets/icons/leaf.png";
 import pin from "@assets/icons/pin_unfilled.svg";
@@ -90,7 +89,6 @@ const MyCardComponent = () => {
       <div id="observerTop" style={{ height: "10px" }}></div>
       {data.map((data) => (
         <S.CardContainer key={data.id} as={Link} to={`/feed/detail/${data.id}`}>
-          <img src={card} alt="카드 프레임" />
           <img
             src={data.cardpost.small_image_url}
             alt="사용자가 추가한 이미지"
