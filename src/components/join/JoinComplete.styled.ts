@@ -12,12 +12,16 @@ export const Wrapper = styled.section`
 export const ImageContainer = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 36px;
+    align-items: center;
+    gap: 16px;
     margin-bottom: 20px;
 `
 
 export const Image = styled.img`
+    width: 88%;
+    aspect-ratio: 313/417;
+    height: auto;
+    border-radius: 24px;
 `;
 
 export const Text = styled.div`
@@ -28,6 +32,8 @@ export const Text = styled.div`
     font-weight: 400;
     line-height: 150%; /* 24px */
     letter-spacing: -0.64px;
+    text-align: left;
+    width: 80%;
 `;
 
 export const BtnContainer = styled.div`
