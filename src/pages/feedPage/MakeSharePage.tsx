@@ -13,13 +13,8 @@ const MakeSharePage = () => {
 
   const fetch = async () => {
     try {
-      let response;
-      if (!isEdit) {
-        response = await ApiwithToken.get(`share/sharedcards/${id}`);
-      } else {
-        response = await ApiwithToken.get(`join/cards/${id}/`);
-      }
-      console.log("API response:", response);
+      const response = await ApiwithToken.get(`join/cards/${id}/`);
+
       setData(response.data);
     } catch (error) {
       console.log("API error:", error);
