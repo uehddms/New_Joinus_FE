@@ -38,7 +38,11 @@ export const InputSection = () => {
           secure: true,
           samSite: "None",
         });
-        navigate("/us");
+
+        const savedToken = Cookies.get("access_token");
+        if (savedToken) {
+          navigate("/us");
+        }
       } else {
         setIsLogin(false);
       }

@@ -4,6 +4,7 @@ import { ApiwithToken } from "@api/ApiWithToken";
 import { useEffect, useState } from "react";
 import Notification from "@components/ranking/Notification";
 import MyRankBar from "@components/ranking/MyRankBar";
+import styled from "styled-components";
 
 const RankPage = () => {
   const [data, setData] = useState([]);
@@ -27,14 +28,16 @@ const RankPage = () => {
     <>
       <RankingHeader />
       {isnoti && <Notification onClose={() => setIsnoti(false)} />}
-      {data.map((item: any) => (
-        <RankUser
-          rank={item.rank}
-          nickname={item.username}
-          cardCount={item.card_count}
-          id={item.user_id}
-        />
-      ))}
+      <Container>
+        {data.map((item: any) => (
+          <RankUser
+            rank={item.rank}
+            nickname={item.username}
+            cardCount={item.card_count}
+            id={item.user_id}
+          />
+        ))}
+      </Container>
       <div
         style={{
           position: "fixed",
@@ -55,3 +58,14 @@ const RankPage = () => {
 };
 
 export default RankPage;
+
+const Container = styled.div`
+  width: 100%;
+  max-width: 440px;
+  height: 100%;
+  max-height: 60vh;
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+  align-items: center;
+`;
