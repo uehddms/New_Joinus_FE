@@ -19,9 +19,9 @@ export const RankScore = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  aspect-ratio: 1 / 1;
-
+  width: fit-content;
+  height: fit-content;
+  padding: 0 0.5rem;
   border-radius: 50%;
   background-color: ${({ theme }) => theme.colors.primaryColor};
   p {
@@ -38,8 +38,8 @@ export const CardCountCotainer = styled.div`
   gap: 4px;
   background-color: ${({ theme }) => theme.colors.white};
   border: 1px solid #e0e0e0;
-  border-radius: 16px;
-  padding: 0.1rem 0.25rem;
+  border-radius: 20px;
+  padding: 4px 10px;
 `;
 
 export const GreenText = styled.p`
@@ -62,9 +62,7 @@ export const GreenText = styled.p`
 export const Text = styled.p`
   color: ${({ theme }) => theme.colors.gray4};
   font-family: Pretendard;
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 700;
-  line-height: normal;
-  letter-spacing: -0.8px;
 `;
