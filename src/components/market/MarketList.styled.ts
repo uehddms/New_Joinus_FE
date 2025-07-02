@@ -25,7 +25,7 @@ export const MarketListWrapper = styled.div`
 export const MarketListContainer = styled.div`
   position: relative;
   width: 100%;
-  max-width: 24rem;
+  // max-width: 24rem;
   margin: 0 auto;
   padding-bottom: 8rem;
   background-color: white;
