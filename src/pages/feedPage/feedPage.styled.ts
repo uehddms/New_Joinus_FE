@@ -108,9 +108,8 @@ export const CardContainer = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   gap: 1rem;
-
   padding: 1rem 2rem;
   height: 100vh;
-  overflow: auto;
 `;

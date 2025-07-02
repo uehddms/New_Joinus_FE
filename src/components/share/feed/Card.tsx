@@ -16,6 +16,7 @@ export default Card;
 
 const CardContainer = styled.div`
   width: 45%;
+  min-width: 45%;
   height: min-content;
   padding-top: calc(90% * 2 / 3 + 20px);
   position: relative;

@@ -86,10 +86,10 @@ export const DescriptContainer = styled.div`
   margin: 0 1rem;
   padding: 0.75rem 0.25rem;
 
+  align-self: flex-start;
   display: flex;
   flex-direction: row;
-  align-self: flex-start;
-
+  justify-content: center;
   align-items: center;
 
   gap: 2px;
