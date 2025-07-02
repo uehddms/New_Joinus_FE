@@ -5,6 +5,13 @@ export const ApiwithToken = axios.create({
   baseURL: import.meta.env.VITE_SERVER_API,
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Token ${Cookies.get("access_token")}`,
   },
+});
+
+ApiwithToken.interceptors.request.use((config) => {
+  const token = Cookies.get("access_token");
+  if (token) {
+    config.headers.Authorization = `Token ${token}`;
+  }
+  return config;
 });
