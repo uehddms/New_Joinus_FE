@@ -20,6 +20,7 @@ const Wrapper = styled.header`
   align-items: center;
   justify-content: flex-start;
   padding: 0 20px;
+  gap: 10px;
   h2 {
     text-align: center;
     font-family: Pretendard;

@@ -40,6 +40,7 @@ const Wrapper = styled.div`
   gap: 10px;
   position: relative;
   bottom: 30px;
+  z-index: 50;
 `;
 
 const RankBadge = styled.span`

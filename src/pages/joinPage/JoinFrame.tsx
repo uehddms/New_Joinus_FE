@@ -8,17 +8,7 @@ import { JoinHeader } from "@components/join/JoinHeader";
 import { CommonButton } from "@components/common/common.style";
 import { ApiwithToken } from "@api/ApiWithToken";
 import { useNavigate } from "react-router";
-
-// function dataURItoFile(dataURI: string, fileName: string): File {
-//   const byteString = atob(dataURI.split(",")[1]);
-//   const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
-//   const ab = new ArrayBuffer(byteString.length);
-//   const ia = new Uint8Array(ab);
-//   for (let i = 0; i < byteString.length; i++) {
-//     ia[i] = byteString.charCodeAt(i);
-//   }
-//   return new File([ab], fileName, { type: mimeString });
-// }
+import type { AxiosResponse, AxiosError } from "axios";
 
 export const JoinFrame = () => {
   const navigate = useNavigate();
@@ -91,13 +81,13 @@ export const JoinFrame = () => {
           Authorization: `Token ${Cookies.get("access_token")}`,
         },
       })
-        .then((response) => {
+        .then((response: AxiosResponse) => {
           console.log("카드 생성 완료:", response.data);
           navigate("/complete", {
             state: { cardId: Number(response.data.id) },
           });
         })
-        .catch((error) => {
+        .catch((error: AxiosError) => {
           console.error("카드 생성 실패:", error);
           console.log("🔍 서버 응답:", error.response?.data);
         });

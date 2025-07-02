@@ -17,42 +17,48 @@ export const JoinComplete = () => {
 
   const cardId = location.state?.cardId;
 
-  // 프레임/사진 합성 미리보기
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const imageData = sessionStorage.getItem("imageFile");
     const selectedFrameIndex = sessionStorage.getItem("selectedFrameIndex");
     const frames = [Frame1, Frame2, Frame3];
+
     if (!imageData || selectedFrameIndex === null) return;
+
     if (Number(selectedFrameIndex) === -1) {
       setPreviewUrl(imageData);
       return;
     }
+
     const frameUrl = frames[Number(selectedFrameIndex)];
-    const size = 500;
     const canvas = document.createElement("canvas");
-    canvas.width = size;
-    canvas.height = size;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
     const photo = new window.Image();
     const frame = new window.Image();
+
     photo.crossOrigin = "anonymous";
     frame.crossOrigin = "anonymous";
-    let loaded = 0;
-    const checkAndDraw = () => {
-      loaded += 1;
-      if (loaded === 2) {
-        ctx.drawImage(photo, 0, 0, size, size);
-        ctx.drawImage(frame, 0, 0, size, size);
+
+    photo.onload = () => {
+      const originalWidth = photo.width;
+      const originalHeight = photo.height;
+
+      canvas.width = originalWidth;
+      canvas.height = originalHeight;
+
+      frame.onload = () => {
+        ctx.drawImage(photo, 0, 0, originalWidth, originalHeight);
+        ctx.drawImage(frame, 0, 0, originalWidth, originalHeight);
         setPreviewUrl(canvas.toDataURL("image/png"));
-      }
+      };
+
+      frame.src = frameUrl;
     };
-    photo.onload = checkAndDraw;
-    frame.onload = checkAndDraw;
+
     photo.src = imageData;
-    frame.src = frameUrl;
   }, []);
 
   const shareClick = async () => {
