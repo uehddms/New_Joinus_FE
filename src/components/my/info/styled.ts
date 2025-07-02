@@ -5,8 +5,6 @@ export const MyPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 31.25rem;
-  margin: 0 auto;
   padding: 1.25rem;
   background-color: white;
 `;
@@ -16,7 +14,6 @@ export const MyContainer = styled.div`
   flex-direction: column;
   flex: 1;
   padding-bottom: 1.25rem;
-  width: calc(100% - 2.5rem);
 `;
 
 export const EditBox = styled.div`
