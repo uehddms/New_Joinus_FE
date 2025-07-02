@@ -145,9 +145,9 @@ const ChooseFeedPage = () => {
         </S.KeyWordContainer>
       </S.KeyContainer>
       <S.CardContainer>
-        {data.map((item) => (
-          <Card key={item.id} item={item} />
-        ))}
+        {data.map(
+          (item) => !item.is_shared && <Card key={item.id} item={item} />
+        )}
       </S.CardContainer>
       {isKeywordModalOpen && (
         <KeywordModal
