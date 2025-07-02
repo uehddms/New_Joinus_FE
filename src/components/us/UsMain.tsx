@@ -14,9 +14,6 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const UsRanking = () => {
-  const [myCard, setMyCard] = useState<number>(0);
-  const [myStep, setMyStep] = useState<number>(0);
-  const [currentTheme, setCurrentTheme] = useState<string>("");
   const [myName, setMyName] = useState<string>("");
   const [dailyMessage, setDailyMessage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -27,11 +24,17 @@ const UsRanking = () => {
       setIsLoading(true);
       const data = await usApi.getUs();
       if (data) {
-        setMyCard(data.total_cards);
-        setMyStep(data.step);
-        setCurrentTheme(data.current_theme);
+        const themeImages =
+          data.current_theme === "어스 벚꽃테마"
+            ? [step1Pink, step2Pink, step3Pink, step4Pink]
+            : [step1, step2, step3, step4];
+
+        const img =
+          data.total_cards === 0 ? step0 : themeImages[data.step - 1] || step1;
+
         setMyName(data.username);
         setDailyMessage(data.daily_message);
+        setImageUrl(img);
       }
       setIsLoading(false);
     };
@@ -39,20 +42,20 @@ const UsRanking = () => {
     fetchData();
   }, []);
 
-  const getStepImage = () => {
-    if (myCard == 0) return step0;
+  // const getStepImage = () => {
+  //   if (myCard === 0) return step0;
 
-    const themeImages =
-      currentTheme == "어스 벚꽃테마"
-        ? [step1Pink, step2Pink, step3Pink, step4Pink]
-        : [step1, step2, step3, step4];
+  //   const themeImages =
+  //     currentTheme == "어스 벚꽃테마"
+  //       ? [step1Pink, step2Pink, step3Pink, step4Pink]
+  //       : [step1, step2, step3, step4];
 
-    return themeImages[myStep - 1] || step1;
-  };
+  //   return themeImages[myStep - 1] || step1;
+  // };
 
-  useEffect(() => {
-    setImageUrl(getStepImage());
-  }, []);
+  // useEffect(() => {
+  //   setImageUrl(getStepImage());
+  // }, []);
 
   return (
     <>
