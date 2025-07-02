@@ -54,6 +54,15 @@ export const InputSection = () => {
       return;
     }
 
+    if (
+      username === "" ||
+      userid === "" ||
+      password === "" ||
+      password2 === ""
+    ) {
+      alert("모든 값을 입력해주세요.");
+      return;
+    }
     try {
       const response = await api.post("/users/register/", {
         username,
@@ -66,15 +75,18 @@ export const InputSection = () => {
       if (response.status === 200) {
         alert("회원가입이 완료되었습니다.");
         // 회원가입 성공 후 로그인 페이지로 이동
-        window.location.href = "/login";
-      } else if (response.status === 202) {
-        console.log(response.data.errors[0]);
-        alert(response.data.errors[0]);
+        window.location.href = "/";
+      } else if (response.status === 202 && response.data.errors) {
+        const errors = response.data.errors;
+        const firstErrorKey = Object.keys(errors)[0];
+        const firstErrorMsg = Array.isArray(errors[firstErrorKey])
+          ? errors[firstErrorKey][0]
+          : "";
+        alert(firstErrorMsg);
       } else {
-        alert("알수 없는 오류 발생");
+        alert("회원가입에 실패했습니다. 다시 시도해주세요.");
       }
     } catch (error) {
-      console.error("회원가입 실패:", error);
       alert("회원가입에 실패했습니다. 다시 시도해주세요.");
     }
   };
