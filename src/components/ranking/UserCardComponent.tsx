@@ -31,11 +31,6 @@ const UserCardComponent = ({ sharedcards }: UserCardComponentProps) => {
           <p>{data.like_count}</p>
         </CardContainer>
       ))}
-      <CardContainer>
-        <img src={leaf} alt="plus 모양" />
-        <img src={leaf} alt="point 모양" />
-        <p>0</p>
-      </CardContainer>
     </Wrapper>
   );
 };
