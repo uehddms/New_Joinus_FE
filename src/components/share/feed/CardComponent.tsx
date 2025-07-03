@@ -16,12 +16,22 @@ const CardComponent = ({ order }: { order: string }) => {
     _direction: "next" | "previous" | null = null
   ) => {
     try {
-      const response = await shareApi.getShare({
-        order,
-        only_this_month: false,
-        cursor,
-        page_size: 20,
-      });
+      let response;
+      if (order === "this_month") {
+        response = await shareApi.getShare({
+          order: "recent",
+          only_this_month: true,
+          cursor,
+          page_size: 20,
+        });
+      } else {
+        response = await shareApi.getShare({
+          order,
+          only_this_month: false,
+          cursor,
+          page_size: 20,
+        });
+      }
       setNext(response.next);
       setPrevious(response.previous);
       setData(response.results.sharedcards);
@@ -92,7 +102,9 @@ export default CardComponent;
 
 const Wrapper = styled.section`
   width: 100%;
-  height: 80vh;
+  height: 65vh;
+  max-height: 65vh;
+  overflow-y: auto;
   padding: 1rem;
 
   gap: 10px;

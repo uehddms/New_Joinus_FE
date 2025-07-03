@@ -24,9 +24,12 @@ const RankPage = () => {
     fetch();
     console.log(data);
   }, []);
+  const handleIsnoti = () => {
+    setIsnoti(true);
+  };
   return (
     <>
-      <RankingHeader />
+      <RankingHeader setIsnoti={handleIsnoti} />
       {isnoti && <Notification onClose={() => setIsnoti(false)} />}
       <Container>
         {data.map((item: any) => (

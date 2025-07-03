@@ -196,6 +196,7 @@ export const UnSelectedOptionItem = styled.button`
 export const CardContainer = styled.div`
   width: 45%;
   height: min-content;
+
   display: flex;
   justify-content: center;
   align-items: center;

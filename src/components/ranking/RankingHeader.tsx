@@ -1,11 +1,15 @@
 import styled from "styled-components";
 import info from "@assets/icons/info.svg";
 
-const RankingHeader = () => {
+const RankingHeader = ({
+  setIsnoti,
+}: {
+  setIsnoti: (isnoti: boolean) => void;
+}) => {
   return (
     <Wrapper>
       <h2>TOP 20</h2>
-      <img src={info} alt="info" />
+      <img src={info} alt="info" onClick={() => setIsnoti(true)} />
     </Wrapper>
   );
 };
