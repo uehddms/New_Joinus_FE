@@ -66,7 +66,7 @@ const Container = styled.div`
   width: 100%;
   max-width: 440px;
   height: 100%;
-  max-height: 60vh;
+  max-height: calc(100vh - 300px);
   display: flex;
   overflow-y: auto;
   flex-direction: column;
