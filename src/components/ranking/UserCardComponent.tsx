@@ -20,7 +20,7 @@ interface UserCardComponentProps {
 const UserCardComponent = ({ sharedcards }: UserCardComponentProps) => {
   console.log(sharedcards);
   return (
-    <Wrapper>
+    <Wrapper className="user-card-component">
       {sharedcards.map((data) => (
         <CardContainer key={data.id} as={Link} to={`/feed/detail/${data.id}`}>
           <img
@@ -38,31 +38,32 @@ const UserCardComponent = ({ sharedcards }: UserCardComponentProps) => {
 export default UserCardComponent;
 
 const Wrapper = styled.div`
-  /* width: 100%;
+  width: 100%;
   max-width: 440px;
   height: 80vh;
+  max-height: 75vh;
+  overflow-y: auto;
   margin: 0 auto;
   padding: 1rem;
 
   gap: 10px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start; */
-  width: 100%;
+  justify-content: flex-start;
+  /* width: 100%;
   max-width: 440px;
   height: 80vh;
-  max-height: calc(100% - 100px);
+  max-height: 100vh;
   margin: 0 auto;
   padding: 1rem;
   overflow: auto;
 
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2개씩 정렬 */
-  gap: 10px;
 `;
 
 const CardContainer = styled.div`
-  width: 100%;
+  width: 48%;
   height: min-content;
   display: flex;
   justify-content: center;
@@ -72,7 +73,7 @@ const CardContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.gray2};
   border-radius: 5%;
   z-index: 1;
-  padding-top: calc(100% * 3 / 2 + 30px);
+  padding-top: calc(100% * 2 / 3 + 60px);
 
   cursor: pointer;
   img:nth-of-type(1) {
