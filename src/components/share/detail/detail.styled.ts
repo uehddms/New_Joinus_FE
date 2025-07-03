@@ -59,11 +59,13 @@ export const ContentContainer = styled.section`
   flex-direction: column;
   width: 80%;
   padding: 0.5rem;
+  position: relative;
 `;
 
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 
   justify-content: space-between;
 
@@ -94,7 +96,7 @@ export const Title = styled.p<{ isExpanded: boolean }>`
   overflow: hidden;
   text-overflow: ellipsis;
 
-  padding: 0.5rem 0;
+  padding: 1rem 0 0.5rem 0;
 
   color: ${({ theme }) => theme.colors.gray5};
   font-family: Pretendard;
@@ -187,8 +189,8 @@ export const MoreMenu = styled.div`
 
 export const MoreMenuContainer = styled.div`
   position: absolute;
-  right: 15px;
-  bottom: 20px;
+  right: 5px;
+  bottom: -15px;
   z-index: 30;
 
   display: flex;
