@@ -11,7 +11,7 @@ import missionCompltedIcon from "@assets/icons/missionComplted.svg";
 import { ApiwithToken } from "@api/ApiWithToken";
 
 const ShareHeader = ({ setOrder }: { setOrder: (order: string) => void }) => {
-  const sortOptions = ["최신순", "인기순", "이번달", "랜덤"];
+  const sortOptions = ["최신순", "인기순", "이번달"];
 
   const [selected, setSelected] = useState("최신순");
   const [isOpen, setIsOpen] = useState(false);
@@ -23,9 +23,16 @@ const ShareHeader = ({ setOrder }: { setOrder: (order: string) => void }) => {
   const handleselect = (option: string) => {
     setSelected(option);
     setIsOpen(false);
-    setOrder(option);
+    setOrder(translateOrderToEnglish(option));
   };
-
+  const translateOrderToEnglish = (order: string) => {
+    const orderMap: { [key: string]: string } = {
+      최신순: "recent",
+      인기순: "likes",
+      이번달: "this_month",
+    };
+    return orderMap[order] || order;
+  };
   const translateKeyword = (englishKeyword: string) => {
     const keywordMap: { [key: string]: string } = {
       STANDBY_POWER: "대기전력",

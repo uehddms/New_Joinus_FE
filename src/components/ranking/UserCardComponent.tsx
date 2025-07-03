@@ -38,17 +38,31 @@ const UserCardComponent = ({ sharedcards }: UserCardComponentProps) => {
 export default UserCardComponent;
 
 const Wrapper = styled.div`
-  width: 100%;
+  /* width: 100%;
+  max-width: 440px;
   height: 80vh;
+  margin: 0 auto;
   padding: 1rem;
 
   gap: 10px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start; */
+  width: 100%;
+  max-width: 440px;
+  height: 80vh;
+  max-height: calc(100% - 100px);
+  margin: 0 auto;
+  padding: 1rem;
+  overflow: auto;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2개씩 정렬 */
+  gap: 10px;
 `;
 
 const CardContainer = styled.div`
-  width: 45%;
+  width: 100%;
   height: min-content;
   display: flex;
   justify-content: center;
@@ -58,7 +72,8 @@ const CardContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.gray2};
   border-radius: 5%;
   z-index: 1;
-  padding-top: calc(90% * 2 / 3 + 60px);
+  padding-top: calc(100% * 3 / 2 + 30px);
+
   cursor: pointer;
   img:nth-of-type(1) {
     width: 90%;

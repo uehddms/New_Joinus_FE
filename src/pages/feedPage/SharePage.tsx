@@ -4,7 +4,7 @@ import ShareHeader from "@components/share/feed/ShareHeader";
 import styled from "styled-components";
 
 const SharePage = () => {
-  const [order, setOrder] = useState("최신순");
+  const [order, setOrder] = useState("recent");
   return (
     <>
       <ShareHeader setOrder={(order: string) => setOrder(order)} />
