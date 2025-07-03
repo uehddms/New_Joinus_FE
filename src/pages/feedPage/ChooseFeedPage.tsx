@@ -78,10 +78,16 @@ const ChooseFeedPage = () => {
       if (prev.includes(engKeyword)) {
         return prev.filter((k) => k !== engKeyword);
       }
-      if (prev.length >= 2) {
-        return [prev[1], engKeyword];
+      // 전체 키워드 선택 시 다른 키워드 모두 제거
+      if (engKeyword === "ALL") {
+        return ["ALL"];
       }
-      return [...prev, engKeyword];
+      // 다른 키워드 선택 시 전체 키워드 제거
+      const filteredPrev = prev.filter((k) => k !== "ALL");
+      if (filteredPrev.length >= 2) {
+        return [filteredPrev[1], engKeyword];
+      }
+      return [...filteredPrev, engKeyword];
     });
   };
 
@@ -96,14 +102,23 @@ const ChooseFeedPage = () => {
   };
 
   const handleGetShareBymonth = async () => {
-    // 쿼리스트링 직접 생성
-    const keywordQuery = selectedKeywords
+    // 전체 키워드가 선택된 경우 키워드 쿼리 제외
+    const filteredKeywords = selectedKeywords.filter((k) => k !== "ALL");
+    const keywordQuery = filteredKeywords
       .map((k) => `keywords=${encodeURIComponent(k)}`)
       .join("&");
-    const url = `/join/cards/?${keywordQuery}&month=${selectedMonth}&only_not_shared=false&ordered_by_is_shared=false`;
 
-    const response = await ApiwithToken.get(url);
-    setData(response.data.cardposts);
+    const url =
+      filteredKeywords.length > 0
+        ? `/join/cards/?${keywordQuery}&month=${selectedMonth}&only_not_shared=false&ordered_by_is_shared=false`
+        : `/join/cards/?month=${selectedMonth}&only_not_shared=false&ordered_by_is_shared=false`;
+
+    try {
+      const response = await ApiwithToken.get(url);
+      setData(response.data.cardposts);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -145,8 +160,12 @@ const ChooseFeedPage = () => {
         </S.KeyWordContainer>
       </S.KeyContainer>
       <S.CardContainer>
-        {data.map(
-          (item) => !item.is_shared && <Card key={item.id} item={item} />
+        {data ? (
+          data.map(
+            (item) => !item.is_shared && <Card key={item.id} item={item} />
+          )
+        ) : (
+          <p>현재 업로드 가능한 실천카드가 없습니다.</p>
         )}
       </S.CardContainer>
       {isKeywordModalOpen && (
