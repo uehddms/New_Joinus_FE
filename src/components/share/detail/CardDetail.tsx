@@ -137,8 +137,6 @@ const CardDetail = ({
           titleRef.current.scrollWidth > titleRef.current.clientWidth ||
             titleRef.current.scrollHeight > titleRef.current.clientHeight
         );
-      } else {
-        setIsOverflow(false); // 펼쳤을 때는 버튼 숨김
       }
     }
   }, [data, isExpanded]);
@@ -165,6 +163,40 @@ const CardDetail = ({
               <p>{data.like_count}</p>
             </S.PointContainer>
             <img src={more} alt="더보기" onClick={handleMore} />
+            {isMoreOpen && (
+              <S.MoreMenuContainer>
+                {isOwner ? (
+                  <>
+                    <S.MoreMenu>
+                      <button onClick={handleShare}>공유</button>
+                    </S.MoreMenu>
+                    <S.MoreMenu>
+                      <button onClick={handlePin}>
+                        {isPinned ? "해지" : "고정"}
+                      </button>
+                    </S.MoreMenu>
+                    <S.MoreMenu>
+                      <button onClick={handleStore}>보관</button>
+                    </S.MoreMenu>
+                    <S.MoreMenu>
+                      <button onClick={handleEdit}>수정</button>
+                    </S.MoreMenu>
+                    <S.MoreMenu>
+                      <button onClick={handleDelete}>삭제</button>
+                    </S.MoreMenu>
+                  </>
+                ) : (
+                  <>
+                    <S.MoreMenu>
+                      <button onClick={handleShare}>공유</button>
+                    </S.MoreMenu>
+                    <S.MoreMenu>
+                      <button onClick={handleReportModal}>신고</button>
+                    </S.MoreMenu>
+                  </>
+                )}
+              </S.MoreMenuContainer>
+            )}
           </S.Container>
         </S.ContentContainer>
         <S.Title ref={titleRef} isExpanded={isExpanded}>
@@ -174,40 +206,6 @@ const CardDetail = ({
           <S.Button onClick={handleToggleText}>
             {isExpanded ? "접기" : "...더보기"}
           </S.Button>
-        )}
-        {isMoreOpen && (
-          <S.MoreMenuContainer>
-            {isOwner ? (
-              <>
-                <S.MoreMenu>
-                  <button onClick={handleShare}>공유</button>
-                </S.MoreMenu>
-                <S.MoreMenu>
-                  <button onClick={handlePin}>
-                    {isPinned ? "해지" : "고정"}
-                  </button>
-                </S.MoreMenu>
-                <S.MoreMenu>
-                  <button onClick={handleStore}>보관</button>
-                </S.MoreMenu>
-                <S.MoreMenu>
-                  <button onClick={handleEdit}>수정</button>
-                </S.MoreMenu>
-                <S.MoreMenu>
-                  <button onClick={handleDelete}>삭제</button>
-                </S.MoreMenu>
-              </>
-            ) : (
-              <>
-                <S.MoreMenu>
-                  <button onClick={handleShare}>공유</button>
-                </S.MoreMenu>
-                <S.MoreMenu>
-                  <button onClick={handleReportModal}>신고</button>
-                </S.MoreMenu>
-              </>
-            )}
-          </S.MoreMenuContainer>
         )}
       </S.CardContainer>
       {isReportModalOpen && (

@@ -6,9 +6,10 @@ import { useEffect, useState } from "react";
 import { ApiwithToken } from "@api/ApiWithToken";
 interface CommentData {
   id: number;
-  comment_info: {
+  commenter_info: {
     user_id: number;
     username: string;
+    is_owner: boolean;
   };
   content: string;
   created_at: string;
@@ -99,14 +100,16 @@ const CommentBox = ({ id }: { id: string }) => {
           <S.AddedComment>
             <p>{comment.content}</p>
             <div>
-              <img
-                src={more}
-                alt="더보기"
-                onClick={() => handleMore(comment.id)}
-              />
+              {comment.commenter_info.is_owner && (
+                <img
+                  src={more}
+                  alt="더보기"
+                  onClick={() => handleMore(comment.id)}
+                />
+              )}
             </div>
           </S.AddedComment>
-          {isMoreOpen === comment.id && (
+          {isMoreOpen === comment.id && comment.commenter_info.is_owner && (
             <S.MoreMenu>
               <button onClick={() => handleDelete(comment.id)}>삭제</button>
             </S.MoreMenu>
