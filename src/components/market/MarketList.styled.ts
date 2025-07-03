@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
 export const MarketListWrapper = styled.div`
-  position: relative;
   width: 100%;
-  height: 100%;
 
   &::after {
     content: "";
@@ -25,9 +23,8 @@ export const MarketListWrapper = styled.div`
 export const MarketListContainer = styled.div`
   position: relative;
   width: 100%;
-  // max-width: 24rem;
   margin: 0 auto;
-  padding-bottom: 8rem;
+  padding: 0 0.5rem 8rem 0.5rem;
   background-color: white;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
