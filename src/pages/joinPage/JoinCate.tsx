@@ -55,7 +55,7 @@ export const JoinCate = () => {
         </S.CateContainer>
         <S.Content>나의 실천은 어떤 키워드에 해당하나요?</S.Content>
       </S.Container>
-      <CommonButton type="button" onClick={goFrame}>
+      <CommonButton type="button" onClick={goFrame} disabled={!selectedCate}>
         <span>다음</span>
       </CommonButton>
     </S.Wrapper>

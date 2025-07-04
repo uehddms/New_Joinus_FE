@@ -68,7 +68,7 @@ export const JoinUpload = () => {
         </S.Green>
         <S.Red>3:4 비율의 사진을 추천해요!</S.Red>
       </S.TextContainer>
-      <CommonButton type="button" onClick={goCate}>
+      <CommonButton type="button" onClick={goCate} disabled={!previewUrl}>
         <span>다음</span>
       </CommonButton>
     </S.Wrapper>

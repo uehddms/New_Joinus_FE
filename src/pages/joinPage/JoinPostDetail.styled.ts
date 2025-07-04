@@ -12,13 +12,26 @@ export const Wrapper = styled.section`
 export const ImageContainer = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 36px;
     margin-bottom: 20px;
 `
 
 export const Image = styled.img`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 88%;
 `;
+
+export const TextContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: flex-start;
+    gap: 36px;
+    margin-bottom: 20px;
+`
 
 export const Text = styled.div`
     color: ${({ theme }) => theme.colors.primaryColor};
@@ -26,7 +39,7 @@ export const Text = styled.div`
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 150%; /* 24px */
+    line-height: 150%;
     letter-spacing: -0.64px;
 `;
 
