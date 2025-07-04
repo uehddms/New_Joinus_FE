@@ -36,7 +36,7 @@ export const JoinMain = () => {
             // 에러 무시 (해당 월에 카드가 없거나 기타 오류)
           }
         }
-        setAvailableMonths(monthsWithCards);
+        setAvailableMonths(monthsWithCards.sort((a, b) => b - a));
         const thisMonth = new Date().getMonth() + 1;
         if (monthsWithCards.includes(thisMonth)) {
           setSelectedMonth(thisMonth);
