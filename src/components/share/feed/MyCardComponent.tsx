@@ -100,8 +100,8 @@ const MyCardComponent = () => {
               alt="핀 모양"
               style={{
                 position: "absolute",
-                top: "10px",
-                right: "10px",
+                top: "4px",
+                right: "4px",
                 zIndex: 6,
                 width: "24px",
                 height: "24px",
