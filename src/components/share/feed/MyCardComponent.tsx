@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import * as S from "./share.styled";
 import leaf from "@assets/icons/leaf.png";
-import pin from "@assets/icons/pin_unfilled.svg";
+import pin from "@assets/icons/pin.svg";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { shareApi } from "@api/share/ShareApi";
