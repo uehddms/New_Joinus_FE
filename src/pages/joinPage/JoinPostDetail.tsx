@@ -58,8 +58,10 @@ export const JoinPostDetail = () => {
     <S.Wrapper>
       <S.ImageContainer>
         <S.Image src={card.large_image_url} />
-        <S.Text>실천카드가 완성되었어요!</S.Text>
       </S.ImageContainer>
+      <S.TextContainer>
+        <S.Text>실천카드가 완성되었어요!</S.Text>
+      </S.TextContainer>
       <S.BtnContainer>
         <S.CommonContainer>
           <CommonButton style={{ width: "100%", backgroundColor: "#4F8D64" }}>

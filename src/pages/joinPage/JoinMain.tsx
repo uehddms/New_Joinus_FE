@@ -12,18 +12,42 @@ export const JoinMain = () => {
     "example"
   );
   const [latestImgUrl, setLatestImgUrl] = useState<string | null>(null);
+  const [availableMonths, setAvailableMonths] = useState<number[]>([]);
 
   useEffect(() => {
-    const fetchTutorial = async () => {
+    const fetchTutorialAndMonths = async () => {
       const response = await ApiwithToken.get(`join/tutorial/`);
       setComplete(response.data.tutorial_completed);
       if (response.data.tutorial_completed) {
+        const monthsWithCards: number[] = [];
+        for (let month = 1; month <= 12; month++) {
+          try {
+            const res = await ApiwithToken.get("join/cards/", {
+              params: {
+                month,
+                only_not_shared: false,
+                ordered_by_is_shared: false,
+              },
+            });
+            if (res.data.cardposts && res.data.cardposts.length > 0) {
+              monthsWithCards.push(month);
+            }
+          } catch {
+            // 에러 무시 (해당 월에 카드가 없거나 기타 오류)
+          }
+        }
+        setAvailableMonths(monthsWithCards.sort((a, b) => b - a));
         const thisMonth = new Date().getMonth() + 1;
-        setSelectedMonth(thisMonth);
-        handleMonthClick(thisMonth);
+        if (monthsWithCards.includes(thisMonth)) {
+          setSelectedMonth(thisMonth);
+          handleMonthClick(thisMonth);
+        } else if (monthsWithCards.length > 0) {
+          setSelectedMonth(monthsWithCards[0]);
+          handleMonthClick(monthsWithCards[0]);
+        }
       }
     };
-    fetchTutorial();
+    fetchTutorialAndMonths();
   }, []);
 
   // 월 버튼 클릭 시 해당 월의 최신 실천카드 이미지 가져오기
@@ -124,18 +148,15 @@ export const JoinMain = () => {
           <span>예시</span>
         </S.Month>
         {complete &&
-          Array.from({ length: 12 - new Date().getMonth() }, (_, i) => {
-            const month = new Date().getMonth() + 1 + i;
-            return (
-              <S.Month
-                key={month}
-                selected={selectedMonth === month}
-                onClick={() => handleMonthClick(month)}
-              >
-                <span>{month}월</span>
-              </S.Month>
-            );
-          })}
+          availableMonths.map((month) => (
+            <S.Month
+              key={month}
+              selected={selectedMonth === month}
+              onClick={() => handleMonthClick(month)}
+            >
+              <span>{month}월</span>
+            </S.Month>
+          ))}
       </S.MonthContainer>
       <S.MakeBtn onClick={goTutorial}>
         <span>실천카드 만들러 가기</span>

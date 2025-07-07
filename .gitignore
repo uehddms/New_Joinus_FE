@@ -24,4 +24,10 @@ dist-ssr
 *.sw?
 .env
 localhost-key.pem
+<<<<<<< HEAD
 localhost.pem
+=======
+localhost.pem
+localhost+2.pem
+localhost+2-key.pem
+>>>>>>> 389c19d32f5dc54be91b933ba64ae97d700853eb
