@@ -1,14 +1,13 @@
 import goLeft from "@assets/icons/goLeft.png";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as S from "./detail.styled";
 
 const DetailHeader = ({ data }: { data: string }) => {
-  const navigate = useNavigate();
   return (
     <S.Wrapper>
-      <div onClick={() => navigate(-1)}>
+      <Link to="/share">
         <img src={goLeft} alt="뒤로 가기 버튼" />
-      </div>
+      </Link>
       <p>{data}</p>
     </S.Wrapper>
   );

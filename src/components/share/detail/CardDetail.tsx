@@ -9,6 +9,7 @@ import ReportModal from "@components/modal/ReportModal";
 import ReportModal2 from "@components/modal/ReportModal2";
 import { ApiwithToken } from "@api/ApiWithToken";
 import { shareApi } from "@api/share/ShareApi";
+import { useNavigate } from "react-router-dom";
 
 const CardDetail = ({
   data,
@@ -35,7 +36,7 @@ const CardDetail = ({
   const [isStoredModalOpen, setIsStoredModalOpen] = useState(false);
   const [isPinModalOpen, setIsPinModalOpen] = useState(false);
   const [isUnpinModalOpen, setIsUnpinModalOpen] = useState(false);
-
+  const navigate = useNavigate();
   const handleToggleText = () => {
     setIsExpanded(!isExpanded);
   };
@@ -123,6 +124,7 @@ const CardDetail = ({
       await ApiwithToken.delete(`share/sharedcards/${id}`);
       setIsDeleteModalOpen(false);
       setIsDeletedModalOpen(true);
+      navigate("/myFeed");
     } catch (e) {
       console.log(e);
     }
@@ -248,11 +250,11 @@ const CardDetail = ({
           <ModalBox>
             <ModalText>보관하시겠습니까?</ModalText>
             <ModalButtonRow>
-              <ModalButton onClick={confirmDelete} $primary={false}>
+              <ModalButton onClick={confirmStore} $primary={false}>
                 네
               </ModalButton>
               <ModalButton
-                onClick={() => setIsDeleteModalOpen(false)}
+                onClick={() => setIsStoreModalOpen(false)}
                 $primary={true}
               >
                 아니요
