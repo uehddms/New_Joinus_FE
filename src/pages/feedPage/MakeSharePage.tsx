@@ -11,20 +11,25 @@ const MakeSharePage = () => {
   const [isEdit, setIsEdit] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const fetch = async () => {
-    try {
-      const response = await ApiwithToken.get(`join/cards/${id}/`);
-
-      setData(response.data);
-    } catch (error) {
-      console.log("API error:", error);
-    }
-  };
-
   useEffect(() => {
-    if (location.pathname.startsWith("/share/edit/")) {
-      setIsEdit(true);
-    }
+    const isEditMode = location.pathname.startsWith("/share/edit/");
+    setIsEdit(isEditMode);
+
+    const fetch = async () => {
+      try {
+        let response;
+        console.log("isEdit", isEditMode);
+        if (!isEditMode) {
+          response = await ApiwithToken.get(`join/cards/${id}/`);
+        } else {
+          response = await ApiwithToken.get(`share/sharedcards/${id}/`);
+        }
+        setData(response.data);
+      } catch (error) {
+        console.log("API error:", error);
+      }
+    };
+
     fetch();
   }, [id, location.pathname]);
 
@@ -32,19 +37,22 @@ const MakeSharePage = () => {
     const textarea = textareaRef.current;
     try {
       if (isEdit) {
-        await ApiwithToken.put(`share/sharedcards/${id}/`, {
+        const response = await ApiwithToken.put(`share/sharedcards/${id}/`, {
           description: textarea?.value,
         });
+        // 수정의 경우 현재 id를 사용
+        navigate(`/feed/detail/${response.data.id}`);
       } else {
-        await ApiwithToken.post("share/sharedcards/", {
+        const response = await ApiwithToken.post("share/sharedcards/", {
           cardpost_id: id,
           description: textarea?.value,
         });
+        // 새로 생성된 공유 카드의 id를 사용
+        navigate(`/feed/detail/${response.data.id}`);
       }
     } catch (error) {
       console.log("API error:", error);
     }
-    navigate("/share");
   };
 
   return (

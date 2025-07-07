@@ -9,6 +9,7 @@ import ReportModal from "@components/modal/ReportModal";
 import ReportModal2 from "@components/modal/ReportModal2";
 import { ApiwithToken } from "@api/ApiWithToken";
 import { shareApi } from "@api/share/ShareApi";
+import { useNavigate } from "react-router-dom";
 
 const CardDetail = ({
   data,
@@ -33,7 +34,9 @@ const CardDetail = ({
   const [isDeletedModalOpen, setIsDeletedModalOpen] = useState(false);
   const [isStoreModalOpen, setIsStoreModalOpen] = useState(false);
   const [isStoredModalOpen, setIsStoredModalOpen] = useState(false);
-
+  const [isPinModalOpen, setIsPinModalOpen] = useState(false);
+  const [isUnpinModalOpen, setIsUnpinModalOpen] = useState(false);
+  const navigate = useNavigate();
   const handleToggleText = () => {
     setIsExpanded(!isExpanded);
   };
@@ -54,11 +57,33 @@ const CardDetail = ({
     navigator.clipboard.writeText(window.location.href);
     alert("링크가 복사되었습니다.");
   };
-  const handlePin = async () => {
+  const handlePin = () => {
+    if (isPinned) {
+      setIsUnpinModalOpen(true);
+    } else {
+      setIsPinModalOpen(true);
+    }
+  };
+
+  const confirmPin = async () => {
     try {
       await ApiwithToken.post(`share/pins/`, {
         sharedcard: id,
       });
+      setIsPinModalOpen(false);
+      window.location.reload();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const confirmUnpin = async () => {
+    try {
+      await ApiwithToken.delete(`share/pins/`, {
+        data: { sharedcard: id },
+      });
+      setIsUnpinModalOpen(false);
+      window.location.reload();
     } catch (e) {
       console.log(e);
     }
@@ -99,6 +124,7 @@ const CardDetail = ({
       await ApiwithToken.delete(`share/sharedcards/${id}`);
       setIsDeleteModalOpen(false);
       setIsDeletedModalOpen(true);
+      navigate("/myFeed");
     } catch (e) {
       console.log(e);
     }
@@ -218,6 +244,25 @@ const CardDetail = ({
       {isReportModal2Open && (
         <ReportModal2 onClose={() => setIsReportModal2Open(false)} />
       )}
+      {/* 보관 확인 모달 */}
+      {isStoreModalOpen && (
+        <ModalOverlay>
+          <ModalBox>
+            <ModalText>보관하시겠습니까?</ModalText>
+            <ModalButtonRow>
+              <ModalButton onClick={confirmStore} $primary={false}>
+                네
+              </ModalButton>
+              <ModalButton
+                onClick={() => setIsStoreModalOpen(false)}
+                $primary={true}
+              >
+                아니요
+              </ModalButton>
+            </ModalButtonRow>
+          </ModalBox>
+        </ModalOverlay>
+      )}
       {/* 삭제 확인 모달 */}
       {isDeleteModalOpen && (
         <ModalOverlay>
@@ -271,6 +316,44 @@ const CardDetail = ({
           <ModalBox>
             <ModalText>보관되었습니다.</ModalText>
             <ModalClose onClick={closeStoredModal}>×</ModalClose>
+          </ModalBox>
+        </ModalOverlay>
+      )}
+      {/* 고정 확인 모달 */}
+      {isPinModalOpen && (
+        <ModalOverlay>
+          <ModalBox>
+            <ModalText>고정하시겠습니까?</ModalText>
+            <ModalButtonRow>
+              <ModalButton onClick={confirmPin} $primary={false}>
+                네
+              </ModalButton>
+              <ModalButton
+                onClick={() => setIsPinModalOpen(false)}
+                $primary={true}
+              >
+                아니요
+              </ModalButton>
+            </ModalButtonRow>
+          </ModalBox>
+        </ModalOverlay>
+      )}
+      {/* 고정 해지 확인 모달 */}
+      {isUnpinModalOpen && (
+        <ModalOverlay>
+          <ModalBox>
+            <ModalText>고정을 해지하시겠습니까?</ModalText>
+            <ModalButtonRow>
+              <ModalButton onClick={confirmUnpin} $primary={false}>
+                네
+              </ModalButton>
+              <ModalButton
+                onClick={() => setIsUnpinModalOpen(false)}
+                $primary={true}
+              >
+                아니요
+              </ModalButton>
+            </ModalButtonRow>
           </ModalBox>
         </ModalOverlay>
       )}

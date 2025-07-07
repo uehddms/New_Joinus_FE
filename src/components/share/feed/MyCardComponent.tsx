@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import * as S from "./share.styled";
 import leaf from "@assets/icons/leaf.png";
-import pin from "@assets/icons/pin_unfilled.svg";
+import pin from "@assets/icons/pin.svg";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { shareApi } from "@api/share/ShareApi";
@@ -100,8 +100,8 @@ const MyCardComponent = () => {
               alt="핀 모양"
               style={{
                 position: "absolute",
-                top: "10px",
-                right: "10px",
+                top: "4px",
+                right: "4px",
                 zIndex: 6,
                 width: "24px",
                 height: "24px",
