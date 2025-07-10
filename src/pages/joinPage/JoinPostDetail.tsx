@@ -57,7 +57,7 @@ export const JoinPostDetail = () => {
   return (
     <S.Wrapper>
       <S.ImageContainer>
-        <S.Image src={card.large_image_url} />
+        <S.Image src={card.large_image_url} crossOrigin="anonymous" />
       </S.ImageContainer>
       <S.TextContainer>
         <S.Text>실천카드가 완성되었어요!</S.Text>
