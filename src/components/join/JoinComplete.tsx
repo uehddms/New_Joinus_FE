@@ -71,6 +71,7 @@ export const JoinComplete = () => {
       const response = await ApiwithToken.put(`join/cards/${cardId}/notify/`);
       console.log(response.data);
       alert(response.data.detail);
+      window.location.href = "/feed/choose";
     } catch (error) {
       console.error("공유 실패:", error);
       alert("공유에 실패했습니다.");

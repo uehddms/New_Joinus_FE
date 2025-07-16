@@ -85,34 +85,40 @@ const MyCardComponent = () => {
   }, [next, previous, isLoading]);
 
   return (
-    <Wrapper>
+    <>
       <div id="observerTop" style={{ height: "10px" }}></div>
-      {data.map((data) => (
-        <S.CardContainer key={data.id} as={Link} to={`/feed/detail/${data.id}`}>
-          <img
-            src={data.cardpost.small_image_url}
-            alt="사용자가 추가한 이미지"
-          />
-          <img src={leaf} alt="point 모양" />
-          {data.is_pinned && (
+      <Wrapper>
+        {data.map((data) => (
+          <S.CardContainer
+            key={data.id}
+            as={Link}
+            to={`/feed/detail/${data.id}`}
+          >
             <img
-              src={pin}
-              alt="핀 모양"
-              style={{
-                position: "absolute",
-                top: "4px",
-                right: "4px",
-                zIndex: 6,
-                width: "24px",
-                height: "24px",
-              }}
+              src={data.cardpost.small_image_url}
+              alt="사용자가 추가한 이미지"
             />
-          )}
-          <p>{data.like_count}</p>
-        </S.CardContainer>
-      ))}
+            <img src={leaf} alt="point 모양" />
+            {data.is_pinned && (
+              <img
+                src={pin}
+                alt="핀 모양"
+                style={{
+                  position: "absolute",
+                  top: "4px",
+                  right: "4px",
+                  zIndex: 6,
+                  width: "24px",
+                  height: "24px",
+                }}
+              />
+            )}
+            <p>{data.like_count}</p>
+          </S.CardContainer>
+        ))}
+      </Wrapper>
       <div id="observerBottom" style={{ height: "10px" }}></div>
-    </Wrapper>
+    </>
   );
 };
 
