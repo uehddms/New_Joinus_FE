@@ -28,6 +28,10 @@ export const JoinPostDetail = () => {
     fetchDetail();
   }, [id]);
 
+  const handleUpload = async () => {
+    await ApiwithToken.put(`join/cards/${id}/notify`);
+    navigate("/feed/choose");
+  };
   const goJoin = () => {
     navigate("/join");
   };
@@ -64,7 +68,10 @@ export const JoinPostDetail = () => {
       </S.TextContainer>
       <S.BtnContainer>
         <S.CommonContainer>
-          <CommonButton style={{ width: "100%", backgroundColor: "#4F8D64" }}>
+          <CommonButton
+            onClick={handleUpload}
+            style={{ width: "100%", backgroundColor: "#4F8D64" }}
+          >
             <span>공유에 업로드 하기</span>
           </CommonButton>
         </S.CommonContainer>
